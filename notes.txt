@@ -1,5 +1,0 @@
-- In terms of classes, we should make
-    - Moves > Pokemon > Team > Player > Battle
-- The real application will be an API, the front end should be designed last to interact with the front end
-- We'll use an Model View Controller design for this 
-- All of our pokemon should be stored in JSON files for easy storage and reading, and to minimize code
