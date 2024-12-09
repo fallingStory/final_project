@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokemon Battle Simulator</title>
+    <script defer src ="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script defer src="chatScript.js"></script>
     <link rel="stylesheet" href="battleSceneStyle.css">
 </head>
 <body>
@@ -47,9 +49,9 @@
                 <p>Him: Hi</p>
                 <p>You: Hi</p>
             </div>
-            <div class="chat-input">
-                <input type="text" placeholder="Type your message here...">
-                <button>Send</button>
+            <div id="send-container" class="chat-input">
+                <input type="text" id="message-input" placeholder="Type your message here...">
+                <button type="submit" id="send-button">Send</button>
             </div>
         </div>
     </div>

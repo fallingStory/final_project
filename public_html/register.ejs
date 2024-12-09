@@ -1,0 +1,12 @@
+<h1>Register</h1>
+<form action="/register" method="POST">
+    <div>
+        <label for="username">Username</label>
+        <input id="username" name="username" required>
+    </div>
+  <button type="submit">Register</button>
+</form>
+<% if (messages.error) { %>
+    <p style="color: red;"><%= messages.error %></p>
+<% } %>
+<a href="/login">Login</a>

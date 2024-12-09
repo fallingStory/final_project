@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "public_html/index.js",
   "scripts": {
-    "start": "nodemon public_html/index.js"
+    "start": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
@@ -12,8 +12,15 @@
   "dependencies": {
     "body-parser": "^1.20.3",
     "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
     "express": "^4.19.2",
-    "mongoose": "^8.8.3"
+    "express-flash": "^0.0.2",
+    "express-session": "^1.18.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^8.8.3",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "socket.io": "^4.8.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.7"
