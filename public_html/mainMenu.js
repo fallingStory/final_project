@@ -1,40 +1,34 @@
-const typedName = document.getElementById('player-name-register')
-const loginButton = document.getElementById('login-button')
-const registerButton = document.getElementById('register-button')
+const socket = io("http://localhost:3000"); // Connect to the server
+const findBattleForm = document.getElementById("findBattleForm");
+const battleMessage = document.getElementById("battleMessage");
+const username = document.getElementById("userInfo").getAttribute("data-username");
 
-const {MongoClient} = require('mongodb');
-const express = require('express');
-require('dotenv').config();
-const uri = process.env.MONGO_URI;
-const client = new MongoClient(uri,{});
+// Emit 'findBattle' when the form is submitted
+findBattleForm.addEventListener("submit", (event) => {
+    console.log("hi")
+    event.preventDefault();
+    const friendName = document.getElementById("friendName").value.trim();
 
-console.log("mainMenuJsloaded");
-
-//Connect to mongo
-try {
-    await client.connect();
-    //const query = { name: "Bulbasaur" };
-    //const pokemon = await collection.findOne(query);
-} catch (err) {
-    console.error(err);
-    res.status(500).send("Internal Server Error");
-} finally {
-    await client.close();
-}
-
-
-loginButton.addEventListener("click", async function(){
-    const database = client.db('Users');
-    const collection = database.collection('users');
-    var inputtedUsername = typedName.value
-    const query = { username: inputtedUsername };
-    const profile = await collection.findOne(query);
-    if (profile==null){
-        typedName.innerText="";
-        typedName.placeholder=`user ${inputtedUsername} not found`;
-        
+    if (!friendName) {
+        battleMessage.textContent = "Please enter a friend's name.";
+        return;
     }
-})
+    socket.emit("findBattle", { username, friendName });
+    battleMessage.textContent = "Looking for a battle...";
+});
 
+// Listen for a battle start
+socket.on("battleStart", ({ battleId, opponent }) => {
+    alert(`Battle found! Opponent: ${opponent}`);
+    window.location.href = `/battleScene?battleId=${battleId}`;
+});
 
+// Listen for waiting feedback
+socket.on("waitingForBattle", () => {
+    battleMessage.textContent = "Waiting for a friend to join the battle...";
+});
 
+// Listen for disconnection
+socket.on("disconnect", () => {
+    alert("You have been disconnected from the server.");
+});
