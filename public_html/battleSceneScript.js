@@ -1,11 +1,22 @@
-const socket = io("http://localhost:3000");
+// Ensure the DOM is fully loaded before running the script
+document.addEventListener("DOMContentLoaded", () => {
+    const socket = io("http://localhost:3000");
+    
+    // Get battleId from the URL query parameters
     const battleId = new URLSearchParams(window.location.search).get("battleId");
+    console.log("Battle ID from URL:", battleId);
+    
+    // Debugging: Check the full window location
+    console.log("Window Location:", window.location);
+
+    // DOM elements
     const chatForm = document.getElementById("chatForm");
     const chatInput = document.getElementById("chatInput");
     const chatMessages = document.getElementById("chatMessages");
     const battleLog = document.getElementById("battleLog");
     const battleActions = document.querySelectorAll(".battleAction");
 
+    // Validate battleId
     if (!battleId) {
         alert("No battle ID found. Returning to the main menu.");
         window.location.href = "/";
@@ -42,6 +53,7 @@ const socket = io("http://localhost:3000");
     // Handle battle actions
     battleActions.forEach(actionButton => {
         actionButton.addEventListener("click", () => {
+            console.log("moveClicked")
             const action = actionButton.dataset.action;
             socket.emit("battleAction", { battleId, action });
         });
@@ -52,3 +64,9 @@ const socket = io("http://localhost:3000");
         alert("You have been disconnected from the server.");
         window.location.href = "/";
     });
+
+    // Debugging: Receive battle details from the server if needed
+    socket.on("battleDetails", ({ battleId }) => {
+        console.log("Battle ID received from server:", battleId);
+    });
+});

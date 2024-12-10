@@ -16,42 +16,41 @@
             <div class="battle-area">
 
                 <div class="player">
-                    <img src="charmander.png" alt="Your Pokemon">
+                    <!--<img src="charmander.png" alt="Your Pokemon">-->
                     <div class="stats">You<br>HP: 100/100</div>
                 </div>
 
                 <div class="opponent">
-                    <img src="bulbasaur.png" alt="Opponent Pokemon">
+                    <!--<img src="bulbasaur.png" alt="Opponent Pokemon">-->
                     <div class="stats">Opponent<br>HP: 100/100</div>
                 </div>
             </div>
 
             <div class="button-container">
                 <div class="button-row">
-                    <button>Move 1</button>
-                    <button>Move 2</button>
-                    <button>Move 3</button>
-                    <button>Move 4</button>
+                    <button id="move1">Move 1</button>
+                    <button id="move2">Move 2</button>
+                    <button id="move3">Move 3</button>
+                    <button id="move4">Move 4</button>
                 </div>
                 <div class="button-row">
-                    <button>Pokemon 1</button>
-                    <button>Pokemon 2</button>
-                    <button>Pokemon 3</button>
-                    <button>Pokemon 4</button>
-                    <button>Pokemon 5</button>
-                    <button>Pokemon 6</button>
+                    <button id="pokemon1">Pokemon 1</button>
+                    <button id="pokemon1">Pokemon 2</button>
+                    <button id="pokemon1">Pokemon 3</button>
+                    <button id="pokemon1">Pokemon 4</button>
+                    <button id="pokemon1">Pokemon 5</button>
+                    <button id="pokemon1">Pokemon 6</button>
                 </div>
             </div>
         </div>
 
         <div class="chat-container">
-            <div class="chat-log">
-
-            </div>
-            <div id="send-container" class="chat-input">
-                <input type="text" id="message-input" placeholder="Type your message here...">
-                <button type="submit" id="send-button">Send</button>
-            </div>
+            <div id="chatMessages" class="chat-log"></div>
+            <form id="chatForm" class="chat-input">
+                <input type="text" id="chatInput" placeholder="Type your message here..." required>
+                <button type="submit">Send</button>
+            </form>
+        </div>
         </div>
     </div>
 </body>

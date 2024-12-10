@@ -179,6 +179,8 @@ io.on('connection', (socket) => {
 
     console.log('bananafish', socket.id);
 
+    
+
     socket.on('saveSocketId', (sessionId) => {
         const session = sessions[sessionId];
         if (session) {
