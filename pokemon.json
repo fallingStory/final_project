@@ -1,2500 +1,3295 @@
-[
-      {
-        "id": 1,
-        "num": "001",
-        "name": "Bulbasaur",
-        "img": "http://www.serebii.net/pokemongo/pokemon/001.png",
-        "type": ["Grass", "Poison"],
-        "height": "0.71 m",
-        "weight": "6.9 kg",
-        "weaknesses": ["Fire", "Ice", "Flying", "Psychic"],
-        "next_evolution": [
-          {
-            "num": "002",
-            "name": "Ivysaur"
-          },
-          {
-            "num": "003",
-            "name": "Venusaur"
-          }
-        ]
-      },
-      {
-        "id": 2,
-        "num": "002",
-        "name": "Ivysaur",
-        "img": "http://www.serebii.net/pokemongo/pokemon/002.png",
-        "type": ["Grass", "Poison"],
-        "height": "0.99 m",
-        "weight": "13.0 kg",
-        "weaknesses": ["Fire", "Ice", "Flying", "Psychic"],
-        "prev_evolution": [
-          {
-            "num": "001",
-            "name": "Bulbasaur"
-          }
-        ],
-        "next_evolution": [
-          {
-            "num": "003",
-            "name": "Venusaur"
-          }
-        ]
-      },
-      {
-        "id": 3,
-        "num": "003",
-        "name": "Venusaur",
-        "img": "http://www.serebii.net/pokemongo/pokemon/003.png",
-        "type": ["Grass", "Poison"],
-        "height": "2.01 m",
-        "weight": "100.0 kg",
-        "weaknesses": ["Fire", "Ice", "Flying", "Psychic"],
-        "prev_evolution": [
-          {
-            "num": "001",
-            "name": "Bulbasaur"
-          },
-          {
-            "num": "002",
-            "name": "Ivysaur"
-          }
-        ]
-      },
-      {
-        "id": 4,
-        "num": "004",
-        "name": "Charmander",
-        "img": "http://www.serebii.net/pokemongo/pokemon/004.png",
-        "type": ["Fire"],
-        "height": "0.61 m",
-        "weight": "8.5 kg",
-        "weaknesses": ["Water", "Ground", "Rock"],
-        "next_evolution": [
-          {
-            "num": "005",
-            "name": "Charmeleon"
-          },
-          {
-            "num": "006",
-            "name": "Charizard"
-          }
-        ]
-      },
-      {
-        "id": 5,
-        "num": "005",
-        "name": "Charmeleon",
-        "img": "http://www.serebii.net/pokemongo/pokemon/005.png",
-        "type": ["Fire"],
-        "height": "1.09 m",
-        "weight": "19.0 kg",
-        "weaknesses": ["Water", "Ground", "Rock"],
-        "prev_evolution": [
-          {
-            "num": "004",
-            "name": "Charmander"
-          }
-        ],
-        "next_evolution": [
-          {
-            "num": "006",
-            "name": "Charizard"
-          }
-        ]
-      },
-      {
-        "id": 6,
-        "num": "006",
-        "name": "Charizard",
-        "img": "http://www.serebii.net/pokemongo/pokemon/006.png",
-        "type": ["Fire", "Flying"],
-        "height": "1.70 m",
-        "weight": "90.5 kg",
-        "weaknesses": ["Water", "Electric", "Rock"],
-        "prev_evolution": [
-          {
-            "num": "004",
-            "name": "Charmander"
-          },
-          {
-            "num": "005",
-            "name": "Charmeleon"
-          }
-        ]
-      },
-      {
-        "id": 7,
-        "num": "007",
-        "name": "Squirtle",
-        "img": "http://www.serebii.net/pokemongo/pokemon/007.png",
-        "type": ["Water"],
-        "height": "0.51 m",
-        "weight": "9.0 kg",
-        "weaknesses": ["Electric", "Grass"],
-        "next_evolution": [
-          {
-            "num": "008",
-            "name": "Wartortle"
-          },
-          {
-            "num": "009",
-            "name": "Blastoise"
-          }
-        ]
-      },
-      {
-        "id": 8,
-        "num": "008",
-        "name": "Wartortle",
-        "img": "http://www.serebii.net/pokemongo/pokemon/008.png",
-        "type": ["Water"],
-        "height": "0.99 m",
-        "weight": "22.5 kg",
-        "weaknesses": ["Electric", "Grass"],
-        "prev_evolution": [
-          {
-            "num": "007",
-            "name": "Squirtle"
-          }
-        ],
-        "next_evolution": [
-          {
-            "num": "009",
-            "name": "Blastoise"
-          }
-        ]
-      },
-      {
-        "id": 9,
-        "num": "009",
-        "name": "Blastoise",
-        "img": "http://www.serebii.net/pokemongo/pokemon/009.png",
-        "type": ["Water"],
-        "height": "1.60 m",
-        "weight": "85.5 kg",
-        "weaknesses": ["Electric", "Grass"],
-        "prev_evolution": [
-          {
-            "num": "007",
-            "name": "Squirtle"
-          },
-          {
-            "num": "008",
-            "name": "Wartortle"
-          }
-        ]
-      },
-      {
-        "id": 10,
-        "num": "010",
-        "name": "Caterpie",
-        "img": "http://www.serebii.net/pokemongo/pokemon/010.png",
-        "type": ["Bug"],
-        "height": "0.30 m",
-        "weight": "2.9 kg",
-        "weaknesses": ["Fire", "Flying", "Rock"],
-        "next_evolution": [
-          {
-            "num": "011",
-            "name": "Metapod"
-          },
-          {
-            "num": "012",
-            "name": "Butterfree"
-          }
-        ]
-      },
-      {
-        "id": 11,
-        "num": "011",
-        "name": "Metapod",
-        "img": "http://www.serebii.net/pokemongo/pokemon/011.png",
-        "type": ["Bug"],
-        "height": "0.71 m",
-        "weight": "9.9 kg",
-        "weaknesses": ["Fire", "Flying", "Rock"],
-        "prev_evolution": [
-          {
-            "num": "010",
-            "name": "Caterpie"
-          }
-        ],
-        "next_evolution": [
-          {
-            "num": "012",
-            "name": "Butterfree"
-          }
-        ]
-      },
-      {
-        "id": 12,
-        "num": "012",
-        "name": "Butterfree",
-        "img": "http://www.serebii.net/pokemongo/pokemon/012.png",
-        "type": ["Bug", "Flying"],
-        "height": "1.09 m",
-        "weight": "32.0 kg",
-        "weaknesses": ["Fire", "Electric", "Ice", "Flying", "Rock"],
-        "prev_evolution": [
-          {
-            "num": "010",
-            "name": "Caterpie"
-          },
-          {
-            "num": "011",
-            "name": "Metapod"
-          }
-        ]
-      },
-      {
-        "id": 13,
-        "num": "013",
-        "name": "Weedle",
-        "img": "http://www.serebii.net/pokemongo/pokemon/013.png",
-        "type": ["Bug", "Poison"],
-        "height": "0.30 m",
-        "weight": "3.2 kg",
-        "weaknesses": ["Fire", "Flying", "Psychic", "Rock"],
-        "next_evolution": [
-          {
-            "num": "014",
-            "name": "Kakuna"
-          },
-          {
-            "num": "015",
-            "name": "Beedrill"
-          }
-        ]
-      },
-      {
-        "id": 14,
-        "num": "014",
-        "name": "Kakuna",
-        "img": "http://www.serebii.net/pokemongo/pokemon/014.png",
-        "type": ["Bug", "Poison"],
-        "height": "0.61 m",
-        "weight": "10.0 kg",
-        "weaknesses": ["Fire", "Flying", "Psychic", "Rock"],
-        "prev_evolution": [
-          {
-            "num": "013",
-            "name": "Weedle"
-          }
-        ],
-        "next_evolution": [
-          {
-            "num": "015",
-            "name": "Beedrill"
-          }
-        ]
-      },
-      {
-        "id": 15,
-        "num": "015",
-        "name": "Beedrill",
-        "img": "http://www.serebii.net/pokemongo/pokemon/015.png",
-        "type": ["Bug", "Poison"],
-        "height": "0.99 m",
-        "weight": "29.5 kg",
-        "weaknesses": ["Fire", "Flying", "Psychic", "Rock"],
-        "prev_evolution": [
-          {
-            "num": "013",
-            "name": "Weedle"
-          },
-          {
-            "num": "014",
-            "name": "Kakuna"
-          }
-        ]
-      },
-      {
-        "id": 16,
-        "num": "016",
-        "name": "Pidgey",
-        "img": "http://www.serebii.net/pokemongo/pokemon/016.png",
-        "type": ["Normal", "Flying"],
-        "height": "0.30 m",
-        "weight": "1.8 kg",
-        "weaknesses": ["Electric", "Rock"],
-        "next_evolution": [
-          {
-            "num": "017",
-            "name": "Pidgeotto"
-          },
-          {
-            "num": "018",
-            "name": "Pidgeot"
-          }
-        ]
-      },
-      {
-        "id": 17,
-        "num": "017",
-        "name": "Pidgeotto",
-        "img": "http://www.serebii.net/pokemongo/pokemon/017.png",
-        "type": ["Normal", "Flying"],
-        "height": "1.09 m",
-        "weight": "30.0 kg",
-        "weaknesses": ["Electric", "Rock"],
-        "prev_evolution": [
-          {
-            "num": "016",
-            "name": "Pidgey"
-          }
-        ],
-        "next_evolution": [
-          {
-            "num": "018",
-            "name": "Pidgeot"
-          }
-        ]
-      },
-      {
-        "id": 18,
-        "num": "018",
-        "name": "Pidgeot",
-        "img": "http://www.serebii.net/pokemongo/pokemon/018.png",
-        "type": ["Normal", "Flying"],
-        "height": "1.50 m",
-        "weight": "39.5 kg",
-        "weaknesses": ["Electric", "Rock"],
-        "prev_evolution": [
-          {
-            "num": "016",
-            "name": "Pidgey"
-          },
-          {
-            "num": "017",
-            "name": "Pidgeotto"
-          }
-        ]
-      },
-      {
-        "id": 19,
-        "num": "019",
-        "name": "Rattata",
-        "img": "http://www.serebii.net/pokemongo/pokemon/019.png",
-        "type": ["Normal"],
-        "height": "0.30 m",
-        "weight": "3.5 kg",
-        "weaknesses": ["Fighting"],
-        "next_evolution": [
-          {
-            "num": "020",
-            "name": "Raticate"
-          }
-        ]
-      },
-      {
-        "id": 20,
-        "num": "020",
-        "name": "Raticate",
-        "img": "http://www.serebii.net/pokemongo/pokemon/020.png",
-        "type": ["Normal"],
-        "height": "0.71 m",
-        "weight": "18.5 kg",
-        "weaknesses": ["Fighting"],
-        "prev_evolution": [
-          {
-            "num": "019",
-            "name": "Rattata"
-          }
-        ]
-      },
-      {
-        "id": 21,
-        "num": "021",
-        "name": "Spearow",
-        "img": "http://www.serebii.net/pokemongo/pokemon/021.png",
-        "type": ["Normal", "Flying"],
-        "height": "0.30 m",
-        "weight": "2.0 kg",
-        "weaknesses": ["Electric", "Rock"],
-        "next_evolution": [
-          {
-            "num": "022",
-            "name": "Fearow"
-          }
-        ]
-      },
-      {
-        "id": 22,
-        "num": "022",
-        "name": "Fearow",
-        "img": "http://www.serebii.net/pokemongo/pokemon/022.png",
-        "type": ["Normal", "Flying"],
-        "height": "1.19 m",
-        "weight": "38.0 kg",
-        "weaknesses": ["Electric", "Rock"],
-        "prev_evolution": [
-          {
-            "num": "021",
-            "name": "Spearow"
-          }
-        ]
-      },
-      {
-        "id": 23,
-        "num": "023",
-        "name": "Ekans",
-        "img": "http://www.serebii.net/pokemongo/pokemon/023.png",
-        "type": ["Poison"],
-        "height": "2.01 m",
-        "weight": "6.9 kg",
-        "weaknesses": ["Ground", "Psychic"],
-        "next_evolution": [
-          {
-            "num": "024",
-            "name": "Arbok"
-          }
-        ]
-      },
-      {
-        "id": 24,
-        "num": "024",
-        "name": "Arbok",
-        "img": "http://www.serebii.net/pokemongo/pokemon/024.png",
-        "type": ["Poison"],
-        "height": "3.51 m",
-        "weight": "65.0 kg",
-        "weaknesses": ["Ground", "Psychic"],
-        "prev_evolution": [
-          {
-            "num": "023",
-            "name": "Ekans"
-          }
-        ]
-      },
-      {
-        "id": 25,
-        "num": "025",
-        "name": "Pikachu",
-        "img": "http://www.serebii.net/pokemongo/pokemon/025.png",
-        "type": ["Electric"],
-        "height": "0.41 m",
-        "weight": "6.0 kg",
-        "weaknesses": ["Ground"],
-        "next_evolution": [
-          {
-            "num": "026",
-            "name": "Raichu"
-          }
-        ]
-      },
-      {
-        "id": 26,
-        "num": "026",
-        "name": "Raichu",
-        "img": "http://www.serebii.net/pokemongo/pokemon/026.png",
-        "type": ["Electric"],
-        "height": "0.79 m",
-        "weight": "30.0 kg",
-        "weaknesses": ["Ground"],
-        "prev_evolution": [
-          {
-            "num": "025",
-            "name": "Pikachu"
-          }
-        ]
-      },
-      {
-        "id": 27,
-        "num": "027",
-        "name": "Sandshrew",
-        "img": "http://www.serebii.net/pokemongo/pokemon/027.png",
-        "type": ["Ground"],
-        "height": "0.61 m",
-        "weight": "12.0 kg",
-        "weaknesses": ["Water", "Grass", "Ice"],
-        "next_evolution": [
-          {
-            "num": "028",
-            "name": "Sandslash"
-          }
-        ]
-      },
-      {
-        "id": 28,
-        "num": "028",
-        "name": "Sandslash",
-        "img": "http://www.serebii.net/pokemongo/pokemon/028.png",
-        "type": ["Ground"],
-        "height": "0.99 m",
-        "weight": "29.5 kg",
-        "weaknesses": ["Water", "Grass", "Ice"],
-        "prev_evolution": [
-          {
-            "num": "027",
-            "name": "Sandshrew"
-          }
-        ]
-      },
-      {
-        "id": 29,
-        "num": "029",
-        "name": "Nidoran ♀ (Female)",
-        "img": "http://www.serebii.net/pokemongo/pokemon/029.png",
-        "type": ["Poison"],
-        "height": "0.41 m",
-        "weight": "7.0 kg",
-        "weaknesses": ["Ground", "Psychic"],
-        "next_evolution": [
-          {
-            "num": "030",
-            "name": "Nidorina"
-          },
-          {
-            "num": "031",
-            "name": "Nidoqueen"
-          }
-        ]
-      },
-      {
-        "id": 30,
-        "num": "030",
-        "name": "Nidorina",
-        "img": "http://www.serebii.net/pokemongo/pokemon/030.png",
-        "type": ["Poison"],
-        "height": "0.79 m",
-        "weight": "20.0 kg",
-        "weaknesses": ["Ground", "Psychic"],
-        "prev_evolution": [
-          {
-            "num": "029",
-            "name": "Nidoran(Female)"
-          }
-        ],
-        "next_evolution": [
-          {
-            "num": "031",
-            "name": "Nidoqueen"
-          }
-        ]
-      },
-      {
-        "id": 31,
-        "num": "031",
-        "name": "Nidoqueen",
-        "img": "http://www.serebii.net/pokemongo/pokemon/031.png",
-        "type": ["Poison", "Ground"],
-        "height": "1.30 m",
-        "weight": "60.0 kg",
-        "weaknesses": ["Water", "Ice", "Ground", "Psychic"],
-        "prev_evolution": [
-          {
-            "num": "029",
-            "name": "Nidoran(Female)"
-          },
-          {
-            "num": "030",
-            "name": "Nidorina"
-          }
-        ]
-      },
-      {
-        "id": 32,
-        "num": "032",
-        "name": "Nidoran ♂ (Male)",
-        "img": "http://www.serebii.net/pokemongo/pokemon/032.png",
-        "type": ["Poison"],
-        "height": "0.51 m",
-        "weight": "9.0 kg",
-        "weaknesses": ["Ground", "Psychic"],
-        "next_evolution": [
-          {
-            "num": "033",
-            "name": "Nidorino"
-          },
-          {
-            "num": "034",
-            "name": "Nidoking"
-          }
-        ]
-      },
-      {
-        "id": 33,
-        "num": "033",
-        "name": "Nidorino",
-        "img": "http://www.serebii.net/pokemongo/pokemon/033.png",
-        "type": ["Poison"],
-        "height": "0.89 m",
-        "weight": "19.5 kg",
-        "weaknesses": ["Ground", "Psychic"],
-        "prev_evolution": [
-          {
-            "num": "032",
-            "name": "Nidoran(Male)"
-          }
-        ],
-        "next_evolution": [
-          {
-            "num": "034",
-            "name": "Nidoking"
-          }
-        ]
-      },
-      {
-        "id": 34,
-        "num": "034",
-        "name": "Nidoking",
-        "img": "http://www.serebii.net/pokemongo/pokemon/034.png",
-        "type": ["Poison", "Ground"],
-        "height": "1.40 m",
-        "weight": "62.0 kg",
-        "weaknesses": ["Water", "Ice", "Ground", "Psychic"],
-        "prev_evolution": [
-          {
-            "num": "032",
-            "name": "Nidoran(Male)"
-          },
-          {
-            "num": "033",
-            "name": "Nidorino"
-          }
-        ]
-      },
-      {
-        "id": 35,
-        "num": "035",
-        "name": "Clefairy",
-        "img": "http://www.serebii.net/pokemongo/pokemon/035.png",
-        "type": ["Normal"],
-        "height": "0.61 m",
-        "weight": "7.5 kg",
-        "weaknesses": ["Fighting"],
-        "next_evolution": [
-          {
-            "num": "036",
-            "name": "Clefable"
-          }
-        ]
-      },
-      {
-        "id": 36,
-        "num": "036",
-        "name": "Clefable",
-        "img": "http://www.serebii.net/pokemongo/pokemon/036.png",
-        "type": ["Normal"],
-        "height": "1.30 m",
-        "weight": "40.0 kg",
-        "weaknesses": ["Fighting"],
-        "prev_evolution": [
-          {
-            "num": "035",
-            "name": "Clefairy"
-          }
-        ]
-      },
-      {
-        "id": 37,
-        "num": "037",
-        "name": "Vulpix",
-        "img": "http://www.serebii.net/pokemongo/pokemon/037.png",
-        "type": ["Fire"],
-        "height": "0.61 m",
-        "weight": "9.9 kg",
-        "weaknesses": ["Water", "Ground", "Rock"],
-        "next_evolution": [
-          {
-            "num": "038",
-            "name": "Ninetales"
-          }
-        ]
-      },
-      {
-        "id": 38,
-        "num": "038",
-        "name": "Ninetales",
-        "img": "http://www.serebii.net/pokemongo/pokemon/038.png",
-        "type": ["Fire"],
-        "height": "1.09 m",
-        "weight": "19.9 kg",
-        "weaknesses": ["Water", "Ground", "Rock"],
-        "prev_evolution": [
-          {
-            "num": "037",
-            "name": "Vulpix"
-          }
-        ]
-      },
-      {
-        "id": 39,
-        "num": "039",
-        "name": "Jigglypuff",
-        "img": "http://www.serebii.net/pokemongo/pokemon/039.png",
-        "type": ["Normal"],
-        "height": "0.51 m",
-        "weight": "5.5 kg",
-        "weaknesses": ["Fighting"],
-        "next_evolution": [
-          {
-            "num": "040",
-            "name": "Wigglytuff"
-          }
-        ]
-      },
-      {
-        "id": 40,
-        "num": "040",
-        "name": "Wigglytuff",
-        "img": "http://www.serebii.net/pokemongo/pokemon/040.png",
-        "type": ["Normal"],
-        "height": "0.99 m",
-        "weight": "12.0 kg",
-        "weaknesses": ["Fighting"],
-        "prev_evolution": [
-          {
-            "num": "039",
-            "name": "Jigglypuff"
-          }
-        ]
-      },
-      {
-        "id": 41,
-        "num": "041",
-        "name": "Zubat",
-        "img": "http://www.serebii.net/pokemongo/pokemon/041.png",
-        "type": ["Poison", "Flying"],
-        "height": "0.79 m",
-        "weight": "7.5 kg",
-        "weaknesses": ["Electric", "Ice", "Psychic", "Rock"],
-        "next_evolution": [
-          {
-            "num": "042",
-            "name": "Golbat"
-          }
-        ]
-      },
-      {
-        "id": 42,
-        "num": "042",
-        "name": "Golbat",
-        "img": "http://www.serebii.net/pokemongo/pokemon/042.png",
-        "type": ["Poison", "Flying"],
-        "height": "1.60 m",
-        "weight": "55.0 kg",
-        "weaknesses": ["Electric", "Ice", "Psychic", "Rock"],
-        "prev_evolution": [
-          {
-            "num": "041",
-            "name": "Zubat"
-          }
-        ]
-      },
-      {
-        "id": 43,
-        "num": "043",
-        "name": "Oddish",
-        "img": "http://www.serebii.net/pokemongo/pokemon/043.png",
-        "type": ["Grass", "Poison"],
-        "height": "0.51 m",
-        "weight": "5.4 kg",
-        "weaknesses": ["Fire", "Ice", "Flying", "Psychic"],
-        "next_evolution": [
-          {
-            "num": "044",
-            "name": "Gloom"
-          },
-          {
-            "num": "045",
-            "name": "Vileplume"
-          }
-        ]
-      },
-      {
-        "id": 44,
-        "num": "044",
-        "name": "Gloom",
-        "img": "http://www.serebii.net/pokemongo/pokemon/044.png",
-        "type": ["Grass", "Poison"],
-        "height": "0.79 m",
-        "weight": "8.6 kg",
-        "weaknesses": ["Fire", "Ice", "Flying", "Psychic"],
-        "prev_evolution": [
-          {
-            "num": "043",
-            "name": "Oddish"
-          }
-        ],
-        "next_evolution": [
-          {
-            "num": "045",
-            "name": "Vileplume"
-          }
-        ]
-      },
-      {
-        "id": 45,
-        "num": "045",
-        "name": "Vileplume",
-        "img": "http://www.serebii.net/pokemongo/pokemon/045.png",
-        "type": ["Grass", "Poison"],
-        "height": "1.19 m",
-        "weight": "18.6 kg",
-        "weaknesses": ["Fire", "Ice", "Flying", "Psychic"],
-        "prev_evolution": [
-          {
-            "num": "043",
-            "name": "Oddish"
-          },
-          {
-            "num": "044",
-            "name": "Gloom"
-          }
-        ]
-      },
-      {
-        "id": 46,
-        "num": "046",
-        "name": "Paras",
-        "img": "http://www.serebii.net/pokemongo/pokemon/046.png",
-        "type": ["Bug", "Grass"],
-        "height": "0.30 m",
-        "weight": "5.4 kg",
-        "weaknesses": ["Fire", "Ice", "Poison", "Flying", "Bug", "Rock"],
-        "next_evolution": [
-          {
-            "num": "047",
-            "name": "Parasect"
-          }
-        ]
-      },
-      {
-        "id": 47,
-        "num": "047",
-        "name": "Parasect",
-        "img": "http://www.serebii.net/pokemongo/pokemon/047.png",
-        "type": ["Bug", "Grass"],
-        "height": "0.99 m",
-        "weight": "29.5 kg",
-        "weaknesses": ["Fire", "Ice", "Poison", "Flying", "Bug", "Rock"],
-        "prev_evolution": [
-          {
-            "num": "046",
-            "name": "Paras"
-          }
-        ]
-      },
-      {
-        "id": 48,
-        "num": "048",
-        "name": "Venonat",
-        "img": "http://www.serebii.net/pokemongo/pokemon/048.png",
-        "type": ["Bug", "Poison"],
-        "height": "0.99 m",
-        "weight": "30.0 kg",
-        "weaknesses": ["Fire", "Flying", "Psychic", "Rock"],
-        "next_evolution": [
-          {
-            "num": "049",
-            "name": "Venomoth"
-          }
-        ]
-      },
-      {
-        "id": 49,
-        "num": "049",
-        "name": "Venomoth",
-        "img": "http://www.serebii.net/pokemongo/pokemon/049.png",
-        "type": ["Bug", "Poison"],
-        "height": "1.50 m",
-        "weight": "12.5 kg",
-        "weaknesses": ["Fire", "Flying", "Psychic", "Rock"],
-        "prev_evolution": [
-          {
-            "num": "048",
-            "name": "Venonat"
-          }
-        ]
-      },
-      {
-        "id": 50,
-        "num": "050",
-        "name": "Diglett",
-        "img": "http://www.serebii.net/pokemongo/pokemon/050.png",
-        "type": ["Ground"],
-        "height": "0.20 m",
-        "weight": "0.8 kg",
-        "weaknesses": ["Water", "Grass", "Ice"],
-        "next_evolution": [
-          {
-            "num": "051",
-            "name": "Dugtrio"
-          }
-        ]
-      },
-      {
-        "id": 51,
-        "num": "051",
-        "name": "Dugtrio",
-        "img": "http://www.serebii.net/pokemongo/pokemon/051.png",
-        "type": ["Ground"],
-        "height": "0.71 m",
-        "weight": "33.3 kg",
-        "weaknesses": ["Water", "Grass", "Ice"],
-        "prev_evolution": [
-          {
-            "num": "050",
-            "name": "Diglett"
-          }
-        ]
-      },
-      {
-        "id": 52,
-        "num": "052",
-        "name": "Meowth",
-        "img": "http://www.serebii.net/pokemongo/pokemon/052.png",
-        "type": ["Normal"],
-        "height": "0.41 m",
-        "weight": "4.2 kg",
-        "weaknesses": ["Fighting"],
-        "next_evolution": [
-          {
-            "num": "053",
-            "name": "Persian"
-          }
-        ]
-      },
-      {
-        "id": 53,
-        "num": "053",
-        "name": "Persian",
-        "img": "http://www.serebii.net/pokemongo/pokemon/053.png",
-        "type": ["Normal"],
-        "height": "0.99 m",
-        "weight": "32.0 kg",
-        "weaknesses": ["Fighting"],
-        "prev_evolution": [
-          {
-            "num": "052",
-            "name": "Meowth"
-          }
-        ]
-      },
-      {
-        "id": 54,
-        "num": "054",
-        "name": "Psyduck",
-        "img": "http://www.serebii.net/pokemongo/pokemon/054.png",
-        "type": ["Water"],
-        "height": "0.79 m",
-        "weight": "19.6 kg",
-        "weaknesses": ["Electric", "Grass"],
-        "next_evolution": [
-          {
-            "num": "055",
-            "name": "Golduck"
-          }
-        ]
-      },
-      {
-        "id": 55,
-        "num": "055",
-        "name": "Golduck",
-        "img": "http://www.serebii.net/pokemongo/pokemon/055.png",
-        "type": ["Water"],
-        "height": "1.70 m",
-        "weight": "76.6 kg",
-        "weaknesses": ["Electric", "Grass"],
-        "prev_evolution": [
-          {
-            "num": "054",
-            "name": "Psyduck"
-          }
-        ]
-      },
-      {
-        "id": 56,
-        "num": "056",
-        "name": "Mankey",
-        "img": "http://www.serebii.net/pokemongo/pokemon/056.png",
-        "type": ["Fighting"],
-        "height": "0.51 m",
-        "weight": "28.0 kg",
-        "weaknesses": ["Flying", "Psychic", "Fairy"],
-        "next_evolution": [
-          {
-            "num": "057",
-            "name": "Primeape"
-          }
-        ]
-      },
-      {
-        "id": 57,
-        "num": "057",
-        "name": "Primeape",
-        "img": "http://www.serebii.net/pokemongo/pokemon/057.png",
-        "type": ["Fighting"],
-        "height": "0.99 m",
-        "weight": "32.0 kg",
-        "weaknesses": ["Flying", "Psychic", "Fairy"],
-        "prev_evolution": [
-          {
-            "num": "056",
-            "name": "Mankey"
-          }
-        ]
-      },
-      {
-        "id": 58,
-        "num": "058",
-        "name": "Growlithe",
-        "img": "http://www.serebii.net/pokemongo/pokemon/058.png",
-        "type": ["Fire"],
-        "height": "0.71 m",
-        "weight": "19.0 kg",
-        "weaknesses": ["Water", "Ground", "Rock"],
-        "next_evolution": [
-          {
-            "num": "059",
-            "name": "Arcanine"
-          }
-        ]
-      },
-      {
-        "id": 59,
-        "num": "059",
-        "name": "Arcanine",
-        "img": "http://www.serebii.net/pokemongo/pokemon/059.png",
-        "type": ["Fire"],
-        "height": "1.91 m",
-        "weight": "155.0 kg",
-        "weaknesses": ["Water", "Ground", "Rock"],
-        "prev_evolution": [
-          {
-            "num": "058",
-            "name": "Growlithe"
-          }
-        ]
-      },
-      {
-        "id": 60,
-        "num": "060",
-        "name": "Poliwag",
-        "img": "http://www.serebii.net/pokemongo/pokemon/060.png",
-        "type": ["Water"],
-        "height": "0.61 m",
-        "weight": "12.4 kg",
-        "weaknesses": ["Electric", "Grass"],
-        "next_evolution": [
-          {
-            "num": "061",
-            "name": "Poliwhirl"
-          },
-          {
-            "num": "062",
-            "name": "Poliwrath"
-          }
-        ]
-      },
-      {
-        "id": 61,
-        "num": "061",
-        "name": "Poliwhirl",
-        "img": "http://www.serebii.net/pokemongo/pokemon/061.png",
-        "type": ["Water"],
-        "height": "0.99 m",
-        "weight": "20.0 kg",
-        "weaknesses": ["Electric", "Grass"],
-        "prev_evolution": [
-          {
-            "num": "060",
-            "name": "Poliwag"
-          }
-        ],
-        "next_evolution": [
-          {
-            "num": "062",
-            "name": "Poliwrath"
-          }
-        ]
-      },
-      {
-        "id": 62,
-        "num": "062",
-        "name": "Poliwrath",
-        "img": "http://www.serebii.net/pokemongo/pokemon/062.png",
-        "type": ["Water", "Fighting"],
-        "height": "1.30 m",
-        "weight": "54.0 kg",
-        "weaknesses": ["Electric", "Grass", "Flying", "Psychic", "Fairy"],
-        "prev_evolution": [
-          {
-            "num": "060",
-            "name": "Poliwag"
-          },
-          {
-            "num": "061",
-            "name": "Poliwhirl"
-          }
-        ]
-      },
-      {
-        "id": 63,
-        "num": "063",
-        "name": "Abra",
-        "img": "http://www.serebii.net/pokemongo/pokemon/063.png",
-        "type": ["Psychic"],
-        "height": "0.89 m",
-        "weight": "19.5 kg",
-        "weaknesses": ["Bug", "Ghost", "Dark"],
-        "next_evolution": [
-          {
-            "num": "064",
-            "name": "Kadabra"
-          },
-          {
-            "num": "065",
-            "name": "Alakazam"
-          }
-        ]
-      },
-      {
-        "id": 64,
-        "num": "064",
-        "name": "Kadabra",
-        "img": "http://www.serebii.net/pokemongo/pokemon/064.png",
-        "type": ["Psychic"],
-        "height": "1.30 m",
-        "weight": "56.5 kg",
-        "weaknesses": ["Bug", "Ghost", "Dark"],
-        "prev_evolution": [
-          {
-            "num": "063",
-            "name": "Abra"
-          }
-        ],
-        "next_evolution": [
-          {
-            "num": "065",
-            "name": "Alakazam"
-          }
-        ]
-      },
-      {
-        "id": 65,
-        "num": "065",
-        "name": "Alakazam",
-        "img": "http://www.serebii.net/pokemongo/pokemon/065.png",
-        "type": ["Psychic"],
-        "height": "1.50 m",
-        "weight": "48.0 kg",
-        "weaknesses": ["Bug", "Ghost", "Dark"],
-        "prev_evolution": [
-          {
-            "num": "063",
-            "name": "Abra"
-          },
-          {
-            "num": "064",
-            "name": "Kadabra"
-          }
-        ]
-      },
-      {
-        "id": 66,
-        "num": "066",
-        "name": "Machop",
-        "img": "http://www.serebii.net/pokemongo/pokemon/066.png",
-        "type": ["Fighting"],
-        "height": "0.79 m",
-        "weight": "19.5 kg",
-        "weaknesses": ["Flying", "Psychic", "Fairy"],
-        "next_evolution": [
-          {
-            "num": "067",
-            "name": "Machoke"
-          },
-          {
-            "num": "068",
-            "name": "Machamp"
-          }
-        ]
-      },
-      {
-        "id": 67,
-        "num": "067",
-        "name": "Machoke",
-        "img": "http://www.serebii.net/pokemongo/pokemon/067.png",
-        "type": ["Fighting"],
-        "height": "1.50 m",
-        "weight": "70.5 kg",
-        "weaknesses": ["Flying", "Psychic", "Fairy"],
-        "prev_evolution": [
-          {
-            "num": "066",
-            "name": "Machop"
-          }
-        ],
-        "next_evolution": [
-          {
-            "num": "068",
-            "name": "Machamp"
-          }
-        ]
-      },
-      {
-        "id": 68,
-        "num": "068",
-        "name": "Machamp",
-        "img": "http://www.serebii.net/pokemongo/pokemon/068.png",
-        "type": ["Fighting"],
-        "height": "1.60 m",
-        "weight": "130.0 kg",
-        "weaknesses": ["Flying", "Psychic", "Fairy"],
-        "prev_evolution": [
-          {
-            "num": "066",
-            "name": "Machop"
-          },
-          {
-            "num": "067",
-            "name": "Machoke"
-          }
-        ]
-      },
-      {
-        "id": 69,
-        "num": "069",
-        "name": "Bellsprout",
-        "img": "http://www.serebii.net/pokemongo/pokemon/069.png",
-        "type": ["Grass", "Poison"],
-        "height": "0.71 m",
-        "weight": "4.0 kg",
-        "weaknesses": ["Fire", "Ice", "Flying", "Psychic"],
-        "next_evolution": [
-          {
-            "num": "070",
-            "name": "Weepinbell"
-          },
-          {
-            "num": "071",
-            "name": "Victreebel"
-          }
-        ]
-      },
-      {
-        "id": 70,
-        "num": "070",
-        "name": "Weepinbell",
-        "img": "http://www.serebii.net/pokemongo/pokemon/070.png",
-        "type": ["Grass", "Poison"],
-        "height": "0.99 m",
-        "weight": "6.4 kg",
-        "weaknesses": ["Fire", "Ice", "Flying", "Psychic"],
-        "prev_evolution": [
-          {
-            "num": "069",
-            "name": "Bellsprout"
-          }
-        ],
-        "next_evolution": [
-          {
-            "num": "071",
-            "name": "Victreebel"
-          }
-        ]
-      },
-      {
-        "id": 71,
-        "num": "071",
-        "name": "Victreebel",
-        "img": "http://www.serebii.net/pokemongo/pokemon/071.png",
-        "type": ["Grass", "Poison"],
-        "height": "1.70 m",
-        "weight": "15.5 kg",
-        "weaknesses": ["Fire", "Ice", "Flying", "Psychic"],
-        "prev_evolution": [
-          {
-            "num": "069",
-            "name": "Bellsprout"
-          },
-          {
-            "num": "070",
-            "name": "Weepinbell"
-          }
-        ]
-      },
-      {
-        "id": 72,
-        "num": "072",
-        "name": "Tentacool",
-        "img": "http://www.serebii.net/pokemongo/pokemon/072.png",
-        "type": ["Water", "Poison"],
-        "height": "0.89 m",
-        "weight": "45.5 kg",
-        "weaknesses": ["Electric", "Ground", "Psychic"],
-        "next_evolution": [
-          {
-            "num": "073",
-            "name": "Tentacruel"
-          }
-        ]
-      },
-      {
-        "id": 73,
-        "num": "073",
-        "name": "Tentacruel",
-        "img": "http://www.serebii.net/pokemongo/pokemon/073.png",
-        "type": ["Water", "Poison"],
-        "height": "1.60 m",
-        "weight": "55.0 kg",
-        "weaknesses": ["Electric", "Ground", "Psychic"],
-        "prev_evolution": [
-          {
-            "num": "072",
-            "name": "Tentacool"
-          }
-        ]
-      },
-      {
-        "id": 74,
-        "num": "074",
-        "name": "Geodude",
-        "img": "http://www.serebii.net/pokemongo/pokemon/074.png",
-        "type": ["Rock", "Ground"],
-        "height": "0.41 m",
-        "weight": "20.0 kg",
-        "weaknesses": ["Water", "Grass", "Ice", "Fighting", "Ground", "Steel"],
-        "next_evolution": [
-          {
-            "num": "075",
-            "name": "Graveler"
-          },
-          {
-            "num": "076",
-            "name": "Golem"
-          }
-        ]
-      },
-      {
-        "id": 75,
-        "num": "075",
-        "name": "Graveler",
-        "img": "http://www.serebii.net/pokemongo/pokemon/075.png",
-        "type": ["Rock", "Ground"],
-        "height": "0.99 m",
-        "weight": "105.0 kg",
-        "weaknesses": ["Water", "Grass", "Ice", "Fighting", "Ground", "Steel"],
-        "prev_evolution": [
-          {
-            "num": "074",
-            "name": "Geodude"
-          }
-        ],
-        "next_evolution": [
-          {
-            "num": "076",
-            "name": "Golem"
-          }
-        ]
-      },
-      {
-        "id": 76,
-        "num": "076",
-        "name": "Golem",
-        "img": "http://www.serebii.net/pokemongo/pokemon/076.png",
-        "type": ["Rock", "Ground"],
-        "height": "1.40 m",
-        "weight": "300.0 kg",
-        "weaknesses": ["Water", "Grass", "Ice", "Fighting", "Ground", "Steel"],
-        "prev_evolution": [
-          {
-            "num": "074",
-            "name": "Geodude"
-          },
-          {
-            "num": "075",
-            "name": "Graveler"
-          }
-        ]
-      },
-      {
-        "id": 77,
-        "num": "077",
-        "name": "Ponyta",
-        "img": "http://www.serebii.net/pokemongo/pokemon/077.png",
-        "type": ["Fire"],
-        "height": "0.99 m",
-        "weight": "30.0 kg",
-        "weaknesses": ["Water", "Ground", "Rock"],
-        "next_evolution": [
-          {
-            "num": "078",
-            "name": "Rapidash"
-          }
-        ]
-      },
-      {
-        "id": 78,
-        "num": "078",
-        "name": "Rapidash",
-        "img": "http://www.serebii.net/pokemongo/pokemon/078.png",
-        "type": ["Fire"],
-        "height": "1.70 m",
-        "weight": "95.0 kg",
-        "weaknesses": ["Water", "Ground", "Rock"],
-        "prev_evolution": [
-          {
-            "num": "077",
-            "name": "Ponyta"
-          }
-        ]
-      },
-      {
-        "id": 79,
-        "num": "079",
-        "name": "Slowpoke",
-        "img": "http://www.serebii.net/pokemongo/pokemon/079.png",
-        "type": ["Water", "Psychic"],
-        "height": "1.19 m",
-        "weight": "36.0 kg",
-        "weaknesses": ["Electric", "Grass", "Bug", "Ghost", "Dark"],
-        "next_evolution": [
-          {
-            "num": "080",
-            "name": "Slowbro"
-          }
-        ]
-      },
-      {
-        "id": 80,
-        "num": "080",
-        "name": "Slowbro",
-        "img": "http://www.serebii.net/pokemongo/pokemon/080.png",
-        "type": ["Water", "Psychic"],
-        "height": "1.60 m",
-        "weight": "78.5 kg",
-        "weaknesses": ["Electric", "Grass", "Bug", "Ghost", "Dark"],
-        "prev_evolution": [
-          {
-            "num": "079",
-            "name": "Slowpoke"
-          }
-        ]
-      },
-      {
-        "id": 81,
-        "num": "081",
-        "name": "Magnemite",
-        "img": "http://www.serebii.net/pokemongo/pokemon/081.png",
-        "type": ["Electric"],
-        "height": "0.30 m",
-        "weight": "6.0 kg",
-        "weaknesses": ["Fire", "Water", "Ground"],
-        "next_evolution": [
-          {
-            "num": "082",
-            "name": "Magneton"
-          }
-        ]
-      },
-      {
-        "id": 82,
-        "num": "082",
-        "name": "Magneton",
-        "img": "http://www.serebii.net/pokemongo/pokemon/082.png",
-        "type": ["Electric"],
-        "height": "0.99 m",
-        "weight": "60.0 kg",
-        "weaknesses": ["Fire", "Water", "Ground"],
-        "prev_evolution": [
-          {
-            "num": "081",
-            "name": "Magnemite"
-          }
-        ]
-      },
-      {
-        "id": 83,
-        "num": "083",
-        "name": "Farfetch'd",
-        "img": "http://www.serebii.net/pokemongo/pokemon/083.png",
-        "type": ["Normal", "Flying"],
-        "height": "0.79 m",
-        "weight": "15.0 kg",
-        "weaknesses": ["Electric", "Rock"]
-      },
-      {
-        "id": 84,
-        "num": "084",
-        "name": "Doduo",
-        "img": "http://www.serebii.net/pokemongo/pokemon/084.png",
-        "type": ["Normal", "Flying"],
-        "height": "1.40 m",
-        "weight": "39.2 kg",
-        "weaknesses": ["Electric", "Rock"],
-        "next_evolution": [
-          {
-            "num": "085",
-            "name": "Dodrio"
-          }
-        ]
-      },
-      {
-        "id": 85,
-        "num": "085",
-        "name": "Dodrio",
-        "img": "http://www.serebii.net/pokemongo/pokemon/085.png",
-        "type": ["Normal", "Flying"],
-        "height": "1.80 m",
-        "weight": "85.2 kg",
-        "weaknesses": ["Electric", "Rock"],
-        "prev_evolution": [
-          {
-            "num": "084",
-            "name": "Doduo"
-          }
-        ]
-      },
-      {
-        "id": 86,
-        "num": "086",
-        "name": "Seel",
-        "img": "http://www.serebii.net/pokemongo/pokemon/086.png",
-        "type": ["Water"],
-        "height": "1.09 m",
-        "weight": "90.0 kg",
-        "weaknesses": ["Electric", "Grass"],
-        "next_evolution": [
-          {
-            "num": "087",
-            "name": "Dewgong"
-          }
-        ]
-      },
-      {
-        "id": 87,
-        "num": "087",
-        "name": "Dewgong",
-        "img": "http://www.serebii.net/pokemongo/pokemon/087.png",
-        "type": ["Water", "Ice"],
-        "height": "1.70 m",
-        "weight": "120.0 kg",
-        "weaknesses": ["Electric", "Grass", "Fighting", "Rock"],
-        "prev_evolution": [
-          {
-            "num": "086",
-            "name": "Seel"
-          }
-        ]
-      },
-      {
-        "id": 88,
-        "num": "088",
-        "name": "Grimer",
-        "img": "http://www.serebii.net/pokemongo/pokemon/088.png",
-        "type": ["Poison"],
-        "height": "0.89 m",
-        "weight": "30.0 kg",
-        "weaknesses": ["Ground", "Psychic"],
-        "next_evolution": [
-          {
-            "num": "089",
-            "name": "Muk"
-          }
-        ]
-      },
-      {
-        "id": 89,
-        "num": "089",
-        "name": "Muk",
-        "img": "http://www.serebii.net/pokemongo/pokemon/089.png",
-        "type": ["Poison"],
-        "height": "1.19 m",
-        "weight": "30.0 kg",
-        "weaknesses": ["Ground", "Psychic"],
-        "prev_evolution": [
-          {
-            "num": "088",
-            "name": "Grimer"
-          }
-        ]
-      },
-      {
-        "id": 90,
-        "num": "090",
-        "name": "Shellder",
-        "img": "http://www.serebii.net/pokemongo/pokemon/090.png",
-        "type": ["Water"],
-        "height": "0.30 m",
-        "weight": "4.0 kg",
-        "weaknesses": ["Electric", "Grass"],
-        "next_evolution": [
-          {
-            "num": "091",
-            "name": "Cloyster"
-          }
-        ]
-      },
-      {
-        "id": 91,
-        "num": "091",
-        "name": "Cloyster",
-        "img": "http://www.serebii.net/pokemongo/pokemon/091.png",
-        "type": ["Water", "Ice"],
-        "height": "1.50 m",
-        "weight": "132.5 kg",
-        "weaknesses": ["Electric", "Grass", "Fighting", "Rock"],
-        "prev_evolution": [
-          {
-            "num": "090",
-            "name": "Shellder"
-          }
-        ]
-      },
-      {
-        "id": 92,
-        "num": "092",
-        "name": "Gastly",
-        "img": "http://www.serebii.net/pokemongo/pokemon/092.png",
-        "type": ["Ghost", "Poison"],
-        "height": "1.30 m",
-        "weight": "0.1 kg",
-        "weaknesses": ["Ground", "Psychic", "Ghost", "Dark"],
-        "next_evolution": [
-          {
-            "num": "093",
-            "name": "Haunter"
-          },
-          {
-            "num": "094",
-            "name": "Gengar"
-          }
-        ]
-      },
-      {
-        "id": 93,
-        "num": "093",
-        "name": "Haunter",
-        "img": "http://www.serebii.net/pokemongo/pokemon/093.png",
-        "type": ["Ghost", "Poison"],
-        "height": "1.60 m",
-        "weight": "0.1 kg",
-        "weaknesses": ["Ground", "Psychic", "Ghost", "Dark"],
-        "prev_evolution": [
-          {
-            "num": "092",
-            "name": "Gastly"
-          }
-        ],
-        "next_evolution": [
-          {
-            "num": "094",
-            "name": "Gengar"
-          }
-        ]
-      },
-      {
-        "id": 94,
-        "num": "094",
-        "name": "Gengar",
-        "img": "http://www.serebii.net/pokemongo/pokemon/094.png",
-        "type": ["Ghost", "Poison"],
-        "height": "1.50 m",
-        "weight": "40.5 kg",
-        "weaknesses": ["Ground", "Psychic", "Ghost", "Dark"],
-        "prev_evolution": [
-          {
-            "num": "092",
-            "name": "Gastly"
-          },
-          {
-            "num": "093",
-            "name": "Haunter"
-          }
-        ]
-      },
-      {
-        "id": 95,
-        "num": "095",
-        "name": "Onix",
-        "img": "http://www.serebii.net/pokemongo/pokemon/095.png",
-        "type": ["Rock", "Ground"],
-        "height": "8.79 m",
-        "weight": "210.0 kg",
-        "weaknesses": ["Water", "Grass", "Ice", "Fighting", "Ground", "Steel"]
-      },
-      {
-        "id": 96,
-        "num": "096",
-        "name": "Drowzee",
-        "img": "http://www.serebii.net/pokemongo/pokemon/096.png",
-        "type": ["Psychic"],
-        "height": "0.99 m",
-        "weight": "32.4 kg",
-        "weaknesses": ["Bug", "Ghost", "Dark"],
-        "next_evolution": [
-          {
-            "num": "097",
-            "name": "Hypno"
-          }
-        ]
-      },
-      {
-        "id": 97,
-        "num": "097",
-        "name": "Hypno",
-        "img": "http://www.serebii.net/pokemongo/pokemon/097.png",
-        "type": ["Psychic"],
-        "height": "1.60 m",
-        "weight": "75.6 kg",
-        "weaknesses": ["Bug", "Ghost", "Dark"],
-        "prev_evolution": [
-          {
-            "num": "096",
-            "name": "Drowzee"
-          }
-        ]
-      },
-      {
-        "id": 98,
-        "num": "098",
-        "name": "Krabby",
-        "img": "http://www.serebii.net/pokemongo/pokemon/098.png",
-        "type": ["Water"],
-        "height": "0.41 m",
-        "weight": "6.5 kg",
-        "weaknesses": ["Electric", "Grass"],
-        "next_evolution": [
-          {
-            "num": "099",
-            "name": "Kingler"
-          }
-        ]
-      },
-      {
-        "id": 99,
-        "num": "099",
-        "name": "Kingler",
-        "img": "http://www.serebii.net/pokemongo/pokemon/099.png",
-        "type": ["Water"],
-        "height": "1.30 m",
-        "weight": "60.0 kg",
-        "weaknesses": ["Electric", "Grass"],
-        "prev_evolution": [
-          {
-            "num": "098",
-            "name": "Krabby"
-          }
-        ]
-      },
-      {
-        "id": 100,
-        "num": "100",
-        "name": "Voltorb",
-        "img": "http://www.serebii.net/pokemongo/pokemon/100.png",
-        "type": ["Electric"],
-        "height": "0.51 m",
-        "weight": "10.4 kg",
-        "weaknesses": ["Ground"],
-        "next_evolution": [
-          {
-            "num": "101",
-            "name": "Electrode"
-          }
-        ]
-      },
-      {
-        "id": 101,
-        "num": "101",
-        "name": "Electrode",
-        "img": "http://www.serebii.net/pokemongo/pokemon/101.png",
-        "type": ["Electric"],
-        "height": "1.19 m",
-        "weight": "66.6 kg",
-        "weaknesses": ["Ground"],
-        "prev_evolution": [
-          {
-            "num": "100",
-            "name": "Voltorb"
-          }
-        ]
-      },
-      {
-        "id": 102,
-        "num": "102",
-        "name": "Exeggcute",
-        "img": "http://www.serebii.net/pokemongo/pokemon/102.png",
-        "type": ["Grass", "Psychic"],
-        "height": "0.41 m",
-        "weight": "2.5 kg",
-        "weaknesses": ["Fire", "Ice", "Poison", "Flying", "Bug", "Ghost", "Dark"],
-        "next_evolution": [
-          {
-            "num": "103",
-            "name": "Exeggutor"
-          }
-        ]
-      },
-      {
-        "id": 103,
-        "num": "103",
-        "name": "Exeggutor",
-        "img": "http://www.serebii.net/pokemongo/pokemon/103.png",
-        "type": ["Grass", "Psychic"],
-        "height": "2.01 m",
-        "weight": "120.0 kg",
-        "weaknesses": ["Fire", "Ice", "Poison", "Flying", "Bug", "Ghost", "Dark"],
-        "prev_evolution": [
-          {
-            "num": "102",
-            "name": "Exeggcute"
-          }
-        ]
-      },
-      {
-        "id": 104,
-        "num": "104",
-        "name": "Cubone",
-        "img": "http://www.serebii.net/pokemongo/pokemon/104.png",
-        "type": ["Ground"],
-        "height": "0.41 m",
-        "weight": "6.5 kg",
-        "weaknesses": ["Water", "Grass", "Ice"],
-        "next_evolution": [
-          {
-            "num": "105",
-            "name": "Marowak"
-          }
-        ]
-      },
-      {
-        "id": 105,
-        "num": "105",
-        "name": "Marowak",
-        "img": "http://www.serebii.net/pokemongo/pokemon/105.png",
-        "type": ["Ground"],
-        "height": "0.99 m",
-        "weight": "45.0 kg",
-        "weaknesses": ["Water", "Grass", "Ice"],
-        "prev_evolution": [
-          {
-            "num": "104",
-            "name": "Cubone"
-          }
-        ]
-      },
-      {
-        "id": 106,
-        "num": "106",
-        "name": "Hitmonlee",
-        "img": "http://www.serebii.net/pokemongo/pokemon/106.png",
-        "type": ["Fighting"],
-        "height": "1.50 m",
-        "weight": "49.8 kg",
-        "weaknesses": ["Flying", "Psychic", "Fairy"]
-      },
-      {
-        "id": 107,
-        "num": "107",
-        "name": "Hitmonchan",
-        "img": "http://www.serebii.net/pokemongo/pokemon/107.png",
-        "type": ["Fighting"],
-        "height": "1.40 m",
-        "weight": "50.2 kg",
-        "weaknesses": ["Flying", "Psychic", "Fairy"]
-      },
-      {
-        "id": 108,
-        "num": "108",
-        "name": "Lickitung",
-        "img": "http://www.serebii.net/pokemongo/pokemon/108.png",
-        "type": ["Normal"],
-        "height": "1.19 m",
-        "weight": "65.5 kg",
-        "weaknesses": ["Fighting"]
-      },
-      {
-        "id": 109,
-        "num": "109",
-        "name": "Koffing",
-        "img": "http://www.serebii.net/pokemongo/pokemon/109.png",
-        "type": ["Poison"],
-        "height": "0.61 m",
-        "weight": "1.0 kg",
-        "weaknesses": ["Ground", "Psychic"],
-        "next_evolution": [
-          {
-            "num": "110",
-            "name": "Weezing"
-          }
-        ]
-      },
-      {
-        "id": 110,
-        "num": "110",
-        "name": "Weezing",
-        "img": "http://www.serebii.net/pokemongo/pokemon/110.png",
-        "type": ["Poison"],
-        "height": "1.19 m",
-        "weight": "9.5 kg",
-        "weaknesses": ["Ground", "Psychic"],
-        "prev_evolution": [
-          {
-            "num": "109",
-            "name": "Koffing"
-          }
-        ]
-      },
-      {
-        "id": 111,
-        "num": "111",
-        "name": "Rhyhorn",
-        "img": "http://www.serebii.net/pokemongo/pokemon/111.png",
-        "type": ["Ground", "Rock"],
-        "height": "0.99 m",
-        "weight": "115.0 kg",
-        "weaknesses": ["Water", "Grass", "Ice", "Fighting", "Ground", "Steel"],
-        "next_evolution": [
-          {
-            "num": "112",
-            "name": "Rhydon"
-          }
-        ]
-      },
-      {
-        "id": 112,
-        "num": "112",
-        "name": "Rhydon",
-        "img": "http://www.serebii.net/pokemongo/pokemon/112.png",
-        "type": ["Ground", "Rock"],
-        "height": "1.91 m",
-        "weight": "120.0 kg",
-        "weaknesses": ["Water", "Grass", "Ice", "Fighting", "Ground", "Steel"],
-        "prev_evolution": [
-          {
-            "num": "111",
-            "name": "Rhyhorn"
-          }
-        ]
-      },
-      {
-        "id": 113,
-        "num": "113",
-        "name": "Chansey",
-        "img": "http://www.serebii.net/pokemongo/pokemon/113.png",
-        "type": ["Normal"],
-        "height": "1.09 m",
-        "weight": "34.6 kg",
-        "weaknesses": ["Fighting"]
-      },
-      {
-        "id": 114,
-        "num": "114",
-        "name": "Tangela",
-        "img": "http://www.serebii.net/pokemongo/pokemon/114.png",
-        "type": ["Grass"],
-        "height": "0.99 m",
-        "weight": "35.0 kg",
-        "weaknesses": ["Fire", "Ice", "Poison", "Flying", "Bug"]
-      },
-      {
-        "id": 115,
-        "num": "115",
-        "name": "Kangaskhan",
-        "img": "http://www.serebii.net/pokemongo/pokemon/115.png",
-        "type": ["Normal"],
-        "height": "2.21 m",
-        "weight": "80.0 kg",
-        "weaknesses": ["Fighting"]
-      },
-      {
-        "id": 116,
-        "num": "116",
-        "name": "Horsea",
-        "img": "http://www.serebii.net/pokemongo/pokemon/116.png",
-        "type": ["Water"],
-        "height": "0.41 m",
-        "weight": "8.0 kg",
-        "weaknesses": ["Electric", "Grass"],
-        "next_evolution": [
-          {
-            "num": "117",
-            "name": "Seadra"
-          }
-        ]
-      },
-      {
-        "id": 117,
-        "num": "117",
-        "name": "Seadra",
-        "img": "http://www.serebii.net/pokemongo/pokemon/117.png",
-        "type": ["Water"],
-        "height": "1.19 m",
-        "weight": "25.0 kg",
-        "weaknesses": ["Electric", "Grass"],
-        "prev_evolution": [
-          {
-            "num": "116",
-            "name": "Horsea"
-          }
-        ]
-      },
-      {
-        "id": 118,
-        "num": "118",
-        "name": "Goldeen",
-        "img": "http://www.serebii.net/pokemongo/pokemon/118.png",
-        "type": ["Water"],
-        "height": "0.61 m",
-        "weight": "15.0 kg",
-        "weaknesses": ["Electric", "Grass"],
-        "next_evolution": [
-          {
-            "num": "119",
-            "name": "Seaking"
-          }
-        ]
-      },
-      {
-        "id": 119,
-        "num": "119",
-        "name": "Seaking",
-        "img": "http://www.serebii.net/pokemongo/pokemon/119.png",
-        "type": ["Water"],
-        "height": "1.30 m",
-        "weight": "39.0 kg",
-        "weaknesses": ["Electric", "Grass"],
-        "prev_evolution": [
-          {
-            "num": "118",
-            "name": "Goldeen"
-          }
-        ]
-      },
-      {
-        "id": 120,
-        "num": "120",
-        "name": "Staryu",
-        "img": "http://www.serebii.net/pokemongo/pokemon/120.png",
-        "type": ["Water"],
-        "height": "0.79 m",
-        "weight": "34.5 kg",
-        "weaknesses": ["Electric", "Grass"],
-        "next_evolution": [
-          {
-            "num": "121",
-            "name": "Starmie"
-          }
-        ]
-      },
-      {
-        "id": 121,
-        "num": "121",
-        "name": "Starmie",
-        "img": "http://www.serebii.net/pokemongo/pokemon/121.png",
-        "type": ["Water", "Psychic"],
-        "height": "1.09 m",
-        "weight": "80.0 kg",
-        "weaknesses": ["Electric", "Grass", "Bug", "Ghost", "Dark"],
-        "prev_evolution": [
-          {
-            "num": "120",
-            "name": "Staryu"
-          }
-        ]
-      },
-      {
-        "id": 122,
-        "num": "122",
-        "name": "Mr. Mime",
-        "img": "http://www.serebii.net/pokemongo/pokemon/122.png",
-        "type": ["Psychic"],
-        "height": "1.30 m",
-        "weight": "54.5 kg",
-        "weaknesses": ["Bug", "Ghost", "Dark"]
-      },
-      {
-        "id": 123,
-        "num": "123",
-        "name": "Scyther",
-        "img": "http://www.serebii.net/pokemongo/pokemon/123.png",
-        "type": ["Bug", "Flying"],
-        "height": "1.50 m",
-        "weight": "56.0 kg",
-        "weaknesses": ["Fire", "Electric", "Ice", "Flying", "Rock"]
-      },
-      {
-        "id": 124,
-        "num": "124",
-        "name": "Jynx",
-        "img": "http://www.serebii.net/pokemongo/pokemon/124.png",
-        "type": ["Ice", "Psychic"],
-        "height": "1.40 m",
-        "weight": "40.6 kg",
-        "weaknesses": ["Fire", "Bug", "Rock", "Ghost", "Dark", "Steel"]
-      },
-      {
-        "id": 125,
-        "num": "125",
-        "name": "Electabuzz",
-        "img": "http://www.serebii.net/pokemongo/pokemon/125.png",
-        "type": ["Electric"],
-        "height": "1.09 m",
-        "weight": "30.0 kg",
-        "weaknesses": ["Ground"]
-      },
-      {
-        "id": 126,
-        "num": "126",
-        "name": "Magmar",
-        "img": "http://www.serebii.net/pokemongo/pokemon/126.png",
-        "type": ["Fire"],
-        "height": "1.30 m",
-        "weight": "44.5 kg",
-        "weaknesses": ["Water", "Ground", "Rock"]
-      },
-      {
-        "id": 127,
-        "num": "127",
-        "name": "Pinsir",
-        "img": "http://www.serebii.net/pokemongo/pokemon/127.png",
-        "type": ["Bug"],
-        "height": "1.50 m",
-        "weight": "55.0 kg",
-        "weaknesses": ["Fire", "Flying", "Rock"]
-      },
-      {
-        "id": 128,
-        "num": "128",
-        "name": "Tauros",
-        "img": "http://www.serebii.net/pokemongo/pokemon/128.png",
-        "type": ["Normal"],
-        "height": "1.40 m",
-        "weight": "88.4 kg",
-        "weaknesses": ["Fighting"]
-      },
-      {
-        "id": 129,
-        "num": "129",
-        "name": "Magikarp",
-        "img": "http://www.serebii.net/pokemongo/pokemon/129.png",
-        "type": ["Water"],
-        "height": "0.89 m",
-        "weight": "10.0 kg",
-        "weaknesses": ["Electric", "Grass"],
-        "next_evolution": [
-          {
-            "num": "130",
-            "name": "Gyarados"
-          }
-        ]
-      },
-      {
-        "id": 130,
-        "num": "130",
-        "name": "Gyarados",
-        "img": "http://www.serebii.net/pokemongo/pokemon/130.png",
-        "type": ["Water", "Flying"],
-        "height": "6.50 m",
-        "weight": "235.0 kg",
-        "weaknesses": ["Electric", "Rock"],
-        "prev_evolution": [
-          {
-            "num": "129",
-            "name": "Magikarp"
-          }
-        ]
-      },
-      {
-        "id": 131,
-        "num": "131",
-        "name": "Lapras",
-        "img": "http://www.serebii.net/pokemongo/pokemon/131.png",
-        "type": ["Water", "Ice"],
-        "height": "2.49 m",
-        "weight": "220.0 kg",
-        "weaknesses": ["Electric", "Grass", "Fighting", "Rock"]
-      },
-      {
-        "id": 132,
-        "num": "132",
-        "name": "Ditto",
-        "img": "http://www.serebii.net/pokemongo/pokemon/132.png",
-        "type": ["Normal"],
-        "height": "0.30 m",
-        "weight": "4.0 kg",
-        "weaknesses": ["Fighting"]
-      },
-      {
-        "id": 133,
-        "num": "133",
-        "name": "Eevee",
-        "img": "http://www.serebii.net/pokemongo/pokemon/133.png",
-        "type": ["Normal"],
-        "height": "0.30 m",
-        "weight": "6.5 kg",
-        "weaknesses": ["Fighting"],
-        "next_evolution": [
-          {
-            "num": "134",
-            "name": "Vaporeon"
-          },
-          {
-            "num": "135",
-            "name": "Jolteon"
-          },
-          {
-            "num": "136",
-            "name": "Flareon"
-          }
-        ]
-      },
-      {
-        "id": 134,
-        "num": "134",
-        "name": "Vaporeon",
-        "img": "http://www.serebii.net/pokemongo/pokemon/134.png",
-        "type": ["Water"],
-        "height": "0.99 m",
-        "weight": "29.0 kg",
-        "weaknesses": ["Electric", "Grass"],
-        "prev_evolution": [
-          {
-            "num": "133",
-            "name": "Eevee"
-          }
-        ]
-      },
-      {
-        "id": 135,
-        "num": "135",
-        "name": "Jolteon",
-        "img": "http://www.serebii.net/pokemongo/pokemon/135.png",
-        "type": ["Electric"],
-        "height": "0.79 m",
-        "weight": "24.5 kg",
-        "weaknesses": ["Ground"],
-        "prev_evolution": [
-          {
-            "num": "133",
-            "name": "Eevee"
-          }
-        ]
-      },
-      {
-        "id": 136,
-        "num": "136",
-        "name": "Flareon",
-        "img": "http://www.serebii.net/pokemongo/pokemon/136.png",
-        "type": ["Fire"],
-        "height": "0.89 m",
-        "weight": "25.0 kg",
-        "weaknesses": ["Water", "Ground", "Rock"],
-        "prev_evolution": [
-          {
-            "num": "133",
-            "name": "Eevee"
-          }
-        ]
-      },
-      {
-        "id": 137,
-        "num": "137",
-        "name": "Porygon",
-        "img": "http://www.serebii.net/pokemongo/pokemon/137.png",
-        "type": ["Normal"],
-        "height": "0.79 m",
-        "weight": "36.5 kg",
-        "weaknesses": ["Fighting"]
-      },
-      {
-        "id": 138,
-        "num": "138",
-        "name": "Omanyte",
-        "img": "http://www.serebii.net/pokemongo/pokemon/138.png",
-        "type": ["Rock", "Water"],
-        "height": "0.41 m",
-        "weight": "7.5 kg",
-        "weaknesses": ["Electric", "Grass", "Fighting", "Ground"],
-        "next_evolution": [
-          {
-            "num": "139",
-            "name": "Omastar"
-          }
-        ]
-      },
-      {
-        "id": 139,
-        "num": "139",
-        "name": "Omastar",
-        "img": "http://www.serebii.net/pokemongo/pokemon/139.png",
-        "type": ["Rock", "Water"],
-        "height": "0.99 m",
-        "weight": "35.0 kg",
-        "weaknesses": ["Electric", "Grass", "Fighting", "Ground"],
-        "prev_evolution": [
-          {
-            "num": "138",
-            "name": "Omanyte"
-          }
-        ]
-      },
-      {
-        "id": 140,
-        "num": "140",
-        "name": "Kabuto",
-        "img": "http://www.serebii.net/pokemongo/pokemon/140.png",
-        "type": ["Rock", "Water"],
-        "height": "0.51 m",
-        "weight": "11.5 kg",
-        "weaknesses": ["Electric", "Grass", "Fighting", "Ground"],
-        "next_evolution": [
-          {
-            "num": "141",
-            "name": "Kabutops"
-          }
-        ]
-      },
-      {
-        "id": 141,
-        "num": "141",
-        "name": "Kabutops",
-        "img": "http://www.serebii.net/pokemongo/pokemon/141.png",
-        "type": ["Rock", "Water"],
-        "height": "1.30 m",
-        "weight": "40.5 kg",
-        "weaknesses": ["Electric", "Grass", "Fighting", "Ground"],
-        "prev_evolution": [
-          {
-            "num": "140",
-            "name": "Kabuto"
-          }
-        ]
-      },
-      {
-        "id": 142,
-        "num": "142",
-        "name": "Aerodactyl",
-        "img": "http://www.serebii.net/pokemongo/pokemon/142.png",
-        "type": ["Rock", "Flying"],
-        "height": "1.80 m",
-        "weight": "59.0 kg",
-        "weaknesses": ["Water", "Electric", "Ice", "Rock", "Steel"]
-      },
-      {
-        "id": 143,
-        "num": "143",
-        "name": "Snorlax",
-        "img": "http://www.serebii.net/pokemongo/pokemon/143.png",
-        "type": ["Normal"],
-        "height": "2.11 m",
-        "weight": "460.0 kg",
-        "weaknesses": ["Fighting"]
-      },
-      {
-        "id": 144,
-        "num": "144",
-        "name": "Articuno",
-        "img": "http://www.serebii.net/pokemongo/pokemon/144.png",
-        "type": ["Ice", "Flying"],
-        "height": "1.70 m",
-        "weight": "55.4 kg",
-        "weaknesses": ["Fire", "Electric", "Rock", "Steel"]
-      },
-      {
-        "id": 145,
-        "num": "145",
-        "name": "Zapdos",
-        "img": "http://www.serebii.net/pokemongo/pokemon/145.png",
-        "type": ["Electric", "Flying"],
-        "height": "1.60 m",
-        "weight": "52.6 kg",
-        "weaknesses": ["Ice", "Rock"]
-      },
-      {
-        "id": 146,
-        "num": "146",
-        "name": "Moltres",
-        "img": "http://www.serebii.net/pokemongo/pokemon/146.png",
-        "type": ["Fire", "Flying"],
-        "height": "2.01 m",
-        "weight": "60.0 kg",
-        "weaknesses": ["Water", "Electric", "Rock"]
-      },
-      {
-        "id": 147,
-        "num": "147",
-        "name": "Dratini",
-        "img": "http://www.serebii.net/pokemongo/pokemon/147.png",
-        "type": ["Dragon"],
-        "height": "1.80 m",
-        "weight": "3.3 kg",
-        "weaknesses": ["Ice", "Dragon", "Fairy"],
-        "next_evolution": [
-          {
-            "num": "148",
-            "name": "Dragonair"
-          },
-          {
-            "num": "149",
-            "name": "Dragonite"
-          }
-        ]
-      },
-      {
-        "id": 148,
-        "num": "148",
-        "name": "Dragonair",
-        "img": "http://www.serebii.net/pokemongo/pokemon/148.png",
-        "type": ["Dragon"],
-        "height": "3.99 m",
-        "weight": "16.5 kg",
-        "weaknesses": ["Ice", "Dragon", "Fairy"],
-        "prev_evolution": [
-          {
-            "num": "147",
-            "name": "Dratini"
-          }
-        ],
-        "next_evolution": [
-          {
-            "num": "149",
-            "name": "Dragonite"
-          }
-        ]
-      },
-      {
-        "id": 149,
-        "num": "149",
-        "name": "Dragonite",
-        "img": "http://www.serebii.net/pokemongo/pokemon/149.png",
-        "type": ["Dragon", "Flying"],
-        "height": "2.21 m",
-        "weight": "210.0 kg",
-        "weaknesses": ["Ice", "Rock", "Dragon", "Fairy"],
-        "prev_evolution": [
-          {
-            "num": "147",
-            "name": "Dratini"
-          },
-          {
-            "num": "148",
-            "name": "Dragonair"
-          }
-        ]
-      },
-      {
-        "id": 150,
-        "num": "150",
-        "name": "Mewtwo",
-        "img": "http://www.serebii.net/pokemongo/pokemon/150.png",
-        "type": ["Psychic"],
-        "height": "2.01 m",
-        "weight": "122.0 kg",
-        "weaknesses": ["Bug", "Ghost", "Dark"]
-      },
-      {
-        "id": 151,
-        "num": "151",
-        "name": "Mew",
-        "img": "http://www.serebii.net/pokemongo/pokemon/151.png",
-        "type": ["Psychic"],
-        "height": "0.41 m",
-        "weight": "4.0 kg",
-        "weaknesses": ["Bug", "Ghost", "Dark"]
-      }
-]
+{
+  "bulbasaur": {
+    "id": 1,
+    "num": 1,
+    "name": "Bulbasaur",
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "baseStats": {
+      "hp": 45,
+      "atk": 49,
+      "def": 49,
+      "spa": 65,
+      "spd": 65,
+      "spe": 45
+    },
+    "heightm": 0.7,
+    "weightkg": 6.9,
+    "color": "Green",
+    "evos": [
+      "Ivysaur"
+    ]
+  },
+  "ivysaur": {
+    "id": 2,
+    "num": 2,
+    "name": "Ivysaur",
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 62,
+      "def": 63,
+      "spa": 80,
+      "spd": 80,
+      "spe": 60
+    },
+    "heightm": 1,
+    "weightkg": 13,
+    "color": "Green",
+    "prevo": "Bulbasaur",
+    "evoLevel": 16,
+    "evos": [
+      "Venusaur"
+    ]
+  },
+  "venusaur": {
+    "id": 3,
+    "num": 3,
+    "name": "Venusaur",
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 82,
+      "def": 83,
+      "spa": 100,
+      "spd": 100,
+      "spe": 80
+    },
+    "heightm": 2,
+    "weightkg": 100,
+    "color": "Green",
+    "prevo": "Ivysaur",
+    "evoLevel": 32,
+    "canGigantamax": "G-Max Vine Lash"
+  },
+  "charmander": {
+    "id": 4,
+    "num": 4,
+    "name": "Charmander",
+    "types": [
+      "Fire"
+    ],
+    "baseStats": {
+      "hp": 39,
+      "atk": 52,
+      "def": 43,
+      "spa": 60,
+      "spd": 50,
+      "spe": 65
+    },
+    "heightm": 0.6,
+    "weightkg": 8.5,
+    "color": "Red",
+    "evos": [
+      "Charmeleon"
+    ]
+  },
+  "charmeleon": {
+    "id": 5,
+    "num": 5,
+    "name": "Charmeleon",
+    "types": [
+      "Fire"
+    ],
+    "baseStats": {
+      "hp": 58,
+      "atk": 64,
+      "def": 58,
+      "spa": 80,
+      "spd": 65,
+      "spe": 80
+    },
+    "heightm": 1.1,
+    "weightkg": 19,
+    "color": "Red",
+    "prevo": "Charmander",
+    "evoLevel": 16,
+    "evos": [
+      "Charizard"
+    ]
+  },
+  "charizard": {
+    "id": 6,
+    "num": 6,
+    "name": "Charizard",
+    "types": [
+      "Fire",
+      "Flying"
+    ],
+    "baseStats": {
+      "hp": 78,
+      "atk": 84,
+      "def": 78,
+      "spa": 109,
+      "spd": 85,
+      "spe": 100
+    },
+    "heightm": 1.7,
+    "weightkg": 90.5,
+    "color": "Red",
+    "prevo": "Charmeleon",
+    "evoLevel": 36
+  },
+  "squirtle": {
+    "id": 7,
+    "num": 7,
+    "name": "Squirtle",
+    "types": [
+      "Water"
+    ],
+    "baseStats": {
+      "hp": 44,
+      "atk": 48,
+      "def": 65,
+      "spa": 50,
+      "spd": 64,
+      "spe": 43
+    },
+    "heightm": 0.5,
+    "weightkg": 9,
+    "color": "Blue",
+    "evos": [
+      "Wartortle"
+    ]
+  },
+  "wartortle": {
+    "id": 8,
+    "num": 8,
+    "name": "Wartortle",
+    "types": [
+      "Water"
+    ],
+    "baseStats": {
+      "hp": 59,
+      "atk": 63,
+      "def": 80,
+      "spa": 65,
+      "spd": 80,
+      "spe": 58
+    },
+    "heightm": 1,
+    "weightkg": 22.5,
+    "color": "Blue",
+    "prevo": "Squirtle",
+    "evoLevel": 16,
+    "evos": [
+      "Blastoise"
+    ]
+  },
+  "blastoise": {
+    "id": 9,
+    "num": 9,
+    "name": "Blastoise",
+    "types": [
+      "Water"
+    ],
+    "baseStats": {
+      "hp": 79,
+      "atk": 83,
+      "def": 100,
+      "spa": 85,
+      "spd": 105,
+      "spe": 78
+    },
+    "heightm": 1.6,
+    "weightkg": 85.5,
+    "color": "Blue",
+    "prevo": "Wartortle",
+    "evoLevel": 36
+  },
+  "caterpie": {
+    "id": 10,
+    "num": 10,
+    "name": "Caterpie",
+    "types": [
+      "Bug"
+    ],
+    "baseStats": {
+      "hp": 45,
+      "atk": 30,
+      "def": 35,
+      "spa": 20,
+      "spd": 20,
+      "spe": 45
+    },
+    "heightm": 0.3,
+    "weightkg": 2.9,
+    "color": "Green",
+    "evos": [
+      "Metapod"
+    ]
+  },
+  "metapod": {
+    "id": 11,
+    "num": 11,
+    "name": "Metapod",
+    "types": [
+      "Bug"
+    ],
+    "baseStats": {
+      "hp": 50,
+      "atk": 20,
+      "def": 55,
+      "spa": 25,
+      "spd": 25,
+      "spe": 30
+    },
+    "heightm": 0.7,
+    "weightkg": 9.9,
+    "color": "Green",
+    "prevo": "Caterpie",
+    "evoLevel": 7,
+    "evos": [
+      "Butterfree"
+    ]
+  },
+  "butterfree": {
+    "id": 12,
+    "num": 12,
+    "name": "Butterfree",
+    "types": [
+      "Bug",
+      "Flying"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 45,
+      "def": 50,
+      "spa": 90,
+      "spd": 80,
+      "spe": 70
+    },
+    "heightm": 1.1,
+    "weightkg": 32,
+    "color": "White",
+    "prevo": "Metapod",
+    "evoLevel": 10
+  },
+  "weedle": {
+    "id": 13,
+    "num": 13,
+    "name": "Weedle",
+    "types": [
+      "Bug",
+      "Poison"
+    ],
+    "baseStats": {
+      "hp": 40,
+      "atk": 35,
+      "def": 30,
+      "spa": 20,
+      "spd": 20,
+      "spe": 50
+    },
+    "heightm": 0.3,
+    "weightkg": 3.2,
+    "color": "Brown",
+    "evos": [
+      "Kakuna"
+    ]
+  },
+  "kakuna": {
+    "id": 14,
+    "num": 14,
+    "name": "Kakuna",
+    "types": [
+      "Bug",
+      "Poison"
+    ],
+    "baseStats": {
+      "hp": 45,
+      "atk": 25,
+      "def": 50,
+      "spa": 25,
+      "spd": 25,
+      "spe": 35
+    },
+    "heightm": 0.6,
+    "weightkg": 10,
+    "color": "Yellow",
+    "prevo": "Weedle",
+    "evoLevel": 7,
+    "evos": [
+      "Beedrill"
+    ]
+  },
+  "beedrill": {
+    "id": 15,
+    "num": 15,
+    "name": "Beedrill",
+    "types": [
+      "Bug",
+      "Poison"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 90,
+      "def": 40,
+      "spa": 45,
+      "spd": 80,
+      "spe": 75
+    },
+    "heightm": 1,
+    "weightkg": 29.5,
+    "color": "Yellow",
+    "prevo": "Kakuna",
+    "evoLevel": 10
+  },
+  "pidgey": {
+    "id": 16,
+    "num": 16,
+    "name": "Pidgey",
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "baseStats": {
+      "hp": 40,
+      "atk": 45,
+      "def": 40,
+      "spa": 35,
+      "spd": 35,
+      "spe": 56
+    },
+    "heightm": 0.3,
+    "weightkg": 1.8,
+    "color": "Brown",
+    "evos": [
+      "Pidgeotto"
+    ]
+  },
+  "pidgeotto": {
+    "id": 17,
+    "num": 17,
+    "name": "Pidgeotto",
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "baseStats": {
+      "hp": 63,
+      "atk": 60,
+      "def": 55,
+      "spa": 50,
+      "spd": 50,
+      "spe": 71
+    },
+    "heightm": 1.1,
+    "weightkg": 30,
+    "color": "Brown",
+    "prevo": "Pidgey",
+    "evoLevel": 18,
+    "evos": [
+      "Pidgeot"
+    ]
+  },
+  "pidgeot": {
+    "id": 18,
+    "num": 18,
+    "name": "Pidgeot",
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "baseStats": {
+      "hp": 83,
+      "atk": 80,
+      "def": 75,
+      "spa": 70,
+      "spd": 70,
+      "spe": 101
+    },
+    "heightm": 1.5,
+    "weightkg": 39.5,
+    "color": "Brown",
+    "prevo": "Pidgeotto",
+    "evoLevel": 36
+  },
+  "rattata": {
+    "id": 19,
+    "num": 19,
+    "name": "Rattata",
+    "types": [
+      "Normal"
+    ],
+    "baseStats": {
+      "hp": 30,
+      "atk": 56,
+      "def": 35,
+      "spa": 25,
+      "spd": 35,
+      "spe": 72
+    },
+    "heightm": 0.3,
+    "weightkg": 3.5,
+    "color": "Purple",
+    "evos": [
+      "Raticate"
+    ]
+  },
+  "raticate": {
+    "id": 20,
+    "num": 20,
+    "name": "Raticate",
+    "types": [
+      "Normal"
+    ],
+    "baseStats": {
+      "hp": 55,
+      "atk": 81,
+      "def": 60,
+      "spa": 50,
+      "spd": 70,
+      "spe": 97
+    },
+    "heightm": 0.7,
+    "weightkg": 18.5,
+    "color": "Brown",
+    "prevo": "Rattata",
+    "evoLevel": 20
+  },
+  "spearow": {
+    "id": 21,
+    "num": 21,
+    "name": "Spearow",
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "baseStats": {
+      "hp": 40,
+      "atk": 60,
+      "def": 30,
+      "spa": 31,
+      "spd": 31,
+      "spe": 70
+    },
+    "heightm": 0.3,
+    "weightkg": 2,
+    "color": "Brown",
+    "evos": [
+      "Fearow"
+    ]
+  },
+  "fearow": {
+    "id": 22,
+    "num": 22,
+    "name": "Fearow",
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 90,
+      "def": 65,
+      "spa": 61,
+      "spd": 61,
+      "spe": 100
+    },
+    "heightm": 1.2,
+    "weightkg": 38,
+    "color": "Brown",
+    "prevo": "Spearow",
+    "evoLevel": 20
+  },
+  "ekans": {
+    "id": 23,
+    "num": 23,
+    "name": "Ekans",
+    "types": [
+      "Poison"
+    ],
+    "baseStats": {
+      "hp": 35,
+      "atk": 60,
+      "def": 44,
+      "spa": 40,
+      "spd": 54,
+      "spe": 55
+    },
+    "heightm": 2,
+    "weightkg": 6.9,
+    "color": "Purple",
+    "evos": [
+      "Arbok"
+    ]
+  },
+  "arbok": {
+    "id": 24,
+    "num": 24,
+    "name": "Arbok",
+    "types": [
+      "Poison"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 95,
+      "def": 69,
+      "spa": 65,
+      "spd": 79,
+      "spe": 80
+    },
+    "heightm": 3.5,
+    "weightkg": 65,
+    "color": "Purple",
+    "prevo": "Ekans",
+    "evoLevel": 22
+  },
+  "pikachu": {
+    "id": 25,
+    "num": 25,
+    "name": "Pikachu",
+    "types": [
+      "Electric"
+    ],
+    "baseStats": {
+      "hp": 35,
+      "atk": 55,
+      "def": 40,
+      "spa": 50,
+      "spd": 50,
+      "spe": 90
+    },
+    "heightm": 0.4,
+    "weightkg": 6,
+    "color": "Yellow"
+  },
+  "raichu": {
+    "id": 26,
+    "num": 26,
+    "name": "Raichu",
+    "types": [
+      "Electric"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 90,
+      "def": 55,
+      "spa": 90,
+      "spd": 80,
+      "spe": 110
+    },
+    "heightm": 0.8,
+    "weightkg": 30,
+    "color": "Yellow",
+    "prevo": "Pikachu"
+  },
+  "sandshrew": {
+    "id": 27,
+    "num": 27,
+    "name": "Sandshrew",
+    "types": [
+      "Ground"
+    ],
+    "baseStats": {
+      "hp": 50,
+      "atk": 75,
+      "def": 85,
+      "spa": 20,
+      "spd": 30,
+      "spe": 40
+    },
+    "heightm": 0.6,
+    "weightkg": 12,
+    "color": "Yellow",
+    "evos": [
+      "Sandslash"
+    ]
+  },
+  "sandslash": {
+    "id": 28,
+    "num": 28,
+    "name": "Sandslash",
+    "types": [
+      "Ground"
+    ],
+    "baseStats": {
+      "hp": 75,
+      "atk": 100,
+      "def": 110,
+      "spa": 45,
+      "spd": 55,
+      "spe": 65
+    },
+    "heightm": 1,
+    "weightkg": 29.5,
+    "color": "Yellow",
+    "prevo": "Sandshrew",
+    "evoLevel": 22
+  },
+  "nidoranf": {
+    "id": 29,
+    "num": 29,
+    "name": "Nidoran-F",
+    "types": [
+      "Poison"
+    ],
+    "baseStats": {
+      "hp": 55,
+      "atk": 47,
+      "def": 52,
+      "spa": 40,
+      "spd": 40,
+      "spe": 41
+    },
+    "heightm": 0.4,
+    "weightkg": 7,
+    "color": "Blue",
+    "evos": [
+      "Nidorina"
+    ]
+  },
+  "nidorina": {
+    "id": 30,
+    "num": 30,
+    "name": "Nidorina",
+    "types": [
+      "Poison"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 62,
+      "def": 67,
+      "spa": 55,
+      "spd": 55,
+      "spe": 56
+    },
+    "heightm": 0.8,
+    "weightkg": 20,
+    "color": "Blue",
+    "prevo": "Nidoran-F",
+    "evoLevel": 16,
+    "evos": [
+      "Nidoqueen"
+    ]
+  },
+  "nidoqueen": {
+    "id": 31,
+    "num": 31,
+    "name": "Nidoqueen",
+    "types": [
+      "Poison",
+      "Ground"
+    ],
+    "baseStats": {
+      "hp": 90,
+      "atk": 92,
+      "def": 87,
+      "spa": 75,
+      "spd": 85,
+      "spe": 76
+    },
+    "heightm": 1.3,
+    "weightkg": 60,
+    "color": "Blue",
+    "prevo": "Nidorina"
+  },
+  "nidoranm": {
+    "id": 32,
+    "num": 32,
+    "name": "Nidoran-M",
+    "types": [
+      "Poison"
+    ],
+    "baseStats": {
+      "hp": 46,
+      "atk": 57,
+      "def": 40,
+      "spa": 40,
+      "spd": 40,
+      "spe": 50
+    },
+    "heightm": 0.5,
+    "weightkg": 9,
+    "color": "Purple",
+    "evos": [
+      "Nidorino"
+    ]
+  },
+  "nidorino": {
+    "id": 33,
+    "num": 33,
+    "name": "Nidorino",
+    "types": [
+      "Poison"
+    ],
+    "baseStats": {
+      "hp": 61,
+      "atk": 72,
+      "def": 57,
+      "spa": 55,
+      "spd": 55,
+      "spe": 65
+    },
+    "heightm": 0.9,
+    "weightkg": 19.5,
+    "color": "Purple",
+    "prevo": "Nidoran-M",
+    "evoLevel": 16,
+    "evos": [
+      "Nidoking"
+    ]
+  },
+  "nidoking": {
+    "id": 34,
+    "num": 34,
+    "name": "Nidoking",
+    "types": [
+      "Poison",
+      "Ground"
+    ],
+    "baseStats": {
+      "hp": 81,
+      "atk": 102,
+      "def": 77,
+      "spa": 85,
+      "spd": 75,
+      "spe": 85
+    },
+    "heightm": 1.4,
+    "weightkg": 62,
+    "color": "Purple",
+    "prevo": "Nidorino"
+  },
+  "clefairy": {
+    "id": 35,
+    "num": 35,
+    "name": "Clefairy",
+    "types": [
+      "Normal"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 45,
+      "def": 48,
+      "spa": 60,
+      "spd": 65,
+      "spe": 35
+    },
+    "heightm": 0.6,
+    "weightkg": 7.5,
+    "color": "Pink",
+    "evos": [
+      "Clefable"
+    ]
+  },
+  "clefable": {
+    "id": 36,
+    "num": 36,
+    "name": "Clefable",
+    "types": [
+      "Normal"
+    ],
+    "baseStats": {
+      "hp": 95,
+      "atk": 70,
+      "def": 73,
+      "spa": 95,
+      "spd": 90,
+      "spe": 60
+    },
+    "heightm": 1.3,
+    "weightkg": 40,
+    "color": "Pink",
+    "prevo": "Clefairy"
+  },
+  "vulpix": {
+    "id": 37,
+    "num": 37,
+    "name": "Vulpix",
+    "types": [
+      "Fire"
+    ],
+    "baseStats": {
+      "hp": 38,
+      "atk": 41,
+      "def": 40,
+      "spa": 50,
+      "spd": 65,
+      "spe": 65
+    },
+    "heightm": 0.6,
+    "weightkg": 9.9,
+    "color": "Brown",
+    "evos": [
+      "Ninetales"
+    ]
+  },
+  "ninetales": {
+    "id": 38,
+    "num": 38,
+    "name": "Ninetales",
+    "types": [
+      "Fire"
+    ],
+    "baseStats": {
+      "hp": 73,
+      "atk": 76,
+      "def": 75,
+      "spa": 81,
+      "spd": 100,
+      "spe": 100
+    },
+    "heightm": 1.1,
+    "weightkg": 19.9,
+    "color": "Yellow",
+    "prevo": "Vulpix",
+    "evoType": "useItem",
+    "evoItem": "Fire Stone"
+  },
+  "jigglypuff": {
+    "id": 39,
+    "num": 39,
+    "name": "Jigglypuff",
+    "types": [
+      "Normal"
+    ],
+    "baseStats": {
+      "hp": 115,
+      "atk": 45,
+      "def": 20,
+      "spa": 45,
+      "spd": 25,
+      "spe": 20
+    },
+    "heightm": 0.5,
+    "weightkg": 5.5,
+    "color": "Pink",
+    "prevo": "Igglybuff",
+    "evoType": "levelFriendship",
+    "evos": [
+      "Wigglytuff"
+    ]
+  },
+  "wigglytuff": {
+    "id": 40,
+    "num": 40,
+    "name": "Wigglytuff",
+    "types": [
+      "Normal"
+    ],
+    "baseStats": {
+      "hp": 140,
+      "atk": 70,
+      "def": 45,
+      "spa": 85,
+      "spd": 50,
+      "spe": 45
+    },
+    "heightm": 1,
+    "weightkg": 12,
+    "color": "Pink",
+    "prevo": "Jigglypuff"
+  },
+  "zubat": {
+    "id": 41,
+    "num": 41,
+    "name": "Zubat",
+    "types": [
+      "Poison",
+      "Flying"
+    ],
+    "baseStats": {
+      "hp": 40,
+      "atk": 45,
+      "def": 35,
+      "spa": 30,
+      "spd": 40,
+      "spe": 55
+    },
+    "heightm": 0.8,
+    "weightkg": 7.5,
+    "color": "Purple",
+    "evos": [
+      "Golbat"
+    ]
+  },
+  "golbat": {
+    "id": 42,
+    "num": 42,
+    "name": "Golbat",
+    "types": [
+      "Poison",
+      "Flying"
+    ],
+    "baseStats": {
+      "hp": 75,
+      "atk": 80,
+      "def": 70,
+      "spa": 65,
+      "spd": 75,
+      "spe": 90
+    },
+    "heightm": 1.6,
+    "weightkg": 55,
+    "color": "Purple",
+    "prevo": "Zubat",
+    "evoLevel": 22,
+    "evos": [
+      "Crobat"
+    ]
+  },
+  "oddish": {
+    "id": 43,
+    "num": 43,
+    "name": "Oddish",
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "baseStats": {
+      "hp": 45,
+      "atk": 50,
+      "def": 55,
+      "spa": 75,
+      "spd": 65,
+      "spe": 30
+    },
+    "heightm": 0.5,
+    "weightkg": 5.4,
+    "color": "Blue",
+    "evos": [
+      "Gloom"
+    ]
+  },
+  "gloom": {
+    "id": 44,
+    "num": 44,
+    "name": "Gloom",
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 65,
+      "def": 70,
+      "spa": 85,
+      "spd": 75,
+      "spe": 40
+    },
+    "heightm": 0.8,
+    "weightkg": 8.6,
+    "color": "Blue",
+    "prevo": "Oddish",
+    "evoLevel": 21,
+    "evos": [
+      "Vileplume",
+      "Bellossom"
+    ]
+  },
+  "vileplume": {
+    "id": 45,
+    "num": 45,
+    "name": "Vileplume",
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "baseStats": {
+      "hp": 75,
+      "atk": 80,
+      "def": 85,
+      "spa": 110,
+      "spd": 90,
+      "spe": 50
+    },
+    "heightm": 1.2,
+    "weightkg": 18.6,
+    "color": "Red",
+    "prevo": "Gloom",
+    "evoType": "useItem",
+    "evoItem": "Leaf Stone"
+  },
+  "paras": {
+    "id": 46,
+    "num": 46,
+    "name": "Paras",
+    "types": [
+      "Bug",
+      "Grass"
+    ],
+    "baseStats": {
+      "hp": 35,
+      "atk": 70,
+      "def": 55,
+      "spa": 45,
+      "spd": 55,
+      "spe": 25
+    },
+    "heightm": 0.3,
+    "weightkg": 5.4,
+    "color": "Red",
+    "evos": [
+      "Parasect"
+    ]
+  },
+  "parasect": {
+    "id": 47,
+    "num": 47,
+    "name": "Parasect",
+    "types": [
+      "Bug",
+      "Grass"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 95,
+      "def": 80,
+      "spa": 60,
+      "spd": 80,
+      "spe": 30
+    },
+    "heightm": 1,
+    "weightkg": 29.5,
+    "color": "Red",
+    "prevo": "Paras",
+    "evoLevel": 24
+  },
+  "venonat": {
+    "id": 48,
+    "num": 48,
+    "name": "Venonat",
+    "types": [
+      "Bug",
+      "Poison"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 55,
+      "def": 50,
+      "spa": 40,
+      "spd": 55,
+      "spe": 45
+    },
+    "heightm": 1,
+    "weightkg": 30,
+    "color": "Purple",
+    "evos": [
+      "Venomoth"
+    ]
+  },
+  "venomoth": {
+    "id": 49,
+    "num": 49,
+    "name": "Venomoth",
+    "types": [
+      "Bug",
+      "Poison"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 65,
+      "def": 60,
+      "spa": 90,
+      "spd": 75,
+      "spe": 90
+    },
+    "heightm": 1.5,
+    "weightkg": 12.5,
+    "color": "Purple",
+    "prevo": "Venonat",
+    "evoLevel": 31
+  },
+  "diglett": {
+    "id": 50,
+    "num": 50,
+    "name": "Diglett",
+    "types": [
+      "Ground"
+    ],
+    "baseStats": {
+      "hp": 10,
+      "atk": 55,
+      "def": 25,
+      "spa": 35,
+      "spd": 45,
+      "spe": 95
+    },
+    "heightm": 0.2,
+    "weightkg": 0.8,
+    "color": "Brown",
+    "evos": [
+      "Dugtrio"
+    ]
+  },
+  "dugtrio": {
+    "id": 51,
+    "num": 51,
+    "name": "Dugtrio",
+    "types": [
+      "Ground"
+    ],
+    "baseStats": {
+      "hp": 35,
+      "atk": 100,
+      "def": 50,
+      "spa": 50,
+      "spd": 70,
+      "spe": 120
+    },
+    "heightm": 0.7,
+    "weightkg": 33.3,
+    "color": "Brown",
+    "prevo": "Diglett",
+    "evoLevel": 26
+  },
+  "meowth": {
+    "id": 52,
+    "num": 52,
+    "name": "Meowth",
+    "types": [
+      "Normal"
+    ],
+    "baseStats": {
+      "hp": 40,
+      "atk": 45,
+      "def": 35,
+      "spa": 40,
+      "spd": 40,
+      "spe": 90
+    },
+    "heightm": 0.4,
+    "weightkg": 4.2,
+    "color": "Yellow",
+    "evos": [
+      "Persian"
+    ]
+  },
+  "persian": {
+    "id": 53,
+    "num": 53,
+    "name": "Persian",
+    "types": [
+      "Normal"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 70,
+      "def": 60,
+      "spa": 65,
+      "spd": 65,
+      "spe": 115
+    },
+    "heightm": 1,
+    "weightkg": 32,
+    "color": "Yellow",
+    "prevo": "Meowth",
+    "evoLevel": 28
+  },
+  "psyduck": {
+    "id": 54,
+    "num": 54,
+    "name": "Psyduck",
+    "types": [
+      "Water"
+    ],
+    "baseStats": {
+      "hp": 50,
+      "atk": 52,
+      "def": 48,
+      "spa": 65,
+      "spd": 50,
+      "spe": 55
+    },
+    "heightm": 0.8,
+    "weightkg": 19.6,
+    "color": "Yellow",
+    "evos": [
+      "Golduck"
+    ]
+  },
+  "golduck": {
+    "id": 55,
+    "num": 55,
+    "name": "Golduck",
+    "types": [
+      "Water"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 82,
+      "def": 78,
+      "spa": 95,
+      "spd": 80,
+      "spe": 85
+    },
+    "heightm": 1.7,
+    "weightkg": 76.6,
+    "color": "Blue",
+    "prevo": "Psyduck",
+    "evoLevel": 33
+  },
+  "mankey": {
+    "id": 56,
+    "num": 56,
+    "name": "Mankey",
+    "types": [
+      "Fighting"
+    ],
+    "baseStats": {
+      "hp": 40,
+      "atk": 80,
+      "def": 35,
+      "spa": 35,
+      "spd": 45,
+      "spe": 70
+    },
+    "heightm": 0.5,
+    "weightkg": 28,
+    "color": "Brown",
+    "evos": [
+      "Primeape"
+    ]
+  },
+  "primeape": {
+    "id": 57,
+    "num": 57,
+    "name": "Primeape",
+    "types": [
+      "Fighting"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 105,
+      "def": 60,
+      "spa": 60,
+      "spd": 70,
+      "spe": 95
+    },
+    "heightm": 1,
+    "weightkg": 32,
+    "color": "Brown",
+    "prevo": "Mankey",
+    "evoLevel": 28,
+    "evos": [
+      "Annihilape"
+    ]
+  },
+  "growlithe": {
+    "id": 58,
+    "num": 58,
+    "name": "Growlithe",
+    "types": [
+      "Fire"
+    ],
+    "baseStats": {
+      "hp": 55,
+      "atk": 70,
+      "def": 45,
+      "spa": 70,
+      "spd": 50,
+      "spe": 60
+    },
+    "heightm": 0.7,
+    "weightkg": 19,
+    "color": "Brown",
+    "evos": [
+      "Arcanine"
+    ]
+  },
+  "arcanine": {
+    "id": 59,
+    "num": 59,
+    "name": "Arcanine",
+    "types": [
+      "Fire"
+    ],
+    "baseStats": {
+      "hp": 90,
+      "atk": 110,
+      "def": 80,
+      "spa": 100,
+      "spd": 80,
+      "spe": 95
+    },
+    "heightm": 1.9,
+    "weightkg": 155,
+    "color": "Brown",
+    "prevo": "Growlithe"
+  },
+  "poliwag": {
+    "id": 60,
+    "num": 60,
+    "name": "Poliwag",
+    "types": [
+      "Water"
+    ],
+    "baseStats": {
+      "hp": 40,
+      "atk": 50,
+      "def": 40,
+      "spa": 40,
+      "spd": 40,
+      "spe": 90
+    },
+    "heightm": 0.6,
+    "weightkg": 12.4,
+    "color": "Blue",
+    "evos": [
+      "Poliwhirl"
+    ]
+  },
+  "poliwhirl": {
+    "id": 61,
+    "num": 61,
+    "name": "Poliwhirl",
+    "types": [
+      "Water"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 65,
+      "def": 65,
+      "spa": 50,
+      "spd": 50,
+      "spe": 90
+    },
+    "heightm": 1,
+    "weightkg": 20,
+    "color": "Blue",
+    "prevo": "Poliwag",
+    "evoLevel": 25,
+    "evos": [
+      "Poliwrath",
+      "Politoed"
+    ]
+  },
+  "poliwrath": {
+    "id": 62,
+    "num": 62,
+    "name": "Poliwrath",
+    "types": [
+      "Water",
+      "Fighting"
+    ],
+    "baseStats": {
+      "hp": 90,
+      "atk": 95,
+      "def": 95,
+      "spa": 70,
+      "spd": 90,
+      "spe": 70
+    },
+    "heightm": 1.3,
+    "weightkg": 54,
+    "color": "Blue",
+    "prevo": "Poliwhirl"
+  },
+  "abra": {
+    "id": 63,
+    "num": 63,
+    "name": "Abra",
+    "types": [
+      "Psychic"
+    ],
+    "baseStats": {
+      "hp": 25,
+      "atk": 20,
+      "def": 15,
+      "spa": 105,
+      "spd": 55,
+      "spe": 90
+    },
+    "heightm": 0.9,
+    "weightkg": 19.5,
+    "color": "Brown",
+    "evos": [
+      "Kadabra"
+    ]
+  },
+  "kadabra": {
+    "id": 64,
+    "num": 64,
+    "name": "Kadabra",
+    "types": [
+      "Psychic"
+    ],
+    "baseStats": {
+      "hp": 40,
+      "atk": 35,
+      "def": 30,
+      "spa": 120,
+      "spd": 70,
+      "spe": 105
+    },
+    "heightm": 1.3,
+    "weightkg": 56.5,
+    "color": "Brown",
+    "prevo": "Abra",
+    "evoLevel": 16,
+    "evos": [
+      "Alakazam"
+    ]
+  },
+  "alakazam": {
+    "id": 65,
+    "num": 65,
+    "name": "Alakazam",
+    "types": [
+      "Psychic"
+    ],
+    "baseStats": {
+      "hp": 55,
+      "atk": 50,
+      "def": 45,
+      "spa": 135,
+      "spd": 95,
+      "spe": 120
+    },
+    "heightm": 1.5,
+    "weightkg": 48,
+    "color": "Brown",
+    "prevo": "Kadabra"
+  },
+  "machop": {
+    "id": 66,
+    "num": 66,
+    "name": "Machop",
+    "types": [
+      "Fighting"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 80,
+      "def": 50,
+      "spa": 35,
+      "spd": 35,
+      "spe": 35
+    },
+    "heightm": 0.8,
+    "weightkg": 19.5,
+    "color": "Gray",
+    "evos": [
+      "Machoke"
+    ]
+  },
+  "machoke": {
+    "id": 67,
+    "num": 67,
+    "name": "Machoke",
+    "types": [
+      "Fighting"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 100,
+      "def": 70,
+      "spa": 50,
+      "spd": 60,
+      "spe": 45
+    },
+    "heightm": 1.5,
+    "weightkg": 70.5,
+    "color": "Gray",
+    "prevo": "Machop",
+    "evoLevel": 28,
+    "evos": [
+      "Machamp"
+    ]
+  },
+  "machamp": {
+    "id": 68,
+    "num": 68,
+    "name": "Machamp",
+    "types": [
+      "Fighting"
+    ],
+    "baseStats": {
+      "hp": 90,
+      "atk": 130,
+      "def": 80,
+      "spa": 65,
+      "spd": 85,
+      "spe": 55
+    },
+    "heightm": 1.6,
+    "weightkg": 130,
+    "color": "Gray",
+    "prevo": "Machoke"
+  },
+  "bellsprout": {
+    "id": 69,
+    "num": 69,
+    "name": "Bellsprout",
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "baseStats": {
+      "hp": 50,
+      "atk": 75,
+      "def": 35,
+      "spa": 70,
+      "spd": 30,
+      "spe": 40
+    },
+    "heightm": 0.7,
+    "weightkg": 4,
+    "color": "Green",
+    "evos": [
+      "Weepinbell"
+    ]
+  },
+  "weepinbell": {
+    "id": 70,
+    "num": 70,
+    "name": "Weepinbell",
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 90,
+      "def": 50,
+      "spa": 85,
+      "spd": 45,
+      "spe": 55
+    },
+    "heightm": 1,
+    "weightkg": 6.4,
+    "color": "Green",
+    "prevo": "Bellsprout",
+    "evoLevel": 21,
+    "evos": [
+      "Victreebel"
+    ]
+  },
+  "victreebel": {
+    "id": 71,
+    "num": 71,
+    "name": "Victreebel",
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 105,
+      "def": 65,
+      "spa": 100,
+      "spd": 70,
+      "spe": 70
+    },
+    "heightm": 1.7,
+    "weightkg": 15.5,
+    "color": "Green",
+    "prevo": "Weepinbell"
+  },
+  "tentacool": {
+    "id": 72,
+    "num": 72,
+    "name": "Tentacool",
+    "types": [
+      "Water",
+      "Poison"
+    ],
+    "baseStats": {
+      "hp": 40,
+      "atk": 40,
+      "def": 35,
+      "spa": 50,
+      "spd": 100,
+      "spe": 70
+    },
+    "heightm": 0.9,
+    "weightkg": 45.5,
+    "color": "Blue",
+    "evos": [
+      "Tentacruel"
+    ]
+  },
+  "tentacruel": {
+    "id": 73,
+    "num": 73,
+    "name": "Tentacruel",
+    "types": [
+      "Water",
+      "Poison"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 70,
+      "def": 65,
+      "spa": 80,
+      "spd": 120,
+      "spe": 100
+    },
+    "heightm": 1.6,
+    "weightkg": 55,
+    "color": "Blue",
+    "prevo": "Tentacool",
+    "evoLevel": 30
+  },
+  "geodude": {
+    "id": 74,
+    "num": 74,
+    "name": "Geodude",
+    "types": [
+      "Rock",
+      "Ground"
+    ],
+    "baseStats": {
+      "hp": 40,
+      "atk": 80,
+      "def": 100,
+      "spa": 30,
+      "spd": 30,
+      "spe": 20
+    },
+    "heightm": 0.4,
+    "weightkg": 20,
+    "color": "Brown",
+    "evos": [
+      "Graveler"
+    ]
+  },
+  "graveler": {
+    "id": 75,
+    "num": 75,
+    "name": "Graveler",
+    "types": [
+      "Rock",
+      "Ground"
+    ],
+    "baseStats": {
+      "hp": 55,
+      "atk": 95,
+      "def": 115,
+      "spa": 45,
+      "spd": 45,
+      "spe": 35
+    },
+    "heightm": 1,
+    "weightkg": 105,
+    "color": "Brown",
+    "prevo": "Geodude",
+    "evoLevel": 25,
+    "evos": [
+      "Golem"
+    ]
+  },
+  "golem": {
+    "id": 76,
+    "num": 76,
+    "name": "Golem",
+    "types": [
+      "Rock",
+      "Ground"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 120,
+      "def": 130,
+      "spa": 55,
+      "spd": 65,
+      "spe": 45
+    },
+    "heightm": 1.4,
+    "weightkg": 300,
+    "color": "Brown",
+    "prevo": "Graveler",
+    "evoType": "trade"
+  },
+  "ponyta": {
+    "id": 77,
+    "num": 77,
+    "name": "Ponyta",
+    "types": [
+      "Fire"
+    ],
+    "baseStats": {
+      "hp": 50,
+      "atk": 85,
+      "def": 55,
+      "spa": 65,
+      "spd": 65,
+      "spe": 90
+    },
+    "heightm": 1,
+    "weightkg": 30,
+    "color": "Yellow",
+    "evos": [
+      "Rapidash"
+    ]
+  },
+  "rapidash": {
+    "id": 78,
+    "num": 78,
+    "name": "Rapidash",
+    "types": [
+      "Fire"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 100,
+      "def": 70,
+      "spa": 80,
+      "spd": 80,
+      "spe": 105
+    },
+    "heightm": 1.7,
+    "weightkg": 95,
+    "color": "Yellow",
+    "prevo": "Ponyta",
+    "evoLevel": 40
+  },
+  "slowpoke": {
+    "id": 79,
+    "num": 79,
+    "name": "Slowpoke",
+    "types": [
+      "Water",
+      "Psychic"
+    ],
+    "baseStats": {
+      "hp": 90,
+      "atk": 65,
+      "def": 65,
+      "spa": 40,
+      "spd": 40,
+      "spe": 15
+    },
+    "heightm": 1.2,
+    "weightkg": 36,
+    "color": "Pink",
+    "evos": [
+      "Slowbro",
+      "Slowking"
+    ]
+  },
+  "slowbro": {
+    "id": 80,
+    "num": 80,
+    "name": "Slowbro",
+    "types": [
+      "Water",
+      "Psychic"
+    ],
+    "baseStats": {
+      "hp": 95,
+      "atk": 75,
+      "def": 110,
+      "spa": 100,
+      "spd": 80,
+      "spe": 30
+    },
+    "heightm": 1.6,
+    "weightkg": 78.5,
+    "color": "Pink",
+    "prevo": "Slowpoke",
+    "evoLevel": 37
+  },
+  "magnemite": {
+    "id": 81,
+    "num": 81,
+    "name": "Magnemite",
+    "types": [
+      "Electric"
+    ],
+    "baseStats": {
+      "hp": 25,
+      "atk": 35,
+      "def": 70,
+      "spa": 95,
+      "spd": 55,
+      "spe": 45
+    },
+    "heightm": 0.3,
+    "weightkg": 6,
+    "color": "Gray",
+    "evos": [
+      "Magneton"
+    ]
+  },
+  "magneton": {
+    "id": 82,
+    "num": 82,
+    "name": "Magneton",
+    "types": [
+      "Electric"
+    ],
+    "baseStats": {
+      "hp": 50,
+      "atk": 60,
+      "def": 95,
+      "spa": 120,
+      "spd": 70,
+      "spe": 70
+    },
+    "heightm": 1,
+    "weightkg": 60,
+    "color": "Gray",
+    "prevo": "Magnemite",
+    "evoLevel": 30,
+    "evos": [
+      "Magnezone"
+    ]
+  },
+  "farfetchd": {
+    "id": 83,
+    "num": 83,
+    "name": "Farfetch’d",
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "baseStats": {
+      "hp": 52,
+      "atk": 90,
+      "def": 55,
+      "spa": 58,
+      "spd": 62,
+      "spe": 60
+    },
+    "heightm": 0.8,
+    "weightkg": 15,
+    "color": "Brown"
+  },
+  "doduo": {
+    "id": 84,
+    "num": 84,
+    "name": "Doduo",
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "baseStats": {
+      "hp": 35,
+      "atk": 85,
+      "def": 45,
+      "spa": 35,
+      "spd": 35,
+      "spe": 75
+    },
+    "heightm": 1.4,
+    "weightkg": 39.2,
+    "color": "Brown",
+    "evos": [
+      "Dodrio"
+    ]
+  },
+  "dodrio": {
+    "id": 85,
+    "num": 85,
+    "name": "Dodrio",
+    "types": [
+      "Normal",
+      "Flying"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 110,
+      "def": 70,
+      "spa": 60,
+      "spd": 60,
+      "spe": 110
+    },
+    "heightm": 1.8,
+    "weightkg": 85.2,
+    "color": "Brown",
+    "prevo": "Doduo",
+    "evoLevel": 31
+  },
+  "seel": {
+    "id": 86,
+    "num": 86,
+    "name": "Seel",
+    "types": [
+      "Water"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 45,
+      "def": 55,
+      "spa": 45,
+      "spd": 70,
+      "spe": 45
+    },
+    "heightm": 1.1,
+    "weightkg": 90,
+    "color": "White",
+    "evos": [
+      "Dewgong"
+    ]
+  },
+  "dewgong": {
+    "id": 87,
+    "num": 87,
+    "name": "Dewgong",
+    "types": [
+      "Water",
+      "Ice"
+    ],
+    "baseStats": {
+      "hp": 90,
+      "atk": 70,
+      "def": 80,
+      "spa": 70,
+      "spd": 95,
+      "spe": 70
+    },
+    "heightm": 1.7,
+    "weightkg": 120,
+    "color": "White",
+    "prevo": "Seel",
+    "evoLevel": 34
+  },
+  "grimer": {
+    "id": 88,
+    "num": 88,
+    "name": "Grimer",
+    "types": [
+      "Poison"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 80,
+      "def": 50,
+      "spa": 40,
+      "spd": 50,
+      "spe": 25
+    },
+    "heightm": 0.9,
+    "weightkg": 30,
+    "color": "Purple",
+    "evos": [
+      "Muk"
+    ]
+  },
+  "muk": {
+    "id": 89,
+    "num": 89,
+    "name": "Muk",
+    "types": [
+      "Poison"
+    ],
+    "baseStats": {
+      "hp": 105,
+      "atk": 105,
+      "def": 75,
+      "spa": 65,
+      "spd": 100,
+      "spe": 50
+    },
+    "heightm": 1.2,
+    "weightkg": 30,
+    "color": "Purple",
+    "prevo": "Grimer",
+    "evoLevel": 38
+  },
+  "shellder": {
+    "id": 90,
+    "num": 90,
+    "name": "Shellder",
+    "types": [
+      "Water"
+    ],
+    "baseStats": {
+      "hp": 30,
+      "atk": 65,
+      "def": 100,
+      "spa": 45,
+      "spd": 25,
+      "spe": 40
+    },
+    "heightm": 0.3,
+    "weightkg": 4,
+    "color": "Purple",
+    "evos": [
+      "Cloyster"
+    ]
+  },
+  "cloyster": {
+    "id": 91,
+    "num": 91,
+    "name": "Cloyster",
+    "types": [
+      "Water",
+      "Ice"
+    ],
+    "baseStats": {
+      "hp": 50,
+      "atk": 95,
+      "def": 180,
+      "spa": 85,
+      "spd": 45,
+      "spe": 70
+    },
+    "heightm": 1.5,
+    "weightkg": 132.5,
+    "color": "Purple",
+    "prevo": "Shellder"
+  },
+  "gastly": {
+    "id": 92,
+    "num": 92,
+    "name": "Gastly",
+    "types": [
+      "Ghost",
+      "Poison"
+    ],
+    "baseStats": {
+      "hp": 30,
+      "atk": 35,
+      "def": 30,
+      "spa": 100,
+      "spd": 35,
+      "spe": 80
+    },
+    "heightm": 1.3,
+    "weightkg": 0.1,
+    "color": "Purple",
+    "evos": [
+      "Haunter"
+    ]
+  },
+  "haunter": {
+    "id": 93,
+    "num": 93,
+    "name": "Haunter",
+    "types": [
+      "Ghost",
+      "Poison"
+    ],
+    "baseStats": {
+      "hp": 45,
+      "atk": 50,
+      "def": 45,
+      "spa": 115,
+      "spd": 55,
+      "spe": 95
+    },
+    "heightm": 1.6,
+    "weightkg": 0.1,
+    "color": "Purple",
+    "prevo": "Gastly",
+    "evoLevel": 25,
+    "evos": [
+      "Gengar"
+    ]
+  },
+  "gengar": {
+    "id": 94,
+    "num": 94,
+    "name": "Gengar",
+    "types": [
+      "Ghost",
+      "Poison"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 65,
+      "def": 60,
+      "spa": 130,
+      "spd": 75,
+      "spe": 110
+    },
+    "heightm": 1.5,
+    "weightkg": 40.5,
+    "color": "Purple",
+    "prevo": "Haunter"
+  },
+  "onix": {
+    "id": 95,
+    "num": 95,
+    "name": "Onix",
+    "types": [
+      "Rock",
+      "Ground"
+    ],
+    "baseStats": {
+      "hp": 35,
+      "atk": 45,
+      "def": 160,
+      "spa": 30,
+      "spd": 45,
+      "spe": 70
+    },
+    "heightm": 8.8,
+    "weightkg": 210,
+    "color": "Gray"
+  },
+  "drowzee": {
+    "id": 96,
+    "num": 96,
+    "name": "Drowzee",
+    "types": [
+      "Psychic"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 48,
+      "def": 45,
+      "spa": 43,
+      "spd": 90,
+      "spe": 42
+    },
+    "heightm": 1,
+    "weightkg": 32.4,
+    "color": "Yellow",
+    "evos": [
+      "Hypno"
+    ]
+  },
+  "hypno": {
+    "id": 97,
+    "num": 97,
+    "name": "Hypno",
+    "types": [
+      "Psychic"
+    ],
+    "baseStats": {
+      "hp": 85,
+      "atk": 73,
+      "def": 70,
+      "spa": 73,
+      "spd": 115,
+      "spe": 67
+    },
+    "heightm": 1.6,
+    "weightkg": 75.6,
+    "color": "Yellow",
+    "prevo": "Drowzee",
+    "evoLevel": 26
+  },
+  "krabby": {
+    "id": 98,
+    "num": 98,
+    "name": "Krabby",
+    "types": [
+      "Water"
+    ],
+    "baseStats": {
+      "hp": 30,
+      "atk": 105,
+      "def": 90,
+      "spa": 25,
+      "spd": 25,
+      "spe": 50
+    },
+    "heightm": 0.4,
+    "weightkg": 6.5,
+    "color": "Red",
+    "evos": [
+      "Kingler"
+    ]
+  },
+  "kingler": {
+    "id": 99,
+    "num": 99,
+    "name": "Kingler",
+    "types": [
+      "Water"
+    ],
+    "baseStats": {
+      "hp": 55,
+      "atk": 130,
+      "def": 115,
+      "spa": 50,
+      "spd": 50,
+      "spe": 75
+    },
+    "heightm": 1.3,
+    "weightkg": 60,
+    "color": "Red",
+    "prevo": "Krabby",
+    "evoLevel": 28
+  },
+  "voltorb": {
+    "id": 100,
+    "num": 100,
+    "name": "Voltorb",
+    "types": [
+      "Electric"
+    ],
+    "baseStats": {
+      "hp": 40,
+      "atk": 30,
+      "def": 50,
+      "spa": 55,
+      "spd": 55,
+      "spe": 100
+    },
+    "heightm": 0.5,
+    "weightkg": 10.4,
+    "color": "Red",
+    "evos": [
+      "Electrode"
+    ]
+  },
+  "electrode": {
+    "id": 101,
+    "num": 101,
+    "name": "Electrode",
+    "types": [
+      "Electric"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 50,
+      "def": 70,
+      "spa": 80,
+      "spd": 80,
+      "spe": 150
+    },
+    "heightm": 1.2,
+    "weightkg": 66.6,
+    "color": "Red",
+    "prevo": "Voltorb",
+    "evoLevel": 30
+  },
+  "exeggcute": {
+    "id": 102,
+    "num": 102,
+    "name": "Exeggcute",
+    "types": [
+      "Grass",
+      "Psychic"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 40,
+      "def": 80,
+      "spa": 60,
+      "spd": 45,
+      "spe": 40
+    },
+    "heightm": 0.4,
+    "weightkg": 2.5,
+    "color": "Pink",
+    "evos": [
+      "Exeggutor"
+    ]
+  },
+  "exeggutor": {
+    "id": 103,
+    "num": 103,
+    "name": "Exeggutor",
+    "types": [
+      "Grass",
+      "Psychic"
+    ],
+    "baseStats": {
+      "hp": 95,
+      "atk": 95,
+      "def": 85,
+      "spa": 125,
+      "spd": 75,
+      "spe": 55
+    },
+    "heightm": 2,
+    "weightkg": 120,
+    "color": "Yellow",
+    "prevo": "Exeggcute"
+  },
+  "cubone": {
+    "id": 104,
+    "num": 104,
+    "name": "Cubone",
+    "types": [
+      "Ground"
+    ],
+    "baseStats": {
+      "hp": 50,
+      "atk": 50,
+      "def": 95,
+      "spa": 40,
+      "spd": 50,
+      "spe": 35
+    },
+    "heightm": 0.4,
+    "weightkg": 6.5,
+    "color": "Brown",
+    "evos": [
+      "Marowak"
+    ]
+  },
+  "marowak": {
+    "id": 105,
+    "num": 105,
+    "name": "Marowak",
+    "types": [
+      "Ground"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 80,
+      "def": 110,
+      "spa": 50,
+      "spd": 80,
+      "spe": 45
+    },
+    "heightm": 1,
+    "weightkg": 45,
+    "color": "Brown",
+    "prevo": "Cubone"
+  },
+  "hitmonlee": {
+    "id": 106,
+    "num": 106,
+    "name": "Hitmonlee",
+    "types": [
+      "Fighting"
+    ],
+    "baseStats": {
+      "hp": 50,
+      "atk": 120,
+      "def": 53,
+      "spa": 35,
+      "spd": 110,
+      "spe": 87
+    },
+    "heightm": 1.5,
+    "weightkg": 49.8,
+    "color": "Brown",
+    "prevo": "Tyrogue",
+    "evoLevel": 20,
+    "evoCondition": "with an Atk stat > its Def stat"
+  },
+  "hitmonchan": {
+    "id": 107,
+    "num": 107,
+    "name": "Hitmonchan",
+    "types": [
+      "Fighting"
+    ],
+    "baseStats": {
+      "hp": 50,
+      "atk": 105,
+      "def": 79,
+      "spa": 35,
+      "spd": 110,
+      "spe": 76
+    },
+    "heightm": 1.4,
+    "weightkg": 50.2,
+    "color": "Brown",
+    "prevo": "Tyrogue",
+    "evoLevel": 20
+  },
+  "lickitung": {
+    "id": 108,
+    "num": 108,
+    "name": "Lickitung",
+    "types": [
+      "Normal"
+    ],
+    "baseStats": {
+      "hp": 90,
+      "atk": 55,
+      "def": 75,
+      "spa": 60,
+      "spd": 75,
+      "spe": 30
+    },
+    "heightm": 1.2,
+    "weightkg": 65.5,
+    "color": "Pink",
+    "evos": [
+      "Lickilicky"
+    ]
+  },
+  "koffing": {
+    "id": 109,
+    "num": 109,
+    "name": "Koffing",
+    "types": [
+      "Poison"
+    ],
+    "baseStats": {
+      "hp": 40,
+      "atk": 65,
+      "def": 95,
+      "spa": 60,
+      "spd": 45,
+      "spe": 35
+    },
+    "heightm": 0.6,
+    "weightkg": 1,
+    "color": "Purple",
+    "evos": [
+      "Weezing"
+    ]
+  },
+  "weezing": {
+    "id": 110,
+    "num": 110,
+    "name": "Weezing",
+    "types": [
+      "Poison"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 90,
+      "def": 120,
+      "spa": 85,
+      "spd": 70,
+      "spe": 60
+    },
+    "heightm": 1.2,
+    "weightkg": 9.5,
+    "color": "Purple",
+    "prevo": "Koffing",
+    "evoLevel": 35
+  },
+  "rhyhorn": {
+    "id": 111,
+    "num": 111,
+    "name": "Rhyhorn",
+    "types": [
+      "Ground",
+      "Rock"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 85,
+      "def": 95,
+      "spa": 30,
+      "spd": 30,
+      "spe": 25
+    },
+    "heightm": 1,
+    "weightkg": 115,
+    "color": "Gray",
+    "evos": [
+      "Rhydon"
+    ]
+  },
+  "rhydon": {
+    "id": 112,
+    "num": 112,
+    "name": "Rhydon",
+    "types": [
+      "Ground",
+      "Rock"
+    ],
+    "baseStats": {
+      "hp": 105,
+      "atk": 130,
+      "def": 120,
+      "spa": 45,
+      "spd": 45,
+      "spe": 40
+    },
+    "heightm": 1.9,
+    "weightkg": 120,
+    "color": "Gray",
+    "prevo": "Rhyhorn",
+    "evoLevel": 42
+  },
+  "chansey": {
+    "id": 113,
+    "num": 113,
+    "name": "Chansey",
+    "types": [
+      "Normal"
+    ],
+    "baseStats": {
+      "hp": 250,
+      "atk": 5,
+      "def": 5,
+      "spa": 35,
+      "spd": 105,
+      "spe": 50
+    },
+    "heightm": 1.1,
+    "weightkg": 34.6,
+    "color": "Pink"
+  },
+  "tangela": {
+    "id": 114,
+    "num": 114,
+    "name": "Tangela",
+    "types": [
+      "Grass"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 55,
+      "def": 115,
+      "spa": 100,
+      "spd": 40,
+      "spe": 60
+    },
+    "heightm": 1,
+    "weightkg": 35,
+    "color": "Blue"
+  },
+  "kangaskhan": {
+    "id": 115,
+    "num": 115,
+    "name": "Kangaskhan",
+    "types": [
+      "Normal"
+    ],
+    "baseStats": {
+      "hp": 105,
+      "atk": 95,
+      "def": 80,
+      "spa": 40,
+      "spd": 80,
+      "spe": 90
+    },
+    "heightm": 2.2,
+    "weightkg": 80
+  },
+  "horsea": {
+    "id": 116,
+    "num": 116,
+    "name": "Horsea",
+    "types": [
+      "Water"
+    ],
+    "baseStats": {
+      "hp": 30,
+      "atk": 40,
+      "def": 70,
+      "spa": 70,
+      "spd": 25,
+      "spe": 60
+    },
+    "heightm": 0.4,
+    "weightkg": 8,
+    "color": "Blue",
+    "evos": [
+      "Seadra"
+    ]
+  },
+  "seadra": {
+    "id": 117,
+    "num": 117,
+    "name": "Seadra",
+    "types": [
+      "Water"
+    ],
+    "baseStats": {
+      "hp": 55,
+      "atk": 65,
+      "def": 95,
+      "spa": 95,
+      "spd": 45,
+      "spe": 85
+    },
+    "heightm": 1.2,
+    "weightkg": 25,
+    "color": "Blue",
+    "prevo": "Horsea",
+    "evoLevel": 32
+  },
+  "goldeen": {
+    "id": 118,
+    "num": 118,
+    "name": "Goldeen",
+    "types": [
+      "Water"
+    ],
+    "baseStats": {
+      "hp": 45,
+      "atk": 67,
+      "def": 60,
+      "spa": 35,
+      "spd": 50,
+      "spe": 63
+    },
+    "heightm": 0.6,
+    "weightkg": 15,
+    "color": "Red",
+    "evos": [
+      "Seaking"
+    ]
+  },
+  "seaking": {
+    "id": 119,
+    "num": 119,
+    "name": "Seaking",
+    "types": [
+      "Water"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 92,
+      "def": 65,
+      "spa": 65,
+      "spd": 80,
+      "spe": 68
+    },
+    "heightm": 1.3,
+    "weightkg": 39,
+    "color": "Red",
+    "prevo": "Goldeen",
+    "evoLevel": 33
+  },
+  "staryu": {
+    "id": 120,
+    "num": 120,
+    "name": "Staryu",
+    "types": [
+      "Water"
+    ],
+    "baseStats": {
+      "hp": 30,
+      "atk": 45,
+      "def": 55,
+      "spa": 70,
+      "spd": 55,
+      "spe": 85
+    },
+    "heightm": 0.8,
+    "weightkg": 34.5,
+    "color": "Brown",
+    "evos": [
+      "Starmie"
+    ]
+  },
+  "starmie": {
+    "id": 121,
+    "num": 121,
+    "name": "Starmie",
+    "types": [
+      "Water",
+      "Psychic"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 75,
+      "def": 85,
+      "spa": 100,
+      "spd": 85,
+      "spe": 115
+    },
+    "heightm": 1.1,
+    "weightkg": 80,
+    "color": "Purple",
+    "prevo": "Staryu"
+  },
+  "mrmime": {
+    "id": 122,
+    "num": 122,
+    "name": "Mr. Mime",
+    "types": [
+      "Psychic",
+      "Fairy"
+    ],
+    "baseStats": {
+      "hp": 40,
+      "atk": 45,
+      "def": 65,
+      "spa": 100,
+      "spd": 120,
+      "spe": 90
+    },
+    "heightm": 1.3,
+    "weightkg": 54.5,
+    "color": "Pink",
+    "prevo": "Mime Jr."
+  },
+  "scyther": {
+    "id": 123,
+    "num": 123,
+    "name": "Scyther",
+    "types": [
+      "Bug",
+      "Flying"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 110,
+      "def": 80,
+      "spa": 55,
+      "spd": 80,
+      "spe": 105
+    },
+    "heightm": 1.5,
+    "weightkg": 56,
+    "color": "Green"
+  },
+  "jynx": {
+    "id": 124,
+    "num": 124,
+    "name": "Jynx",
+    "types": [
+      "Ice",
+      "Psychic"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 50,
+      "def": 35,
+      "spa": 115,
+      "spd": 95,
+      "spe": 95
+    },
+    "heightm": 1.4,
+    "weightkg": 40.6,
+    "color": "Red",
+    "evoLevel": 30
+  },
+  "electabuzz": {
+    "id": 125,
+    "num": 125,
+    "name": "Electabuzz",
+    "types": [
+      "Electric"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 83,
+      "def": 57,
+      "spa": 95,
+      "spd": 85,
+      "spe": 105
+    },
+    "heightm": 1.1,
+    "weightkg": 30,
+    "color": "Yellow"
+  },
+  "magmar": {
+    "id": 126,
+    "num": 126,
+    "name": "Magmar",
+    "types": [
+      "Fire"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 95,
+      "def": 57,
+      "spa": 100,
+      "spd": 85,
+      "spe": 93
+    },
+    "heightm": 1.3,
+    "weightkg": 44.5,
+    "color": "Red"
+  },
+  "pinsir": {
+    "id": 127,
+    "num": 127,
+    "name": "Pinsir",
+    "types": [
+      "Bug"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 125,
+      "def": 100,
+      "spa": 55,
+      "spd": 70,
+      "spe": 85
+    },
+    "heightm": 1.5,
+    "weightkg": 55,
+    "color": "Brown"
+  },
+  "tauros": {
+    "id": 128,
+    "num": 128,
+    "name": "Tauros",
+    "types": [
+      "Normal"
+    ],
+    "baseStats": {
+      "hp": 75,
+      "atk": 100,
+      "def": 95,
+      "spa": 40,
+      "spd": 70,
+      "spe": 110
+    },
+    "heightm": 1.4,
+    "weightkg": 88.4,
+    "color": "Brown"
+  },
+  "magikarp": {
+    "id": 129,
+    "num": 129,
+    "name": "Magikarp",
+    "types": [
+      "Water"
+    ],
+    "baseStats": {
+      "hp": 20,
+      "atk": 10,
+      "def": 55,
+      "spa": 15,
+      "spd": 20,
+      "spe": 80
+    },
+    "heightm": 0.9,
+    "weightkg": 10,
+    "color": "Red",
+    "evos": [
+      "Gyarados"
+    ]
+  },
+  "gyarados": {
+    "id": 130,
+    "num": 130,
+    "name": "Gyarados",
+    "types": [
+      "Water",
+      "Flying"
+    ],
+    "baseStats": {
+      "hp": 95,
+      "atk": 125,
+      "def": 79,
+      "spa": 60,
+      "spd": 100,
+      "spe": 81
+    },
+    "heightm": 6.5,
+    "weightkg": 235,
+    "color": "Blue",
+    "prevo": "Magikarp",
+    "evoLevel": 20
+  },
+  "lapras": {
+    "id": 131,
+    "num": 131,
+    "name": "Lapras",
+    "types": [
+      "Water",
+      "Ice"
+    ],
+    "baseStats": {
+      "hp": 130,
+      "atk": 85,
+      "def": 80,
+      "spa": 85,
+      "spd": 95,
+      "spe": 60
+    },
+    "heightm": 2.5,
+    "weightkg": 220,
+    "color": "Blue"
+  },
+  "ditto": {
+    "id": 132,
+    "num": 132,
+    "name": "Ditto",
+    "types": [
+      "Normal"
+    ],
+    "baseStats": {
+      "hp": 48,
+      "atk": 48,
+      "def": 48,
+      "spa": 48,
+      "spd": 48,
+      "spe": 48
+    },
+    "heightm": 0.3,
+    "weightkg": 4,
+    "color": "Purple"
+  },
+  "eevee": {
+    "id": 133,
+    "num": 133,
+    "name": "Eevee",
+    "types": [
+      "Normal"
+    ],
+    "baseStats": {
+      "hp": 55,
+      "atk": 55,
+      "def": 50,
+      "spa": 45,
+      "spd": 65,
+      "spe": 55
+    },
+    "heightm": 0.3,
+    "weightkg": 6.5,
+    "color": "Brown",
+    "evos": [
+      "Vaporeon",
+      "Jolteon",
+      "Flareon"
+    ]
+  },
+  "vaporeon": {
+    "id": 134,
+    "num": 134,
+    "name": "Vaporeon",
+    "types": [
+      "Water"
+    ],
+    "baseStats": {
+      "hp": 130,
+      "atk": 65,
+      "def": 60,
+      "spa": 110,
+      "spd": 95,
+      "spe": 65
+    },
+    "heightm": 1,
+    "weightkg": 29,
+    "color": "Blue",
+    "prevo": "Eevee"
+  },
+  "jolteon": {
+    "id": 135,
+    "num": 135,
+    "name": "Jolteon",
+    "types": [
+      "Electric"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 65,
+      "def": 60,
+      "spa": 110,
+      "spd": 95,
+      "spe": 130
+    },
+    "heightm": 0.8,
+    "weightkg": 24.5,
+    "color": "Yellow",
+    "prevo": "Eevee"
+  },
+  "flareon": {
+    "id": 136,
+    "num": 136,
+    "name": "Flareon",
+    "types": [
+      "Fire"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 130,
+      "def": 60,
+      "spa": 95,
+      "spd": 110,
+      "spe": 65
+    },
+    "heightm": 0.9,
+    "weightkg": 25,
+    "color": "Red",
+    "prevo": "Eevee"
+  },
+  "porygon": {
+    "id": 137,
+    "num": 137,
+    "name": "Porygon",
+    "types": [
+      "Normal"
+    ],
+    "baseStats": {
+      "hp": 65,
+      "atk": 60,
+      "def": 70,
+      "spa": 85,
+      "spd": 75,
+      "spe": 40
+    },
+    "heightm": 0.8,
+    "weightkg": 36.5,
+    "color": "Pink"
+  },
+  "omanyte": {
+    "id": 138,
+    "num": 138,
+    "name": "Omanyte",
+    "types": [
+      "Rock",
+      "Water"
+    ],
+    "baseStats": {
+      "hp": 35,
+      "atk": 40,
+      "def": 100,
+      "spa": 90,
+      "spd": 55,
+      "spe": 35
+    },
+    "heightm": 0.4,
+    "weightkg": 7.5,
+    "color": "Blue",
+    "evos": [
+      "Omastar"
+    ]
+  },
+  "omastar": {
+    "id": 139,
+    "num": 139,
+    "name": "Omastar",
+    "types": [
+      "Rock",
+      "Water"
+    ],
+    "baseStats": {
+      "hp": 70,
+      "atk": 60,
+      "def": 125,
+      "spa": 115,
+      "spd": 70,
+      "spe": 55
+    },
+    "heightm": 1,
+    "weightkg": 35,
+    "color": "Blue",
+    "prevo": "Omanyte",
+    "evoLevel": 40
+  },
+  "kabuto": {
+    "id": 140,
+    "num": 140,
+    "name": "Kabuto",
+    "types": [
+      "Rock",
+      "Water"
+    ],
+    "baseStats": {
+      "hp": 30,
+      "atk": 80,
+      "def": 90,
+      "spa": 55,
+      "spd": 45,
+      "spe": 55
+    },
+    "heightm": 0.5,
+    "weightkg": 11.5,
+    "color": "Brown",
+    "evos": [
+      "Kabutops"
+    ]
+  },
+  "kabutops": {
+    "id": 141,
+    "num": 141,
+    "name": "Kabutops",
+    "types": [
+      "Rock",
+      "Water"
+    ],
+    "baseStats": {
+      "hp": 60,
+      "atk": 115,
+      "def": 105,
+      "spa": 65,
+      "spd": 70,
+      "spe": 80
+    },
+    "heightm": 1.3,
+    "weightkg": 40.5,
+    "color": "Brown",
+    "prevo": "Kabuto",
+    "evoLevel": 40
+  },
+  "aerodactyl": {
+    "id": 142,
+    "num": 142,
+    "name": "Aerodactyl",
+    "types": [
+      "Rock",
+      "Flying"
+    ],
+    "baseStats": {
+      "hp": 80,
+      "atk": 105,
+      "def": 65,
+      "spa": 60,
+      "spd": 75,
+      "spe": 130
+    },
+    "heightm": 1.8,
+    "weightkg": 59,
+    "color": "Purple"
+  },
+  "snorlax": {
+    "id": 143,
+    "num": 143,
+    "name": "Snorlax",
+    "types": [
+      "Normal"
+    ],
+    "baseStats": {
+      "hp": 160,
+      "atk": 110,
+      "def": 65,
+      "spa": 65,
+      "spd": 110,
+      "spe": 30
+    },
+    "heightm": 2.1,
+    "weightkg": 460,
+    "color": "Black"
+  },
+  "articuno": {
+    "id": 144,
+    "num": 144,
+    "name": "Articuno",
+    "types": [
+      "Ice",
+      "Flying"
+    ],
+    "baseStats": {
+      "hp": 90,
+      "atk": 85,
+      "def": 100,
+      "spa": 95,
+      "spd": 125,
+      "spe": 85
+    },
+    "heightm": 1.7,
+    "weightkg": 55.4,
+    "color": "Blue"
+  },
+  "zapdos": {
+    "id": 145,
+    "num": 145,
+    "name": "Zapdos",
+    "types": [
+      "Electric",
+      "Flying"
+    ],
+    "baseStats": {
+      "hp": 90,
+      "atk": 90,
+      "def": 85,
+      "spa": 125,
+      "spd": 90,
+      "spe": 100
+    },
+    "heightm": 1.6,
+    "weightkg": 52.6,
+    "color": "Yellow"
+  },
+  "moltres": {
+    "id": 146,
+    "num": 146,
+    "name": "Moltres",
+    "types": [
+      "Fire",
+      "Flying"
+    ],
+    "baseStats": {
+      "hp": 90,
+      "atk": 100,
+      "def": 90,
+      "spa": 125,
+      "spd": 85,
+      "spe": 90
+    },
+    "heightm": 2,
+    "weightkg": 60,
+    "color": "Yellow"
+  },
+  "dratini": {
+    "id": 147,
+    "num": 147,
+    "name": "Dratini",
+    "types": [
+      "Dragon"
+    ],
+    "baseStats": {
+      "hp": 41,
+      "atk": 64,
+      "def": 45,
+      "spa": 50,
+      "spd": 50,
+      "spe": 50
+    },
+    "heightm": 1.8,
+    "weightkg": 3.3,
+    "color": "Blue",
+    "evos": [
+      "Dragonair"
+    ]
+  },
+  "dragonair": {
+    "id": 148,
+    "num": 148,
+    "name": "Dragonair",
+    "types": [
+      "Dragon"
+    ],
+    "baseStats": {
+      "hp": 61,
+      "atk": 84,
+      "def": 65,
+      "spa": 70,
+      "spd": 70,
+      "spe": 70
+    },
+    "heightm": 4,
+    "weightkg": 16.5,
+    "color": "Blue",
+    "prevo": "Dratini",
+    "evoLevel": 30,
+    "evos": [
+      "Dragonite"
+    ]
+  },
+  "dragonite": {
+    "id": 149,
+    "num": 149,
+    "name": "Dragonite",
+    "types": [
+      "Dragon",
+      "Flying"
+    ],
+    "baseStats": {
+      "hp": 91,
+      "atk": 134,
+      "def": 95,
+      "spa": 100,
+      "spd": 100,
+      "spe": 80
+    },
+    "heightm": 2.2,
+    "weightkg": 210,
+    "color": "Brown",
+    "prevo": "Dragonair",
+    "evoLevel": 55
+  },
+  "mewtwo": {
+    "id": 150,
+    "num": 150,
+    "name": "Mewtwo",
+    "types": [
+      "Psychic"
+    ],
+    "baseStats": {
+      "hp": 106,
+      "atk": 110,
+      "def": 90,
+      "spa": 154,
+      "spd": 90,
+      "spe": 130
+    },
+    "heightm": 2,
+    "weightkg": 122,
+    "color": "Purple"
+  },
+  "mew": {
+    "id": 151,
+    "num": 151,
+    "name": "Mew",
+    "types": [
+      "Psychic"
+    ],
+    "baseStats": {
+      "hp": 100,
+      "atk": 100,
+      "def": 100,
+      "spa": 100,
+      "spd": 100,
+      "spe": 100
+    },
+    "heightm": 0.4,
+    "weightkg": 4,
+    "color": "Pink"
+  }
+}
