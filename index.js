@@ -15,13 +15,15 @@ const server = http.createServer(app);
 const io = new Server(server);
 const sharedSession = require('express-socket.io-session');
 
-app.set('views', path.join(__dirname, "public_html"));
-app.use(express.static("public_html"));
-app.set('view-engine', 'ejs');
-app.use(express.urlencoded({ extended: false }));
-app.use(flash());
+app.set('views', path.join(__dirname, "public_html")); //file where public ejs/html/css/js are
+app.use(express.static("public_html")); //static files use things in public_html
+app.set('view-engine', 'ejs'); //i don't know what this does
+app.use(express.urlencoded({ extended: false })); //or this
+app.use(flash()); //flash is what shows messages (ie username not found)
 
-// Session middleware
+//make a session
+//i don't know what this stuff is and SESSION_SECRET doesn't exist
+//it always reaches default-secret-key
 const sessionMiddleware = session({
     secret: process.env.SESSION_SECRET || 'default-secret-key',
     resave: false,
@@ -29,12 +31,12 @@ const sessionMiddleware = session({
 });
 app.use(sessionMiddleware);
 
-// Set up shared session with Socket.io
+//set up shared session with Socket.io
 io.use(sharedSession(sessionMiddleware, {
     autoSave: true
 }));
 
-// Routes
+//routes
 app.get('/', checkAuthenticated, (req, res) => {
     res.render('mainMenu.ejs', { name: req.session.username });
 });
@@ -57,7 +59,7 @@ app.post('/login', checkNotAuthenticated, async (req, res) => {
             req.flash('error', 'Invalid username');
             return res.redirect('/login');
         }
-
+        //when you log in set the session's user id and username
         req.session.userId = user._id;
         req.session.username = user.username;
         res.redirect('/');
@@ -97,6 +99,7 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
     }
 });
 
+//when user clicks find battle do this stuff
 app.post('/findBattle', checkAuthenticated, (req, res) => {
     const { friendName } = req.body;
     const username = req.session.username;
@@ -122,7 +125,7 @@ app.post('/findBattle', checkAuthenticated, (req, res) => {
         io.to(socketId).emit('battleStart', { battleId, opponent: friendName });
 
         waitingPlayers = waitingPlayers.filter(p => p !== friend);
-        req.flash('info', 'Battle found!');
+        //req.flash('info', 'Battle found!');
         res.redirect(`/battleScene?battleId=${battleId}`);
     } else {
         waitingPlayers.push({ socketId, username, friendName });

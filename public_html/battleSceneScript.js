@@ -26,6 +26,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // Join the battle room
     socket.emit("joinBattle", { battleId });
 
+    moveButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            const move = button.innerText;
+            socket.emit("selectMove", { battleId, move });
+        });
+    });
+
     // Listen for chat messages
     socket.on("chatMessage", ({ sender, message }) => {
         const newMessage = document.createElement("div");
