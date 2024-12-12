@@ -267,17 +267,17 @@ io.on('connection', (socket) => {
             socket.emit('error', { message: 'Battle not found' });
             return;
         }
-    
+
         // Increment the turn number (this example assumes players take turns)
         battle.turn += 1;
-    
+
         // Send an updated move to the players at the start of a new turn
-        io.to(battleId).emit('newTurn', { 
-            turn: battle.turn, 
+        io.to(battleId).emit('newTurn', {
+            turn: battle.turn,
             moves: battle.moves, // or fetch new moves here
             pokemon: battle.pokemon
         });
-    
+
         // Optionally, update battle state here (like calculating damage or actions)
         io.to(battleId).emit('updateBattle', { action });
     });
