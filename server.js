@@ -170,7 +170,6 @@ app.get('/getRandomMoves', checkAuthenticated, async (req, res) => {
 
 app.get('/getRandomPokemon', checkAuthenticated, async (req, res) => {
     try {
-        console.log("TRYING TO GET POKEMON")
         await client.connect();
         const pokemonDB = client.db("PokemonDB");
         const pokemonCollection = pokemonDB.collection("pokemon");
