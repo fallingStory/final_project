@@ -261,6 +261,48 @@ io.on('connection', (socket) => {
         io.to(battleId).emit('chatMessage', { sender, message });
     });
 
+    socket.on('createBattle', ({ battleId, player1Pokemon, player2Pokemon }) => {
+        battles[battleId] = {
+            player1: {
+                username: player1Pokemon.username,
+                pokemon: player1Pokemon.pokemon, // Array of 6 Pokémon
+                activeIndex: 0 // First Pokémon is active by default
+            },
+            player2: {
+                username: player2Pokemon.username,
+                pokemon: player2Pokemon.pokemon,
+                activeIndex: 0
+            },
+            turn: 1
+        };
+        io.to(socket.id).emit('battleCreated', { battleId });
+    });
+
+    socket.on('switchPokemon', ({ battleId, newIndex }) => {
+        const battle = battles[battleId];
+        if (!battle) {
+            socket.emit('error', { message: 'Battle not found' });
+            return;
+        }
+
+        const playerKey = battle.player1.username === socket.handshake.session.username ? 'player1' : 'player2';
+        const player = battle[playerKey];
+
+        if (newIndex < 0 || newIndex >= player.pokemon.length || player.pokemon[newIndex].hp <= 0) {
+            socket.emit('error', { message: 'Invalid Pokémon switch' });
+            return;
+        }
+
+        player.activeIndex = newIndex;
+
+        io.to(battleId).emit('pokemonSwitched', {
+            player: playerKey,
+            activePokemon: player.pokemon[newIndex]
+        });
+    });
+
+
+
     socket.on('battleAction', ({ battleId, action }) => {
         const battle = battles[battleId];
         if (!battle) {

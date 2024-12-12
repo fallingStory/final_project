@@ -95,6 +95,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // Load moves when the DOM is ready
     loadMoves();
 
+    const getActivePokemon = async () => {
+        console.log("getting active pokemon")
+
+    }
+
     // Listen for turn result (new turn from server)
     socket.on('newTurn', ({ turn, moves }) => {
         console.log(`It's turn ${turn}`);
@@ -145,15 +150,6 @@ document.addEventListener("DOMContentLoaded", () => {
             socket.emit("chatMessage", { battleId, message });
             chatInput.value = ""; // Clear the input
         }
-    });
-
-    // Handle battle actions
-    battleActions.forEach(actionButton => {
-        actionButton.addEventListener("click", () => {
-            console.log("moveClicked")
-            const action = actionButton.dataset.action;
-            socket.emit("battleAction", { battleId, action });
-        });
     });
 
     // Handle disconnection
