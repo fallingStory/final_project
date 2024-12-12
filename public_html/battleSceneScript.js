@@ -15,6 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const chatMessages = document.getElementById("chatMessages");
     const battleLog = document.getElementById("battleLog");
     const battleActions = document.querySelectorAll(".battleAction");
+    const moveButtons = document.querySelectorAll(".moveButtons");
+    const pokemonButtons = document.querySelectorAll(".pokemonButtons");
 
     // Validate battleId
     if (!battleId) {
@@ -26,11 +28,99 @@ document.addEventListener("DOMContentLoaded", () => {
     // Join the battle room
     socket.emit("joinBattle", { battleId });
 
-    moveButtons.forEach(button => {
-        button.addEventListener("click", () => {
-            const move = button.innerText;
-            socket.emit("selectMove", { battleId, move });
+    const loadPokemon = async() => {
+        try{
+            let pokemon;
+            const savedPokemon = sessionStorage.getItem("pokemon");
+            if (savedPokemon) {
+                pokemon = JSON.parse(savedPokemon);
+                console.log("Using pokemon from sessionStorage:", pokemon);
+            } else {
+                const response = await fetch("/getRandomPokemon");
+                pokemon = await response.json();
+                if (pokemon.length < pokemonButtons.length) {
+                    throw new Error("Not enough pokemon fetched to populate buttons.");
+                }
+                console.log("Fetched new mons:", pokemon);
+                // Save the fetched moves to sessionStorage
+                sessionStorage.setItem("pokemon", JSON.stringify(pokemon));
+            }
+            pokemonButtons.forEach((button, index) => {
+                const mon = pokemon[index];
+                button.textContent = `${mon.name}`;
+                button.dataset.pokemonId = `${mon._id}`;
+            });
+        }
+        catch {
+            console.error("Error loading pokemon:");
+            alert("Failed to load pokemon. Please try again.");
+        }
+    }
+
+    loadPokemon()
+
+    const loadMoves = async () => {
+        console.log("did we even hit load moves");
+
+        try {
+            let moves;
+            // Check if moves are saved in sessionStorage
+            const savedMoves = sessionStorage.getItem("moves");
+            if (savedMoves) {
+                moves = JSON.parse(savedMoves);
+                console.log("Using moves from sessionStorage:", moves);
+            } else {
+                const response = await fetch("/getRandomMoves");
+                moves = await response.json();
+                if (moves.length < moveButtons.length) {
+                    throw new Error("Not enough moves fetched to populate buttons.");
+                }
+                console.log("Fetched new moves:", moves);
+                // Save the fetched moves to sessionStorage
+                sessionStorage.setItem("moves", JSON.stringify(moves));
+            }
+
+            // Populate buttons with moves
+            moveButtons.forEach((button, index) => {
+                const move = moves[index];
+                button.textContent = `${move.name} (${move.type}) - Power: ${move.basePower}`;
+                button.dataset.moveId = move._id; // Store the move ID for reference
+            });
+        } catch (error) {
+            console.error("Error loading moves:", error);
+            alert("Failed to load moves. Please try again.");
+        }
+    };
+
+    // Load moves when the DOM is ready
+    loadMoves();
+
+    // Listen for turn result (new turn from server)
+    socket.on('newTurn', ({ turn, moves }) => {
+        console.log(`It's turn ${turn}`);
+    
+        // Update the UI with new moves or other battle state information
+        // For example, update the moves on the buttons
+        moves.forEach((move, index) => {
+            const button = document.querySelector(`#move${index + 1}`);
+            if (button) {
+                button.textContent = `${move.name} (${move.type}) - Power: ${move.basePower}`;
+            }
         });
+    });
+
+    socket.on("turnResult", (result) => {
+        result.actions.forEach(action => {
+            const logEntry = document.createElement("div");
+            logEntry.textContent = `${action.player} used ${action.move}: ${action.outcome}`;
+            chatMessages.appendChild(logEntry);
+        });
+    });
+
+    socket.on("waitingForOpponent", () => {
+        const logEntry = document.createElement("div");
+        logEntry.textContent = "Waiting for opponent...";
+        chatMessages.appendChild(logEntry);
     });
 
     // Listen for chat messages

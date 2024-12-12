@@ -149,6 +149,45 @@ app.get('/battleScene', checkAuthenticated, (req, res) => {
     });
 });
 
+app.get('/getRandomMoves', checkAuthenticated, async (req, res) => {
+    try {
+        console.log("TRYING TO GET MOVES")
+        await client.connect();
+        const database = client.db("MovesDB");
+        const movesCollection = database.collection("moves");
+
+        // Fetch a random sample of 4 moves
+        const moves = await movesCollection.aggregate([{ $sample: { size: 4 } }]).toArray();
+        console.log("MOVE WERE FOUND WHAT")
+        res.json(moves);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Error fetching moves");
+    } finally {
+        await client.close();
+    }
+});
+
+app.get('/getRandomPokemon', checkAuthenticated, async (req, res) => {
+    try {
+        console.log("TRYING TO GET POKEMON")
+        await client.connect();
+        const pokemonDB = client.db("PokemonDB");
+        const pokemonCollection = pokemonDB.collection("pokemon");
+
+        // Fetch a random sample of 4 moves
+        const pokemon = await pokemonCollection.aggregate([{ $sample: { size: 6 } }]).toArray();
+        console.log("POKEMON WERE FOUND WHAT")
+        res.json(pokemon);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Error fetching pokemon");
+    } finally {
+        await client.close();
+    }
+});
+
+
 app.delete('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('/login');
@@ -217,12 +256,29 @@ io.on('connection', (socket) => {
             socket.emit('error', { message: 'Battle not found' });
             return;
         }
-        
+        console.log("testing123")
         const sender = socket.handshake.session.username || 'Anonymous';
         io.to(battleId).emit('chatMessage', { sender, message });
     });
 
     socket.on('battleAction', ({ battleId, action }) => {
+        const battle = battles[battleId];
+        if (!battle) {
+            socket.emit('error', { message: 'Battle not found' });
+            return;
+        }
+    
+        // Increment the turn number (this example assumes players take turns)
+        battle.turn += 1;
+    
+        // Send an updated move to the players at the start of a new turn
+        io.to(battleId).emit('newTurn', { 
+            turn: battle.turn, 
+            moves: battle.moves, // or fetch new moves here
+            pokemon: battle.pokemon
+        });
+    
+        // Optionally, update battle state here (like calculating damage or actions)
         io.to(battleId).emit('updateBattle', { action });
     });
 
