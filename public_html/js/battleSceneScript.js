@@ -1,11 +1,11 @@
 // Ensure the DOM is fully loaded before running the script
 document.addEventListener("DOMContentLoaded", () => {
     const socket = io("http://localhost:3000");
-    
+
     // Get battleId from the URL query parameters
     const battleId = new URLSearchParams(window.location.search).get("battleId");
     console.log("Battle ID from URL:", battleId);
-    
+
     // Debugging: Check the full window location
     console.log("Window Location:", window.location);
 
@@ -28,8 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // Join the battle room
     socket.emit("joinBattle", { battleId });
 
-    const loadPokemon = async() => {
-        try{
+    const loadPokemon = async () => {
+        try {
             let pokemon;
             const savedPokemon = sessionStorage.getItem("pokemon");
             if (savedPokemon) {
@@ -60,10 +60,11 @@ document.addEventListener("DOMContentLoaded", () => {
     loadPokemon()
 
     const loadMoves = async () => {
-        console.log("did we even hit load moves");
-
         try {
             let moves;
+
+            moves = [new Move("Scratch", "No additional effect", "Normal", "Physical", 40, 100.00, 56, null, 0)];
+            /*
             // Check if moves are saved in sessionStorage
             const savedMoves = sessionStorage.getItem("moves");
             if (savedMoves) {
@@ -86,6 +87,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 button.textContent = `${move.name} (${move.type}) - Power: ${move.basePower}`;
                 button.dataset.moveId = move._id; // Store the move ID for reference
             });
+            */
+
+            button.textContent = `${move[0].name} (${move[0].type}) - Power: ${move[0].basePower}`;
+            button.dataset.moveId = move._id; // Store the move ID for reference
+
         } catch (error) {
             console.error("Error loading moves:", error);
             alert("Failed to load moves. Please try again.");
@@ -98,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Listen for turn result (new turn from server)
     socket.on('newTurn', ({ turn, moves }) => {
         console.log(`It's turn ${turn}`);
-    
+
         // Update the UI with new moves or other battle state information
         // For example, update the moves on the buttons
         moves.forEach((move, index) => {
