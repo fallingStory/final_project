@@ -86,18 +86,6 @@ document.addEventListener("DOMContentLoaded", async() => {
                 });
             });
         });
-
-        // Listen for the opponent's Pokémon selection from the server
-        socket.on("opponentSelectPokemon", (opponentPokemon) => {
-            console.log("Opponent's selected Pokémon:", opponentPokemon);
-
-            const opponentName = document.querySelector("#their-pokemon").textContent.trim().toLowerCase();
-            const opponentImg = document.querySelector('img[name="pokemonIMGOPP"]');
-                opponentImg.src = "https://play.pokemonshowdown.com/sprites/gen1/charmander.png"; 
-                opponentImg.alt = opponentPokemon.name;
-            
-        });
-
         // Emit the event to get Pokémon data for both players
         socket.emit("getPokemon", pokemon, battleId, (response) => {
             if (response.success) {
@@ -192,23 +180,20 @@ await loadPokemon();
         battleLog.appendChild(newLogEntry);
     });
 
-    // Handle chat form submission
     chatForm.addEventListener("submit", (event) => {
         event.preventDefault();
         const message = chatInput.value.trim();
         if (message) {
             socket.emit("chatMessage", { battleId, message });
-            chatInput.value = ""; // Clear the input
+            chatInput.value = ""; 
         }
     });
 
-    // Handle disconnection
     socket.on("disconnect", () => {
         alert("You have been disconnected from the server.");
         window.location.href = "/";
     });
 
-    // Debugging: Receive battle details from the server if needed
     socket.on("battleDetails", ({ battleId }) => {
         console.log("Battle ID received from server:", battleId);
     });
@@ -218,35 +203,39 @@ await loadPokemon();
 
     const theirHp = document.getElementById("their-hp")
     const theirPokemonLabel = document.getElementById("their-pokemon")
+    const theirPokemonIMG = document.getElementById("pokemonIMGOPP")
 
 
     socket.on("turnResult", async ([yourHP, theirHP, yourMon, theirMon]) => {
-        console.log(yourMon,theirMon,yourHP, theirHP)
+        console.log(yourMon, theirMon, yourHP, theirHP);
         console.log("turn happened");
+    
         theirPokemonLabel.innerText = theirMon;
         theirHp.innerText = "HP: " + theirHP;
         yourPokemon.innerText = yourMon;
         hp.innerText = "HP: " + yourHP;
-        
-
+    
+        theirPokemonIMG.src = `https://play.pokemonshowdown.com/sprites/gen1/${theirMon.toLowerCase()}.png`;
+    
+        // Fetch moves again after a turn, if needed
         const response = await fetch("/getRandomMoves");
-            moves = await response.json();
-            if (moves.length < moveButtons.length) {
-                throw new Error("Not enough moves fetched to populate buttons.");
-            }
-            console.log("Fetched new moves:", moves);
-            // Save the fetched moves to sessionStorage
-            sessionStorage.setItem("moves", JSON.stringify(moves));
-            moveButtons.forEach((button, index) => {
-                const move = moves[index];
-                button.textContent = `${move.name} (${move.type}) - Power: ${move.basePower}`;
-                button.dataset.moveId = move._id; // Store the move ID for reference
-                console.log(move.basePower)
-                button.addEventListener("click", () => {
-                    socket.emit('sendMove', battleId, move.basePower,-1);
-                });
+        moves = await response.json();
+        if (moves.length < moveButtons.length) {
+            throw new Error("Not enough moves fetched to populate buttons.");
+        }
+        console.log("Fetched new moves:", moves);
+        sessionStorage.setItem("moves", JSON.stringify(moves));
+        moveButtons.forEach((button, index) => {
+            const move = moves[index];
+            button.textContent = `${move.name} (${move.type}) - Power: ${move.basePower}`;
+            button.dataset.moveId = move._id; // Store the move ID for reference
+            console.log(move.basePower);
+            button.addEventListener("click", () => {
+                socket.emit('sendMove', battleId, move.basePower, -1);
             });
+        });
     });
+    
 
     socket.on("loadPokemon", async ([yourHP, theirHP, yourMon, theirMon]) => {
         console.log(yourMon,theirMon,yourHP, theirHP)
@@ -255,6 +244,7 @@ await loadPokemon();
         theirHp.innerText = "HP: " + theirHP;
         yourPokemon.innerText = yourMon;
         hp.innerText = "HP: " + yourHP;
+        
     });
 
     function displayActivePokemon(){
@@ -263,3 +253,4 @@ await loadPokemon();
     }
 
 });
+
