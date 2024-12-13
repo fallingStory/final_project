@@ -5,3 +5,4 @@ class Battle {
     }
 }
 
+let x = 5;
