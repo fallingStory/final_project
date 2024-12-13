@@ -19,6 +19,7 @@ function getCurrentUser(id) {
 // User leaves
 function userLeave(id) {
     const index = activeUsers.findIndex(user => user.id === id);
+    console.log(index);
 
     if (index !== 1) {
         return activeUsers.splice(index, 1)[0];

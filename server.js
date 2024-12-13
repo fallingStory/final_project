@@ -257,22 +257,25 @@ async function main() {
         });
 
         socket.on('findBattle', ({ username, friendName }) => {
-            //console.log(`Received findBattle event: username=${username}, friendName=${friendName}`);
-            const friend = waitingPlayers.find(p => p.username === friendName && p.friendName === username);
-            //console.log('Found friend:', friend);
-
-            console.log(`${getCurrentUser(socket.id).id}`);
+            const friend = waitingPlayers.find(p => p.user.username === friendName && p.friendName === username);
 
             if (friend) {
+                // If the person you want to battle is in the queue already, start the battle
                 const battleId = `${friendName}-${username}`;
-                battles[battleId] = { player1: friend.username, player2: username };
+                battles[battleId] = { player1: friend.user.username, player2: username };
 
                 io.to(friend.socketId).emit('battleStart', { battleId, opponent: username });
                 socket.emit('battleStart', { battleId, opponent: friendName });
 
+                // Remove friend from waiting player queue
                 waitingPlayers = waitingPlayers.filter(p => p !== friend);
             } else {
-                waitingPlayers.push({ socketId: socket.id, username, friendName });
+                // If the person is not in the queue, wait
+                waitingPlayers.push({
+                    socketId: socket.id,
+                    user: getCurrentUser(socket.id),
+                    friendName: friendName
+                });
                 socket.emit('waitingForBattle');
             }
         });

@@ -9,7 +9,6 @@ socket.emit('login', { username });
 
 // Emit 'findBattle' when the form is submitted
 findBattleForm.addEventListener("submit", (event) => {
-    console.log("hi")
     event.preventDefault();
     const friendName = document.getElementById("friendName").value.trim();
 
@@ -28,11 +27,11 @@ socket.on("battleStart", ({ battleId, opponent }) => {
 });
 
 socket.on("loadInfo", ({ team }) => {
-    let teamStr = "";
+    let teamStr = "Current Team: ";
     console.log(team);
-    team.array.forEach(element => {
-        teamStr += element.name + " "
-    });
+    for (let i = 0; i < team.length; i++) {
+        teamStr += team[i].name + " ";
+    }
     teamDiv.children[0].innerHTML = teamStr;
 });
 
@@ -44,4 +43,5 @@ socket.on("waitingForBattle", () => {
 // Listen for disconnection
 socket.on("disconnect", () => {
     alert("You have been disconnected from the server.");
+    window.location.href = `/login`
 });
