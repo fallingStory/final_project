@@ -5,4 +5,4 @@ class Battle {
     }
 }
 
-let x = 5;
+let x = 8;
