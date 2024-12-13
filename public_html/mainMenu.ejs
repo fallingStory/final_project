@@ -1,60 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        Pokemon Battle Simulator
-    </title>
-    <script src="/socket.io/socket.io.js"></script>
-    <link rel="stylesheet" href="css/mainMenuStyle.css" type="text/css">
-    <script defer src="js/mainMenu.js"></script>
-</head>
-
-<body>
-    <div class="container">
-        <div class="menu">
-            <h1>Pokemon Battle</h1>
-            <form action="/findBattle" method="POST" id="findBattleForm">
-                <div class="input-container">
-                    <label class="friend-label" for="player-name">Friend:&nbsp;&nbsp;</label>
-                    <input id="friendName" name="friendName" type="text" placeholder="Enter friend's name" required>
-                </div>
-                <button type="submit">Play Friend</button>
-            </form>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            Pokemon Battle Simulator
+        </title>
+        <script src="/socket.io/socket.io.js"></script>
+        <link rel="stylesheet" href="mainMenuStyle.css" type="text/css">
+        <script defer src="mainMenu.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="menu">
+                <h1>Pokemon Battle</h1>
+                <form action="/findBattle" method="POST" id="findBattleForm">
+                    <div class="input-container">
+                        <label class="friend-label" for="player-name">Friend:&nbsp;&nbsp;</label>
+                        <input id="friendName" name="friendName" type="text" placeholder="Enter friend's name" required>
+                    </div>
+                    <button type="submit">Play Friend</button>
+                </form>
             </form>
             <p id="battleMessage"></p>
             <div id="userInfo" data-username="<%= name %>"></div>
-        </div>
-
-        <div class="settings">
-            <h2>Settings</h2>
-            <section>
-                <label for="music-volume">Music</label>
-                <input id="music-volume" type="range" min="0" max="100">
-            </section>
-            <section>
-                <label>Animations</label>
-                <div class="checkbox-container">
-                    <input id="animations" type="checkbox">
-                    <label class="enabled-text" for="animations">Enabled</label>
-                </div>
-            </section>
-            <form action="/register" method="POST">
+            </div>
+    
+            <div class="settings">
+                <h2>Settings</h2>
+                <section>
+                    <label for="music-volume">Music</label>
+                    <input id="music-volume" type="range" min="0" max="100">
+                </section>
+                <section>
+                    <label>Animations</label>
+                    <div class="checkbox-container">
+                        <input id="animations" type="checkbox">
+                        <label class="enabled-text" for="animations">Enabled</label>
+                    </div>
+                </section>
+                <form action="/register" method="POST">
                 <section class="account">
                     <h3>Account</h3>
-                    <p>Logged in as <em>
-                            <%= name %>
-                        </em></p>
+                    <p>Logged in as <em><%= name %></em></p>
                     <form action="/logout?_method=DELETE" method="POST">
                         <button type="submit">Log Out</button>
                     </form>
                 </section>
-            </form>
-            <a href="/login"></a>
+                </form>
+                <a href="/login"></a>
+            </div>
         </div>
-    </div>
-</body>
-
+    </body>
 </html>
