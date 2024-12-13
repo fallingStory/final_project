@@ -19,7 +19,6 @@ findBattleForm.addEventListener("submit", (event) => {
 
 // Listen for a battle start
 socket.on("battleStart", ({ battleId, opponent }) => {
-    alert(`Battle found! Opponent: ${opponent}`);
     window.location.href = `/battleScene?battleId=${battleId}`;
 });
 
