@@ -441,9 +441,8 @@ io.on('connection', (socket) => {
             this.spe=spe;
             this.type=type;
             this.dead=dead;
-            this.img = "https://play.pokemonshowdown.com/sprites/gen1/charmander.png"
+        }
     } 
-}
 
     socket.on('findBattle', async ({ username, friendName }) => {
         console.log(`Received findBattle event: username=${username}, friendName=${friendName}`);
