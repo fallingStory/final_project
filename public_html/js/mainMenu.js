@@ -2,6 +2,10 @@ const socket = io("http://localhost:3000"); // Connect to the server
 const findBattleForm = document.getElementById("findBattleForm");
 const battleMessage = document.getElementById("battleMessage");
 const username = document.getElementById("userInfo").getAttribute("data-username");
+const teamDiv = document.getElementById("team-div");
+
+console.log(username);
+socket.emit('login', { username });
 
 // Emit 'findBattle' when the form is submitted
 findBattleForm.addEventListener("submit", (event) => {
@@ -21,6 +25,15 @@ findBattleForm.addEventListener("submit", (event) => {
 socket.on("battleStart", ({ battleId, opponent }) => {
     alert(`Battle found! Opponent: ${opponent}`);
     window.location.href = `/battleScene?battleId=${battleId}`;
+});
+
+socket.on("loadInfo", ({ team }) => {
+    let teamStr = "";
+    console.log(team);
+    team.array.forEach(element => {
+        teamStr += element.name + " "
+    });
+    teamDiv.children[0].innerHTML = teamStr;
 });
 
 // Listen for waiting feedback
