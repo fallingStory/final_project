@@ -19,7 +19,6 @@ findBattleForm.addEventListener("submit", (event) => {
 
 // Listen for a battle start
 socket.on("battleStart", ({ battleId, opponent }) => {
-    alert(`Battle found! Opponent: ${opponent}`);
     window.location.href = `/battleScene?battleId=${battleId}`;
 });
 
@@ -32,3 +31,8 @@ socket.on("waitingForBattle", () => {
 socket.on("disconnect", () => {
     alert("You have been disconnected from the server.");
 });
+const logoutButton = document.getElementById("logout-button")
+const logoutForm = document.getElementById("logout-form")
+logoutButton.addEventListener("submit",(event)=>{
+    socket.emit("logout")
+})

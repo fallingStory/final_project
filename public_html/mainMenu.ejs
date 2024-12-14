@@ -43,9 +43,9 @@
                 <section class="account">
                     <h3>Account</h3>
                     <p>Logged in as <em><%= name %></em></p>
-                    <form action="/logout?_method=DELETE" method="POST">
-                        <button type="submit">Log Out</button>
-                    </form>
+                    <form action="/logout" method="POST" id="logout-form">
+                        <button type="submit" id="logout-button">Log Out</button>
+                  </form>
                 </section>
                 </form>
                 <a href="/login"></a>
