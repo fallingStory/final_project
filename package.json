@@ -1,10 +1,7 @@
 {
   "name": "final_project",
   "version": "1.0.0",
-  "main": "public_html/index.js",
-  "scripts": {
-    "start": "nodemon index.js"
-  },
+  "main": "index.js",
   "keywords": [],
   "author": "",
   "license": "ISC",
