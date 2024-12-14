@@ -123,17 +123,17 @@ app.post('/findBattle', checkAuthenticated, async (req, res) => {
 
     if (friend) {
         const battleId = `${friendName}-${username}`;
-        battles[battleId] = { 
-            player1: { username: friend.username, pokemon: [] }, 
-            player2: { username: username, pokemon: [] } 
+        battles[battleId] = {
+            player1: { username: friend.username, pokemon: [] },
+            player2: { username: username, pokemon: [] }
         };
 
-        battles[battleId].userSocketId=socketId;
-        battles[battleId].oppSocketId=friend.socketId;
+        battles[battleId].userSocketId = socketId;
+        battles[battleId].oppSocketId = friend.socketId;
 
         io.to(friend.socketId).emit('battleStart', { battleId, opponent: username });
         io.to(socketId).emit('battleStart', { battleId, opponent: friendName });
-        
+
 
         waitingPlayers = waitingPlayers.filter(p => p !== friend);
 
@@ -225,7 +225,7 @@ let battles = {}; // Store active battles
 
 io.on('connection', (socket) => {
     const session = socket.handshake.session;
-    
+
 
     if (session && session.username) {
         // Update the session with the latest socket ID
@@ -234,7 +234,7 @@ io.on('connection', (socket) => {
             if (err) console.error("Session save error:", err);
         });
         console.log(`User connected: ${session.username} with socket ID: ${socket.id}`);
-        
+
         // Check if the user is currently in a battle and update the socket ID
         for (let battleId in battles) {
             const battle = battles[battleId];
@@ -269,24 +269,24 @@ io.on('connection', (socket) => {
         }
     });
 
-    socket.on('changeActivePokemon',(battleId,index)=> {
-        battles[battleId].activeIndex=index;
-        console.log("active pokemon: "+index)
+    socket.on('changeActivePokemon', (battleId, index) => {
+        battles[battleId].activeIndex = index;
+        console.log("active pokemon: " + index)
     })
 
-    socket.on('getActivePokemon',(battleId)=>{
-        socket.emit ("gotActivePokemon",battles[battleId].activeIndex,battles[battleId])
+    socket.on('getActivePokemon', (battleId) => {
+        socket.emit("gotActivePokemon", battles[battleId].activeIndex, battles[battleId])
     })
 
     socket.on('getPokemon', (pokemon, battleId) => {
         const username = socket.handshake.session.username;
         const battle = battles[battleId];
-    
+
         if (!battle) {
             console.error(`Battle with ID ${battleId} not found.`);
             return;
         }
-    
+
         // Determine if the user is player1 or player2
         let playerKey;
         if (battle.player1.username === username) {
@@ -310,12 +310,12 @@ io.on('connection', (socket) => {
             const hp = ((parseInt(p.baseStats.hp)) * 2 + 10 + 100) * 2;
             return new Pokemon(p.name, p.id, att, def, hp, p.baseStats.spe, p.types, 0);
         });
-    
+
         console.log(`Updated Pokemon for ${playerKey}:`, battle[playerKey].currentPokemon);
-    
+
         // Ensure the socket ID is updated in the battle structure
         battle[playerKey].socketId = socket.id;
-        battle[playerKey].ready = true; 
+        battle[playerKey].ready = true;
         console.log(`Updated socket ID for ${playerKey}: ${socket.id}`);
         if (battle.player1.ready && battle.player2.ready) {
             console.log('Both players are ready. Updating battle state.');
@@ -324,62 +324,62 @@ io.on('connection', (socket) => {
     });
 
     function updateBattle(battleId) {
-        const battle=battles[battleId]
+        const battle = battles[battleId]
         console.log("THE BATTLES STATUS")
         console.log(battle)
         const p1mon = battle.player1.currentPokemon[battle.player1.activeIndex]
         const p2mon = battle.player2.currentPokemon[battle.player2.activeIndex]
 
-        io.to(battle.player1.socketId).emit('loadPokemon', [p1mon.hp,p2mon.hp,p1mon.name,p2mon.name])
-        io.to(battle.player2.socketId).emit('loadPokemon', [p2mon.hp,p1mon.hp,p2mon.name,p1mon.name])
+        io.to(battle.player1.socketId).emit('loadPokemon', [p1mon.hp, p2mon.hp, p1mon.name, p2mon.name])
+        io.to(battle.player2.socketId).emit('loadPokemon', [p2mon.hp, p1mon.hp, p2mon.name, p1mon.name])
     }
 
-    socket.on('sendMove',(battleId,move,swap)=>{
-        console.log("sending move: "+move)
-        
+    socket.on('sendMove', (battleId, move, swap) => {
+        console.log("sending move: " + move)
+
         const battle = battles[battleId]
         if (!battle) {
             socket.emit('error', { message: 'Battle not found' });
             return;
         }
-        console.log("swap var: "+swap)
+        console.log("swap var: " + swap)
         console.log('Active Index (Before):', battle.player1.activeIndex, battle.player2.activeIndex);
-        console.log("socketid: "+socket.id)
+        console.log("socketid: " + socket.id)
         if (socket.id === battle.player1.socketId) {
             sender = 'player1';
-            if(swap===-1) {
-                battle.player1.move=move
+            if (swap === -1) {
+                battle.player1.move = move
             } else {
-                battle.player1.activeIndex=swap
-                battle.player1.move=move
+                battle.player1.activeIndex = swap
+                battle.player1.move = move
             }
-            
+
         }
 
         if (socket.id === battle.player2.socketId) {
             sender = 'player2';
-            if(swap===-1) {
-                battle.player2.move=move
+            if (swap === -1) {
+                battle.player2.move = move
             } else {
-                battle.player2.activeIndex=swap
-                battle.player2.move=move
+                battle.player2.activeIndex = swap
+                battle.player2.move = move
             }
         }
-        
-        console.log("p1 socket id: "+battle.player1.socketId)
-        console.log("p2 socket id: "+battle.player2.socketId)
-        console.log("sender: " +sender)
+
+        console.log("p1 socket id: " + battle.player1.socketId)
+        console.log("p2 socket id: " + battle.player2.socketId)
+        console.log("sender: " + sender)
 
         // Record the move for the sender
         battle[sender].move = move;
         console.log(`${battle[sender].username} sent their move: ${move}`);
 
-        console.log("p1 move: "+battle.player1.move)
-        console.log("p2 move: "+battle.player2.move)
+        console.log("p1 move: " + battle.player1.move)
+        console.log("p2 move: " + battle.player2.move)
 
         console.log('Active Index (After):', battle.player1.activeIndex, battle.player2.activeIndex);
         // Check if both players have made a move
-        if (battle.player1.move!= null && battle.player2.move!= null) {
+        if (battle.player1.move != null && battle.player2.move != null) {
             console.log("both players sent moves")
             processTurn(battleId);
         }
@@ -391,7 +391,7 @@ io.on('connection', (socket) => {
             console.error(`Battle ID ${battleId} not found`);
             return;
         }
-        
+
         console.log("PROCESSING TURN")
         console.log(battles[battleId])
         // Extract player moves
@@ -401,26 +401,26 @@ io.on('connection', (socket) => {
         console.log(p1mon)
         console.log(p2mon)
 
-        const move1=Math.round((42*parseInt(battle.player1.move)*(p1mon.att/p2mon.def))/50)
-        const move2=Math.round((42*parseInt(battle.player2.move)*(p2mon.att/p1mon.def))/50)
-    
+        const move1 = Math.round((42 * parseInt(battle.player1.move) * (p1mon.att / p2mon.def)) / 50)
+        const move2 = Math.round((42 * parseInt(battle.player2.move) * (p2mon.att / p1mon.def)) / 50)
+
         console.log(`Processing moves: ${battle.player1.username} (${battle.player1.move}) vs ${battle.player2.username} (${battle.player2.move})`);
-        
+
         // Process the moves (simplified example)
-        p1mon.hp-=move2
-        p2mon.hp-=move1
+        p1mon.hp -= move2
+        p2mon.hp -= move1
 
         // Clear moves for the next turn
         battle.player1.move = null;
         battle.player2.move = null;
-        
-        console.log("p1mon name: "+p1mon.name)
-        console.log("p1mon hp: "+p1mon.hp)
-        console.log("p2mon name: "+p2mon.name)
-        console.log("p2mon hp: "+p2mon.hp)
+
+        console.log("p1mon name: " + p1mon.name)
+        console.log("p1mon hp: " + p1mon.hp)
+        console.log("p2mon name: " + p2mon.name)
+        console.log("p2mon hp: " + p2mon.hp)
         // Notify players of the result
-        io.to(battle.player1.socketId).emit('turnResult', [p1mon.hp,p2mon.hp,p1mon.name,p2mon.name])
-        io.to(battle.player2.socketId).emit('turnResult', [p2mon.hp,p1mon.hp,p2mon.name,p1mon.name])
+        io.to(battle.player1.socketId).emit('turnResult', [p1mon.hp, p2mon.hp, p1mon.name, p2mon.name])
+        io.to(battle.player2.socketId).emit('turnResult', [p2mon.hp, p1mon.hp, p2mon.name, p1mon.name])
 
         // io.to(battle.player2.socketId).emit('turnResult', {
         //     yourMove: move2,
@@ -428,22 +428,22 @@ io.on('connection', (socket) => {
         //     yourPokemon: battle.player2.currentPokemon,
         //     opponentPokemon: battle.player1.currentPokemon
         // });
-    
+
         console.log('Turn processed successfully');
     }
 
     class Pokemon {
-        constructor(name,id,att,def,hp,spe,type,dead) {
-            this.name=name;
-            this.id=id;
-            this.att=att;
-            this.def=def;
-            this.hp=hp;
-            this.spe=spe;
-            this.type=type;
-            this.dead=dead;
+        constructor(name, id, att, def, hp, spe, type, dead) {
+            this.name = name;
+            this.id = id;
+            this.att = att;
+            this.def = def;
+            this.hp = hp;
+            this.spe = spe;
+            this.type = type;
+            this.dead = dead;
         }
-    } 
+    }
 
     socket.on('findBattle', async ({ username, friendName }) => {
         console.log(`Received findBattle event: username=${username}, friendName=${friendName}`);
@@ -452,10 +452,10 @@ io.on('connection', (socket) => {
         if (friend) {
             const battleId = `${friendName}-${username}`;
             battles[battleId] = {
-                player1: { username: friend.username, socketId: friend.socketId, move: null , activeIndex: 0, ready: false},
+                player1: { username: friend.username, socketId: friend.socketId, move: null, activeIndex: 0, ready: false },
                 player2: { username: username, socketId: socket.id, move: null, activeIndex: 0, ready: false },
             };
-           
+
             io.to(friend.socketId).emit('battleStart', { battleId, opponent: username });
             socket.emit('battleStart', { battleId, opponent: friendName });
 
@@ -511,5 +511,5 @@ io.on('connection', (socket) => {
 });
 
 server.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+    console.log('Server is running');
 });

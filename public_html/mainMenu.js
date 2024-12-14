@@ -1,4 +1,4 @@
-const socket = io("http://localhost:3000"); // Connect to the server
+const socket = io(); // Connect to the server
 const findBattleForm = document.getElementById("findBattleForm");
 const battleMessage = document.getElementById("battleMessage");
 const username = document.getElementById("userInfo").getAttribute("data-username");
@@ -33,6 +33,6 @@ socket.on("disconnect", () => {
 });
 const logoutButton = document.getElementById("logout-button")
 const logoutForm = document.getElementById("logout-form")
-logoutButton.addEventListener("submit",(event)=>{
+logoutButton.addEventListener("submit", (event) => {
     socket.emit("logout")
 })

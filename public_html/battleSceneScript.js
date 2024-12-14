@@ -1,11 +1,11 @@
 // Ensure the DOM is fully loaded before running the script
-document.addEventListener("DOMContentLoaded", async() => {
-    const socket = io("http://localhost:3000");
-    
+document.addEventListener("DOMContentLoaded", async () => {
+    const socket = io();
+
     // Get battleId from the URL query parameters
     const battleId = new URLSearchParams(window.location.search).get("battleId");
     console.log("Battle ID from URL:", battleId);
-    
+
     // Debugging: Check the full window location
     console.log("Window Location:", window.location);
 
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", async() => {
                 // Save the fetched moves to sessionStorage
                 sessionStorage.setItem("pokemon", JSON.stringify(pokemon));
             }
-    
+
             pokemonButtons.forEach((button, index) => {
                 const mon = pokemon[index];
                 button.textContent = `${mon.name}`;
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", async() => {
                     socket.emit('sendMove', battleId, 0, index);
                 });
             });
-    
+
             // Emit the event only after data is available
             socket.emit("getPokemon", pokemon, battleId, (response) => {
                 if (response.success) {
@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", async() => {
                 button.dataset.moveId = move._id; // Store the move ID for reference
                 console.log(move.basePower)
                 button.addEventListener("click", () => {
-                    socket.emit('sendMove', battleId, move.basePower,-1);
+                    socket.emit('sendMove', battleId, move.basePower, -1);
                 });
             });
         } catch (error) {
@@ -110,11 +110,11 @@ document.addEventListener("DOMContentLoaded", async() => {
     };
 
     await loadMoves();
-    
+
     // does nothing
     socket.on('newTurn', ({ turn, moves }) => {
         console.log(`It's turn ${turn}`);
-    
+
         // Update the UI with new moves or other battle state information
         // For example, update the moves on the buttons
         moves.forEach((move, index) => {
@@ -167,123 +167,123 @@ document.addEventListener("DOMContentLoaded", async() => {
         console.log("Battle ID received from server:", battleId);
     });
 
-const hp = document.getElementById("hp");
-const yourPokemon = document.getElementById("your-pokemon");
-const theirHp = document.getElementById("their-hp");
-const theirPokemonLabel = document.getElementById("their-pokemon");
-const theirPokemonIMG = document.getElementById("pokeImgOPP");
-const yourPokemonIMG = document.getElementById("pokeImgPLAYER");
+    const hp = document.getElementById("hp");
+    const yourPokemon = document.getElementById("your-pokemon");
+    const theirHp = document.getElementById("their-hp");
+    const theirPokemonLabel = document.getElementById("their-pokemon");
+    const theirPokemonIMG = document.getElementById("pokeImgOPP");
+    const yourPokemonIMG = document.getElementById("pokeImgPLAYER");
 
-let player1FaintedCount = 0;
-let player2FaintedCount = 0;
+    let player1FaintedCount = 0;
+    let player2FaintedCount = 0;
 
-socket.on("turnResult", async ([yourHP, theirHP, yourMon, theirMon]) => {
-    console.log(yourMon, theirMon, yourHP, theirHP);
-    console.log("turn happened");
+    socket.on("turnResult", async ([yourHP, theirHP, yourMon, theirMon]) => {
+        console.log(yourMon, theirMon, yourHP, theirHP);
+        console.log("turn happened");
 
-    // Update the opponent's Pokémon details
-    theirPokemonLabel.innerText = theirMon;
-    theirHp.innerText = "HP: " + theirHP;
-    theirPokemonIMG.src = `https://play.pokemonshowdown.com/sprites/gen1/${theirMon.toLowerCase()}.png`;
+        // Update the opponent's Pokémon details
+        theirPokemonLabel.innerText = theirMon;
+        theirHp.innerText = "HP: " + theirHP;
+        theirPokemonIMG.src = `https://play.pokemonshowdown.com/sprites/gen1/${theirMon.toLowerCase()}.png`;
 
-    // Update the player's Pokémon details
-    yourPokemon.innerText = yourMon;
-    hp.innerText = "HP: " + yourHP;
-    yourPokemonIMG.src = `https://play.pokemonshowdown.com/sprites/gen1/${yourMon.toLowerCase()}.png`;
+        // Update the player's Pokémon details
+        yourPokemon.innerText = yourMon;
+        hp.innerText = "HP: " + yourHP;
+        yourPokemonIMG.src = `https://play.pokemonshowdown.com/sprites/gen1/${yourMon.toLowerCase()}.png`;
 
-    // Disable the Pokémon if HP is below or equal to 0
-    if (yourHP <= 0) {
-        // Disable player's Pokémon actions
-        disablePokemon('your');
-        player1FaintedCount++; 
-    }
-
-    if (theirHP <= 0) {
-        // Disable opponent's Pokémon actions
-        disablePokemon('their');
-        player2FaintedCount++; // Increment the fainted count for player2
-    }
-
-    if (player1FaintedCount === 6) {
-        // End the game for player 1
-        console.log('Player 1 has no Pokémon left. Game Over!');
-        socket.emit('gameOver', { winner: 'Player 2', message: 'Player 1 has no Pokémon left!'}); 
-        return; // Stop further game processing
-    }
-
-    if (player2FaintedCount === 6) {
-        // End the game for player 2
-        console.log('Player 2 has no Pokémon left. Game Over!');
-        socket.emit('gameOver', { winner: 'Player 1', message: 'Player 2 has no Pokémon left!'}); 
-        return; // Stop further game processing
-    }
-
-    // Fetch new moves for the player
-    const response = await fetch("/getRandomMoves");
-    const moves = await response.json();
-
-    if (moves.length < moveButtons.length) {
-        throw new Error("Not enough moves fetched to populate buttons.");
-    }
-
-    console.log("Fetched new moves:", moves);
-    sessionStorage.setItem("moves", JSON.stringify(moves));
-
-    // Loop through buttons and enable only the ones for the active Pokémon
-    moveButtons.forEach((button, index) => {
-        const move = moves[index];
-        button.textContent = `${move.name} (${move.type}) - Power: ${move.basePower}`;
-        button.dataset.moveId = move._id; // Store the move ID for reference
-
-        // Disable buttons for fainted Pokémon
+        // Disable the Pokémon if HP is below or equal to 0
         if (yourHP <= 0) {
-            if (button.dataset.pokemon === "your") {
-                button.disabled = true;
-            }
+            // Disable player's Pokémon actions
+            disablePokemon('your');
+            player1FaintedCount++;
         }
 
         if (theirHP <= 0) {
-            if (button.dataset.pokemon === "their") {
-                button.disabled = true;
-            }
+            // Disable opponent's Pokémon actions
+            disablePokemon('their');
+            player2FaintedCount++; // Increment the fainted count for player2
         }
 
-        // Only allow moves if both Pokémon are still alive
-        button.addEventListener("click", () => {
-            if (yourHP > 0 && theirHP > 0) {
-                socket.emit('sendMove', battleId, move.basePower, -1);
+        if (player1FaintedCount === 6) {
+            // End the game for player 1
+            console.log('Player 1 has no Pokémon left. Game Over!');
+            socket.emit('gameOver', { winner: 'Player 2', message: 'Player 1 has no Pokémon left!' });
+            return; // Stop further game processing
+        }
+
+        if (player2FaintedCount === 6) {
+            // End the game for player 2
+            console.log('Player 2 has no Pokémon left. Game Over!');
+            socket.emit('gameOver', { winner: 'Player 1', message: 'Player 2 has no Pokémon left!' });
+            return; // Stop further game processing
+        }
+
+        // Fetch new moves for the player
+        const response = await fetch("/getRandomMoves");
+        const moves = await response.json();
+
+        if (moves.length < moveButtons.length) {
+            throw new Error("Not enough moves fetched to populate buttons.");
+        }
+
+        console.log("Fetched new moves:", moves);
+        sessionStorage.setItem("moves", JSON.stringify(moves));
+
+        // Loop through buttons and enable only the ones for the active Pokémon
+        moveButtons.forEach((button, index) => {
+            const move = moves[index];
+            button.textContent = `${move.name} (${move.type}) - Power: ${move.basePower}`;
+            button.dataset.moveId = move._id; // Store the move ID for reference
+
+            // Disable buttons for fainted Pokémon
+            if (yourHP <= 0) {
+                if (button.dataset.pokemon === "your") {
+                    button.disabled = true;
+                }
             }
+
+            if (theirHP <= 0) {
+                if (button.dataset.pokemon === "their") {
+                    button.disabled = true;
+                }
+            }
+
+            // Only allow moves if both Pokémon are still alive
+            button.addEventListener("click", () => {
+                if (yourHP > 0 && theirHP > 0) {
+                    socket.emit('sendMove', battleId, move.basePower, -1);
+                }
+            });
         });
     });
-});
 
-function disablePokemon(type) {
-    // Determine the elements to update based on the Pokémon type ('your' or 'their')
-    const pokemonLabel = type === 'your' ? yourPokemon : theirPokemon;
-    const pokemonImage = type === 'your' ? yourPokemonIMG : theirPokemonIMG;
-    const hpLabel = type === 'your' ? hp : theirHp;
+    function disablePokemon(type) {
+        // Determine the elements to update based on the Pokémon type ('your' or 'their')
+        const pokemonLabel = type === 'your' ? yourPokemon : theirPokemon;
+        const pokemonImage = type === 'your' ? yourPokemonIMG : theirPokemonIMG;
+        const hpLabel = type === 'your' ? hp : theirHp;
 
 
-    pokemonLabel.innerText += " - Fainted";
+        pokemonLabel.innerText += " - Fainted";
 
-    pokemonImage.src = "https://www.skullsunlimited.com/cdn/shop/products/European_Male_S-BC-107_768x768.jpg?v=1603481777";
+        pokemonImage.src = "https://www.skullsunlimited.com/cdn/shop/products/European_Male_S-BC-107_768x768.jpg?v=1603481777";
 
-    hpLabel.innerText = "HP: 0/100";
+        hpLabel.innerText = "HP: 0/100";
 
-    moveButtons.forEach(button => {
-        if(hpLa.contains(" - Fainted")){
-        button.disabled = true; // Disable the button
-        button.textContent = "Fainted"; // Update button text
-        }
-    });
-}
+        moveButtons.forEach(button => {
+            if (hpLa.contains(" - Fainted")) {
+                button.disabled = true; // Disable the button
+                button.textContent = "Fainted"; // Update button text
+            }
+        });
+    }
 
 
 
 
 
     socket.on("loadPokemon", async ([yourHP, theirHP, yourMon, theirMon]) => {
-        console.log(yourMon,theirMon,yourHP, theirHP)
+        console.log(yourMon, theirMon, yourHP, theirHP)
         console.log("turn happened");
         theirPokemonLabel.innerText = theirMon;
         theirHp.innerText = "HP: " + theirHP;
@@ -294,7 +294,7 @@ function disablePokemon(type) {
 
     });
 
-    function displayActivePokemon(){
+    function displayActivePokemon() {
         socket.emit(getActivePokemon(battleId))
 
     }
