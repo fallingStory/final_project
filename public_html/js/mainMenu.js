@@ -17,9 +17,12 @@ findBattleForm.addEventListener("submit", (event) => {
     battleMessage.textContent = "Looking for a battle...";
 });
 
+const place = 'menu';
+socket.emit('login', (place));
+
 // Listen for a battle start
 socket.on("battleStart", ({ battleId, opponent }) => {
-    window.location.href = `/battleScene?battleId=${battleId}`;
+    window.location.href = `/battle?battleId=${battleId}&user=${username}`;
 });
 
 // Listen for waiting feedback

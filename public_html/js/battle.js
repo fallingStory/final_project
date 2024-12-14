@@ -1,6 +1,12 @@
+const { BattleState, createBattle, getCurrentBattle, closeBattle } = require('./javascript/battleUtils');
+const place = 'menu';
+const username = 'Okarun';
+
 // Ensure the DOM is fully loaded before running the script
 document.addEventListener("DOMContentLoaded", async () => {
     const socket = io();
+
+    socket.emit('login', { username, place });
 
     // Get battleId from the URL query parameters
     const battleId = new URLSearchParams(window.location.search).get("battleId");
@@ -28,88 +34,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     // Join the battle room
     socket.emit("joinBattle", { battleId });
 
-    const loadPokemon = async () => {
-        try {
-            let pokemon;
-            const savedPokemon = sessionStorage.getItem("pokemon");
-            if (savedPokemon) {
-                pokemon = JSON.parse(savedPokemon);
-                console.log("Using pokemon from sessionStorage:", pokemon);
-            } else {
-                const response = await fetch("/getRandomPokemon");
-                pokemon = await response.json();
-                if (pokemon.length < pokemonButtons.length) {
-                    throw new Error("Not enough pokemon fetched to populate buttons.");
-                }
-                console.log("Fetched new mons:", pokemon);
-                // Save the fetched moves to sessionStorage
-                sessionStorage.setItem("pokemon", JSON.stringify(pokemon));
-            }
-
-            pokemonButtons.forEach((button, index) => {
-                const mon = pokemon[index];
-                button.textContent = `${mon.name}`;
-                button.dataset.pokemonId = `${mon._id}`;
-                button.addEventListener("click", () => {
-                    socket.emit('sendMove', battleId, 0, index);
-                });
-            });
-
-            // Emit the event only after data is available
-            socket.emit("getPokemon", pokemon, battleId, (response) => {
-                if (response.success) {
-                    //socket.emit("battleStatus", battleId);
-                } else {
-                    console.error("Failed to get Pokémon data.");
-                }
-            });
-        } catch (error) {
-            console.error("Error loading pokemon:", error);
-            alert("Failed to load pokemon. Please try again.");
-        }
-    };
-
-
-    await loadPokemon()
-
-    const loadMoves = async () => {
-        console.log("did we even hit load moves");
-
-        try {
-            let moves;
-            // Check if moves are saved in sessionStorage
-            const savedMoves = sessionStorage.getItem("moves");
-            if (savedMoves) {
-                moves = JSON.parse(savedMoves);
-                console.log("Using moves from sessionStorage:", moves);
-            } else {
-                const response = await fetch("/getRandomMoves");
-                moves = await response.json();
-                if (moves.length < moveButtons.length) {
-                    throw new Error("Not enough moves fetched to populate buttons.");
-                }
-                console.log("Fetched new moves:", moves);
-                // Save the fetched moves to sessionStorage
-                sessionStorage.setItem("moves", JSON.stringify(moves));
-            }
-
-            // Populate buttons with moves
-            moveButtons.forEach((button, index) => {
-                const move = moves[index];
-                button.textContent = `${move.name} (${move.type}) - Power: ${move.basePower}`;
-                button.dataset.moveId = move._id; // Store the move ID for reference
-                console.log(move.basePower)
-                button.addEventListener("click", () => {
-                    socket.emit('sendMove', battleId, move.basePower, -1);
-                });
-            });
-        } catch (error) {
-            console.error("Error loading moves:", error);
-            alert("Failed to load moves. Please try again.");
-        }
-    };
-
-    await loadMoves();
+    // Recieve a battle object and the player's old socket.id, update the socket.id to reflect
+    // the new one, and load all the information in the DOM
+    socket.on('battleStart', ({ battleState, oldSocketID }) => {
+        console.log(battleState);
+    });
 
     // does nothing
     socket.on('newTurn', ({ turn, moves }) => {
@@ -278,10 +207,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     }
 
-
-
-
-
     socket.on("loadPokemon", async ([yourHP, theirHP, yourMon, theirMon]) => {
         console.log(yourMon, theirMon, yourHP, theirHP)
         console.log("turn happened");
@@ -300,3 +225,83 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
 });
+
+/*
+const loadPokemon = async () => {
+        try {
+            let pokemon;
+            const savedPokemon = sessionStorage.getItem("pokemon");
+            if (savedPokemon) {
+                pokemon = JSON.parse(savedPokemon);
+                console.log("Using pokemon from sessionStorage:", pokemon);
+            } else {
+                const response = await fetch("/getRandomPokemon");
+                pokemon = await response.json();
+                if (pokemon.length < pokemonButtons.length) {
+                    throw new Error("Not enough pokemon fetched to populate buttons.");
+                }
+                console.log("Fetched new mons:", pokemon);
+                // Save the fetched moves to sessionStorage
+                sessionStorage.setItem("pokemon", JSON.stringify(pokemon));
+            }
+
+            pokemonButtons.forEach((button, index) => {
+                const mon = pokemon[index];
+                button.textContent = `${mon.name}`;
+                button.dataset.pokemonId = `${mon._id}`;
+                button.addEventListener("click", () => {
+                    socket.emit('sendMove', battleId, 0, index);
+                });
+            });
+
+            // Emit the event only after data is available
+            socket.emit("getPokemon", pokemon, battleId, (response) => {
+                if (response.success) {
+                    //socket.emit("battleStatus", battleId);
+                } else {
+                    console.error("Failed to get Pokémon data.");
+                }
+            });
+        } catch (error) {
+            console.error("Error loading pokemon:", error);
+            alert("Failed to load pokemon. Please try again.");
+        }
+    };
+
+    const loadMoves = async () => {
+        console.log("did we even hit load moves");
+
+        try {
+            let moves;
+            // Check if moves are saved in sessionStorage
+            const savedMoves = sessionStorage.getItem("moves");
+            if (savedMoves) {
+                moves = JSON.parse(savedMoves);
+                console.log("Using moves from sessionStorage:", moves);
+            } else {
+                const response = await fetch("/getRandomMoves");
+                moves = await response.json();
+                if (moves.length < moveButtons.length) {
+                    throw new Error("Not enough moves fetched to populate buttons.");
+                }
+                console.log("Fetched new moves:", moves);
+                // Save the fetched moves to sessionStorage
+                sessionStorage.setItem("moves", JSON.stringify(moves));
+            }
+
+            // Populate buttons with moves
+            moveButtons.forEach((button, index) => {
+                const move = moves[index];
+                button.textContent = `${move.name} (${move.type}) - Power: ${move.basePower}`;
+                button.dataset.moveId = move._id; // Store the move ID for reference
+                console.log(move.basePower)
+                button.addEventListener("click", () => {
+                    socket.emit('sendMove', battleId, move.basePower, -1);
+                });
+            });
+        } catch (error) {
+            console.error("Error loading moves:", error);
+            alert("Failed to load moves. Please try again.");
+        }
+    };
+*/

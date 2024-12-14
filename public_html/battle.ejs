@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokemon Battle Simulator</title>
-    <script defer src ="/socket.io/socket.io.js"></script>
-    <script defer src="battleSceneScript.js"></script>
-    <link rel="stylesheet" href="/battleSceneStyle.css">
+    <script defer src="/socket.io/socket.io.js"></script>x
+    <script defer src="js/battle.js"></script>
+    <link rel="stylesheet" href="css/battleSceneStyle.css">
 </head>
+
 <body>
     <div class="container">
 
@@ -17,12 +19,14 @@
 
                 <div class="player">
                     <img src="" alt="Your Pokemon" id="pokeImgPLAYER">
-                    <div class="stats" ><span id="your-pokemon">Your Pokemon</span> <br><span id="hp">HP: 100/100</span></div>
+                    <div class="stats"><span id="your-pokemon">Your Pokemon</span> <br><span id="hp">HP: 100/100</span>
+                    </div>
                 </div>
-                
+
                 <div class="opponent">
                     <img src="" alt="Opponent Pokemon" id="pokeImgOPP">
-                    <div class="stats"><span id="their-pokemon">Opponent Pokemon</span> <br><span id="their-hp">HP: 100/100</span></div>
+                    <div class="stats"><span id="their-pokemon">Opponent Pokemon</span> <br><span id="their-hp">HP:
+                            100/100</span></div>
                 </div>
             </div>
 
@@ -51,8 +55,8 @@
                 <button type="submit">Send</button>
             </form>
         </div>
-        </div>
+    </div>
     </div>
 </body>
+
 </html>
-         
