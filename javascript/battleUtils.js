@@ -152,7 +152,6 @@ function conductMove(battleState, faster) {
 
         // message
         msg.push(`${attackingPlayer.username} used ${move.model.name}!`);
-        msg.push(`${attackingPlayer.username} sent out ${attackingPlayer.team[move.target]}!`);
     }
 
     return battleState;
