@@ -323,7 +323,7 @@ async function main() {
 
             // Clear moves
             newBattleState.AMove = null;
-            newBattleState.BMobe = null;
+            newBattleState.BMove = null;
 
             updateBattle(session.battleID, newBattleState);
 
