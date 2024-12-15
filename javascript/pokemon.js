@@ -49,7 +49,7 @@ class PokemonModel {
 
 // Represents an actually existing pokemon, with things like a level and status condition
 class Pokemon extends PokemonModel {
-    constructor(model, moves_v) {
+    constructor(model, moves_v, index_v) {
         super(
             model.id, model.name, model.types, model.image, model.baseStats, model.preevos, model.evos
         );
@@ -70,6 +70,7 @@ class Pokemon extends PokemonModel {
             this.stats[0], this.stats[1], this.stats[2], this.stats[3], this.stats[4]
         ];
         this.moves = moves_v;
+        this.index = index_v;
     }
 
     // Heal a pokemon after a battle
@@ -118,22 +119,22 @@ async function getPokemonModels(client) {
 // Generate the default team
 function getDefaultTeam(models) {
     let pikachu = new Pokemon(models[PKMNTOID['PIKACHU']], [
-        new Move('Scratch', "No additional effect", "Normal", "Physical", 40, 100, 56, null, 0)
+        new Move('Scratch', "No additional effect", "Normal", "Physical", 40, 100, 56, null, 0, 0)
     ]);
     let charizard = new Pokemon(models[PKMNTOID['CHARIZARD']], [
-        new Move('Scratch', "No additional effect", "Normal", "Physical", 40, 100, 56, null, 0)
+        new Move('Scratch', "No additional effect", "Normal", "Physical", 40, 100, 56, null, 0, 1)
     ]);
     let venusaur = new Pokemon(models[PKMNTOID['VENUSAUR']], [
-        new Move('Scratch', "No additional effect", "Normal", "Physical", 40, 100, 56, null, 0)
+        new Move('Scratch', "No additional effect", "Normal", "Physical", 40, 100, 56, null, 0, 2)
     ]);
     let blastoise = new Pokemon(models[PKMNTOID['BLASTOISE']], [
-        new Move('Scratch', "No additional effect", "Normal", "Physical", 40, 100, 56, null, 0)
+        new Move('Scratch', "No additional effect", "Normal", "Physical", 40, 100, 56, null, 0, 3)
     ]);
     let snorlax = new Pokemon(models[PKMNTOID['SNORLAX']], [
-        new Move('Scratch', "No additional effect", "Normal", "Physical", 40, 100, 56, null, 0)
+        new Move('Scratch', "No additional effect", "Normal", "Physical", 40, 100, 56, null, 0, 4)
     ]);
     let lapras = new Pokemon(models[PKMNTOID['LAPRAS']], [
-        new Move('Scratch', "No additional effect", "Normal", "Physical", 40, 100, 56, null, 0)
+        new Move('Scratch', "No additional effect", "Normal", "Physical", 40, 100, 56, null, 0, 5)
     ]);
     return [pikachu, charizard, venusaur, blastoise, snorlax, lapras];
 }

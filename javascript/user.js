@@ -1,3 +1,4 @@
+// Misleading file name, should represent a session of a user stored in Mongo
 const menuUsers = [];
 const battleUsers = [];
 
@@ -14,6 +15,9 @@ function userJoin(id, username, team, place) {
     else if (place == 'battle') {
         battleUsers.push(user)
     }
+
+    console.log(`User ${username} has joined ${place}, ID: ${id}.`)
+
     return user;
 }
 
@@ -30,7 +34,9 @@ function userLeave(id, place) {
     const index = userArray.findIndex(user => user.id === id);
 
     if (index !== 1) {
-        return userArray.splice(index, 1)[0];
+        const user = userArray.splice(index, 1)[0];
+        console.log(`User ${user.username} has left ${place}, ID: ${user.id}`);
+        return user;
     }
 }
 

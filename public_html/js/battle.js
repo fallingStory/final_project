@@ -1,19 +1,62 @@
-const { BattleState, createBattle, getCurrentBattle, closeBattle } = require('./javascript/battleUtils');
 const place = 'menu';
-const username = 'Okarun';
+
+class BattleState {
+    constructor(id_v, player_a_v, player_b_v) {
+        this.id = id_v;
+        this.playerA = player_a_v;
+        this.playerB = player_b_v;
+        this.turn = 1;
+        this.AActivePokemon = 0;
+        this.BActivePokemon = 0;
+        this.AMove = false;
+        this.BMove = false;
+        this.endState = {
+            isOver: false,
+            winnder: null
+        };
+        this.botComments = [];
+    }
+
+    getPlayer(playerID) {
+        return (this.playerA.id === playerID) ? this.playerA : this.playerB;
+    }
+
+    getOpponent(playerID) {
+        return (this.playerA.id === playerID) ? this.playerB : this.playerA;
+    }
+
+    getPlayerActive(playerID) {
+        return (this.playerA.id === playerID) ? this.AActivePokemon : this.BActivePokemon;
+    }
+
+    getOpponentActive(playerID) {
+        return (this.playerA.id === playerID) ? this.BActivePokemon : this.AActivePokemon;
+    }
+
+    getPlayerPokemon(playerID) {
+        if (this.playerA.id === playerID) {
+            return this.playerA.team[this.getPlayerActive(playerID)];
+        }
+        return this.playerB.team[this.getPlayerActive(playerID)];
+    }
+
+    getOpponentPokemon(playerID) {
+        if (this.playerA.id === playerID) {
+            return this.playerB.team[this.getPlayerActive(playerID)];
+        }
+        return this.playerA.team[this.getPlayerActive(playerID)];
+    }
+}
 
 // Ensure the DOM is fully loaded before running the script
 document.addEventListener("DOMContentLoaded", async () => {
-    const socket = io();
-
-    socket.emit('login', { username, place });
-
-    // Get battleId from the URL query parameters
+    // Get battleId and username from the URL query parameters
     const battleId = new URLSearchParams(window.location.search).get("battleId");
-    console.log("Battle ID from URL:", battleId);
+    const username = new URLSearchParams(window.location.search).get("user");
 
-    // Debugging: Check the full window location
-    console.log("Window Location:", window.location);
+    const socket = io();
+    socket.emit('login', (place));
+    socket.emit('initializeBattle', battleId);
 
     // DOM elements
     const chatForm = document.getElementById("chatForm");
@@ -24,6 +67,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     const moveButtons = document.querySelectorAll(".moveButtons");
     const pokemonButtons = document.querySelectorAll(".pokemonButtons");
 
+    // Battle Info
+    const hp = document.getElementById("hp");
+    const yourPokemon = document.getElementById("your-pokemon");
+    const theirHp = document.getElementById("their-hp");
+    const theirPokemonLabel = document.getElementById("their-pokemon");
+    const theirPokemonIMG = document.getElementById("pokeImgOPP");
+    const yourPokemonIMG = document.getElementById("pokeImgPLAYER");
+
+    let player1FaintedCount = 0;
+    let player2FaintedCount = 0;
+
     // Validate battleId
     if (!battleId) {
         alert("No battle ID found. Returning to the main menu.");
@@ -31,27 +85,41 @@ document.addEventListener("DOMContentLoaded", async () => {
         return;
     }
 
-    // Join the battle room
-    socket.emit("joinBattle", { battleId });
+    // ----------------------------------------------------
+    // Socket functions
+    // ----------------------------------------------------
+    // Runs when a new turn has began, updates the battle state to represent the result
+    // of the players' previous moves and asks the user to select a new move
+    socket.on('newTurn', battleStateInfo => {
+        // For debugging purposes
+        console.log(battleStateInfo);
 
-    // Recieve a battle object and the player's old socket.id, update the socket.id to reflect
-    // the new one, and load all the information in the DOM
-    socket.on('battleStart', ({ battleState, oldSocketID }) => {
-        console.log(battleState);
-    });
+        // Reassemble battleState, turned into struct for transmission
+        const battleState = cloneBattleState(battleStateInfo);
+        const botComments = battleState.botComments;
 
-    // does nothing
-    socket.on('newTurn', ({ turn, moves }) => {
-        console.log(`It's turn ${turn}`);
+        // Print the bot's messages
+        for (let i = 0; i < botComments.length; i++) {
+            loadMessage('PokeBot', botComments[i]);
+        }
 
-        // Update the UI with new moves or other battle state information
-        // For example, update the moves on the buttons
-        moves.forEach((move, index) => {
-            const button = document.querySelector(`#move${index + 1}`);
-            if (button) {
-                button.textContent = `${move.name} (${move.type}) - Power: ${move.basePower}`;
-            }
-        });
+        // Check if game is over, disable if so
+        if (battleState.endState.isOver === true) {
+            disableButtons();
+            return;
+        }
+
+        // Re-enable buttons disabled after move
+        enableButtons();
+
+        // Declare useful variables
+        const myTeam = battleState.getPlayer(socket.id).team;
+        const myPokemon = battleState.getPlayerPokemon(socket.id);
+        const oppPokemon = battleState.getOpponentPokemon(socket.id);
+
+        loadBattleScreen(myPokemon, oppPokemon);
+        loadMoveButtons(myPokemon, battleState.turn);
+        loadPokemonButtons(myTeam, battleState.getPlayerActive(), battleState.turn);
     });
 
     //does nothing
@@ -63,16 +131,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Listen for chat messages
     socket.on("chatMessage", ({ sender, message }) => {
-        const newMessage = document.createElement("div");
-        newMessage.textContent = `${sender}: ${message}`;
-        chatMessages.appendChild(newMessage);
-    });
-
-    // does nothing
-    socket.on("updateBattle", ({ action }) => {
-        const newLogEntry = document.createElement("div");
-        newLogEntry.textContent = action;
-        battleLog.appendChild(newLogEntry);
+        loadMessage(sender, message);
     });
 
     // Handle chat form submission
@@ -96,29 +155,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.log("Battle ID received from server:", battleId);
     });
 
-    const hp = document.getElementById("hp");
-    const yourPokemon = document.getElementById("your-pokemon");
-    const theirHp = document.getElementById("their-hp");
-    const theirPokemonLabel = document.getElementById("their-pokemon");
-    const theirPokemonIMG = document.getElementById("pokeImgOPP");
-    const yourPokemonIMG = document.getElementById("pokeImgPLAYER");
-
-    let player1FaintedCount = 0;
-    let player2FaintedCount = 0;
-
     socket.on("turnResult", async ([yourHP, theirHP, yourMon, theirMon]) => {
-        console.log(yourMon, theirMon, yourHP, theirHP);
-        console.log("turn happened");
-
         // Update the opponent's Pokémon details
-        theirPokemonLabel.innerText = theirMon;
-        theirHp.innerText = "HP: " + theirHP;
-        theirPokemonIMG.src = `https://play.pokemonshowdown.com/sprites/gen1/${theirMon.toLowerCase()}.png`;
-
         // Update the player's Pokémon details
-        yourPokemon.innerText = yourMon;
-        hp.innerText = "HP: " + yourHP;
-        yourPokemonIMG.src = `https://play.pokemonshowdown.com/sprites/gen1/${yourMon.toLowerCase()}.png`;
 
         // Disable the Pokémon if HP is below or equal to 0
         if (yourHP <= 0) {
@@ -219,89 +258,123 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     });
 
-    function displayActivePokemon() {
-        socket.emit(getActivePokemon(battleId))
+    // ----------------------------------------------------
+    // Util functions
+    // ----------------------------------------------------
+    function loadBattleScreen(myPokemon, oppPokemon) {
+        // Update the player's Pokémon details
+        yourPokemon.innerText = myPokemon.name;
+        hp.innerText = "HP: " + myPokemon.stats[0];
+        yourPokemonIMG.src = myPokemon.image;
+
+        // Update the opponent's Pokémon details
+        theirPokemonLabel.innerText = oppPokemon.name;
+        theirHp.innerText = "HP: " + oppPokemon.stats[0];
+        theirPokemonIMG.src = oppPokemon.image;
+    }
+
+    function loadMoveButtons(myPokemon, turn) {
+        // Fill in the moves
+        const moves = myPokemon.moves;
+        for (let i = 0; i < moves.length; i++) {
+            // Get the variables
+            let move = moves[i];
+            let button = document.querySelector(`#move${i + 1}`);
+
+            // Update the button
+            let text = `${move.name} (${move.type}) - Power: ${move.pow}`;
+            button.textContent = text;
+
+            // Add event listener
+            if (turn === 1) button.addEventListener("click", () => {
+                const move = {
+                    type: 'attack',
+                    target: 'enemy',
+                    model: move
+                };
+                socket.emit('move', move);
+                disableButtons()
+            });
+        }
+
+        // In case we don't have 4 moves
+        if (moves.length >= 4) return;
+        for (let i = moves.length; i < 4; i++) {
+            let button = document.querySelector(`#move${i + 1}`);
+            button.textContent = "-";
+            button.disabled = true;
+        }
 
     }
 
+    // curActive = index of the currently active pokemon
+    function loadPokemonButtons(myTeam, curActive, turn) {
+        for (let i = 0; i < myTeam.length; i++) {
+            let pokemon = myTeam[i];
+            let button = pokemonButtons[i];
+
+            button.textContent = `${pokemon.name}`;
+            button.dataset.pokemonId = `${pokemon._id}`;
+            if (turn === 1) button.addEventListener("click", () => {
+                const move = {
+                    type: 'switch',
+                    target: i,
+                };
+                socket.emit('move', move);
+                disableButtons();
+            });
+
+            // Don't let the player switch in their own pokemon
+            if (i == curActive) {
+                button.disabled = true;
+            }
+            else {
+                button.disabled = false;
+            }
+        }
+    }
+
+    function loadMessage(sender, message) {
+        const newMessage = document.createElement("div");
+        newMessage.textContent = `${sender}: ${message}`;
+        chatMessages.appendChild(newMessage);
+    }
+
+    function cloneBattleState(battleStateInfo) {
+        const battleState = new BattleState(
+            battleStateInfo.id,
+            battleStateInfo.playerA,
+            battleStateInfo.playerB
+        );
+        battleState.turn = battleStateInfo.turn;
+        battleState.AActivePokemon = battleStateInfo.AActivePokemon;
+        battleState.BActivePokemon = battleStateInfo.BActivePokemon;
+        battleState.AMove = battleStateInfo.AMove;
+        battleState.BMove = battleStateInfo.BMove;
+        battleState.over = battleStateInfo.over;
+        battleState.botComments = battleStateInfo.botComments;
+
+        return battleState;
+    }
+
+    function disableButtons() {
+        pokemonButtons.forEach((button, index) => {
+            button.disabled = true;
+        });
+
+        moveButtons.forEach((button, index) => {
+            button.disabled = true;
+        });
+    }
+
+    function enableButtons() {
+        pokemonButtons.forEach((button, index) => {
+            button.disabled = false;
+        });
+
+        moveButtons.forEach((button, index) => {
+            button.disabled = false;
+        });
+    }
+
 });
-
-/*
-const loadPokemon = async () => {
-        try {
-            let pokemon;
-            const savedPokemon = sessionStorage.getItem("pokemon");
-            if (savedPokemon) {
-                pokemon = JSON.parse(savedPokemon);
-                console.log("Using pokemon from sessionStorage:", pokemon);
-            } else {
-                const response = await fetch("/getRandomPokemon");
-                pokemon = await response.json();
-                if (pokemon.length < pokemonButtons.length) {
-                    throw new Error("Not enough pokemon fetched to populate buttons.");
-                }
-                console.log("Fetched new mons:", pokemon);
-                // Save the fetched moves to sessionStorage
-                sessionStorage.setItem("pokemon", JSON.stringify(pokemon));
-            }
-
-            pokemonButtons.forEach((button, index) => {
-                const mon = pokemon[index];
-                button.textContent = `${mon.name}`;
-                button.dataset.pokemonId = `${mon._id}`;
-                button.addEventListener("click", () => {
-                    socket.emit('sendMove', battleId, 0, index);
-                });
-            });
-
-            // Emit the event only after data is available
-            socket.emit("getPokemon", pokemon, battleId, (response) => {
-                if (response.success) {
-                    //socket.emit("battleStatus", battleId);
-                } else {
-                    console.error("Failed to get Pokémon data.");
-                }
-            });
-        } catch (error) {
-            console.error("Error loading pokemon:", error);
-            alert("Failed to load pokemon. Please try again.");
-        }
-    };
-
-    const loadMoves = async () => {
-        console.log("did we even hit load moves");
-
-        try {
-            let moves;
-            // Check if moves are saved in sessionStorage
-            const savedMoves = sessionStorage.getItem("moves");
-            if (savedMoves) {
-                moves = JSON.parse(savedMoves);
-                console.log("Using moves from sessionStorage:", moves);
-            } else {
-                const response = await fetch("/getRandomMoves");
-                moves = await response.json();
-                if (moves.length < moveButtons.length) {
-                    throw new Error("Not enough moves fetched to populate buttons.");
-                }
-                console.log("Fetched new moves:", moves);
-                // Save the fetched moves to sessionStorage
-                sessionStorage.setItem("moves", JSON.stringify(moves));
-            }
-
-            // Populate buttons with moves
-            moveButtons.forEach((button, index) => {
-                const move = moves[index];
-                button.textContent = `${move.name} (${move.type}) - Power: ${move.basePower}`;
-                button.dataset.moveId = move._id; // Store the move ID for reference
-                console.log(move.basePower)
-                button.addEventListener("click", () => {
-                    socket.emit('sendMove', battleId, move.basePower, -1);
-                });
-            });
-        } catch (error) {
-            console.error("Error loading moves:", error);
-            alert("Failed to load moves. Please try again.");
-        }
-    };
-*/

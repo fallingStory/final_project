@@ -16,7 +16,7 @@ const io = new Server(server);
 const sharedSession = require('express-socket.io-session');
 
 // Our modules
-const { BattleState, createBattle, getCurrentBattle, closeBattle } = require('./javascript/battleUtils');
+const { BattleState, createBattle, getCurrentBattle, closeBattle, getFaster, conductMove, checkIfPokemonFainted } = require('./javascript/battleUtils');
 const { Move } = require('./javascript/pokemon');
 const { PKMNTOID, IDTOPKMN, Pokemon, getPokemonModels, getDefaultTeam } = require('./javascript/pokemon');
 const { userJoin, getCurrentUser, userLeave } = require('./javascript/user');
@@ -24,6 +24,10 @@ const { userJoin, getCurrentUser, userLeave } = require('./javascript/user');
 async function main() {
     // Load all the 151 pokemon on server startup
     const models = await getPokemonModels(client);
+
+    // Declare battle stuff
+    let waitingPlayers = []; // Queue for players looking for a match
+    let battles = {}; // Store active battles
 
     app.set('views', path.join(__dirname, "public_html")); //file where public ejs/html/css/js are
     app.use(express.static("public_html")); //static files use things in public_html
@@ -171,25 +175,6 @@ async function main() {
         });
     });
 
-    /*app.get('/getRandomMoves', checkAuthenticated, async (req, res) => {
-        try {
-            console.log("TRYING TO GET MOVES")
-            await client.connect();
-            const database = client.db("MovesDB");
-            const movesCollection = database.collection("moves");
-            // Fetch a random sample of 4 moves
-            const moves = await movesCollection.aggregate([{ $sample: { size: 4 } }]).toArray();
-            //await delay(100); 
-            console.log("MOVE WERE FOUND WHAT")
-            res.json(moves);
-        } catch (err) {
-            console.error(err);
-            res.status(500).send("Error fetching moves");
-        } finally {
-            //await client.close();
-        }
-    });*/
-
     app.delete('/logout', (req, res) => {
         req.session.destroy();
         res.redirect('/login');
@@ -213,9 +198,6 @@ async function main() {
     // ----------------------------------------------------
     // Socket.io stuff
     // ----------------------------------------------------
-    let waitingPlayers = []; // Queue for players looking for a match
-    let battles = {}; // Store active battles
-
     io.on('connection', (socket) => {
         const session = socket.handshake.session;
 
@@ -228,12 +210,14 @@ async function main() {
                 if (battle.player1.username === session.username) {
                     battle.player1.socketId = socket.id;
                     console.log(`Updated player1's socket ID in battle ${battleId}`);
+                    session.battleID = battleId;
                 }
 
                 // Update player2 socket if the username matches
                 if (battle.player2.username === session.username) {
                     battle.player2.socketId = socket.id;
                     console.log(`Updated player2's socket ID in battle ${battleId}`);
+                    session.battleID = battleId;
                 }
             }
         }
@@ -247,15 +231,13 @@ async function main() {
             });
 
             // Add the user to the user arrays
-            const user = userJoin(socket.id, session.username, getDefaultTeam(models), origin);
-            console.log(`User ${user.username} has joined ${origin}, ID: ${socket.id}.`)
+            session.user = userJoin(socket.id, session.username, getDefaultTeam(models), origin);
         });
 
         socket.on('disconnect', () => {
             // Remove the user from our user arrays
             //console.log(`Preparing to disconnect ${session.username} with ID ${socket.id} from ${session.origin}`);
             userLeave(socket.id, session.origin);
-            console.log(`User ${session.username} has left ${session.origin}, ID: ${socket.id}`);
 
             // Remove user from waiting players list if they're disconnected
             waitingPlayers = waitingPlayers.filter(p => p.socketId !== socket.id);
@@ -266,74 +248,81 @@ async function main() {
 
                 // Check if the player was part of this battle and clean up their data
                 if (battle.player1.socketId === socket.id) {
-                    console.log(`Player1 disconnected in battle ${battleId}`);
+                    //console.log(`Player1 disconnected in battle ${battleId}`);
                     battle.player1.socketId = null; // Reset or clean up as needed
+                    session.battleID = -1;
                 }
 
                 if (battle.player2.socketId === socket.id) {
-                    console.log(`Player2 disconnected in battle ${battleId}`);
+                    //console.log(`Player2 disconnected in battle ${battleId}`);
                     battle.player2.socketId = null; // Reset or clean up as needed
+                    session.battleID = -1;
                 }
             }
+        });
+
+        // Recieved from battle.js, should only be accessed during a battle
+        socket.on('move', move => {
+            const battle = getCurrentBattle(session.battleID);
+            let newBattleState = battle;
+            let player = 0;
+            let turnInfo = {
+                aMove: battle.AMove,
+                bMove: battle.BMove,
+                aMon: battle.playerA.team[battle.AActivePokemon],
+                bMon: battle.playerB.team[battle.BActivePokemon]
+            };
+
+            // Set new turn
+            newBattleState.botComments = ['----------------------------'];
+            newBattleState.turn++;
+            newBattleState.botComments.push(`Turn ${newBattleState.turn}`);
+
+            // Figure out which player did the move
+            if (socket.id === battle.playerA.id) {
+                battle.AMove = move;
+                player = 0;
+            }
+            else if (socket.id === battle.playerB.id) {
+                battle.BMove = move;
+                player = 1;
+            }
+            else console.log(`Error: Player not in match with id ${socket.id} attempted to make a move!`);
+
+            // Exit function if both players haven't made their move
+            if (!battle.AMove || !battle.BMove) return;
+
+            // Determine the results of the move
+            const fasterPokemonSide = getFaster(turnInfo);
+            const slowerPokemonSide = (fasterPokemonSide == 'a') ? 'b' : 'a';
+
+            // Faster pokemon moves
+            newBattleState = conductMove(newBattleState, fasterPokemonSide);
+
+            // Check if the taking pokemon fainted
+            let results = checkIfPokemonFainted(newBattleState, fasterPokemonSide);
+            let fainted = results.fainted;
+            newBattleState = results.newBattleState;
+
+
+            // If the defending pokemon fainted, they don't get to move 
+            if (fainted) {
+                io.to(battle.id).emit('newTurn', newBattleState);
+                return;
+            }
+
+            // Slower pokemon moves
+            newBattleState = conductMove(newBattleState, slowerPokemonSide);
+
+            // Check if the taking pokemon fainted
+            newBattleState = checkIfPokemonFainted(newBattleState, slowerPokemonSide);
+
+            io.to(battle.id).emit('newTurn', newBattleState);
         });
 
         socket.on('changeActivePokemon', (battleId, index) => {
             battles[battleId].activeIndex = index;
         })
-
-        socket.on('getActivePokemon', (battleId) => {
-            socket.emit("gotActivePokemon", battles[battleId].activeIndex, battles[battleId])
-        })
-
-        socket.on('getPokemon', (pokemon, battleId) => {
-            const username = socket.handshake.session.username;
-            const battle = battles[battleId];
-
-            if (!battle) {
-                console.error(`Battle with ID ${battleId} not found.`);
-                return;
-            }
-
-            // Determine if the user is player1 or player2
-            let playerKey;
-            if (battle.player1.username === username) {
-                playerKey = 'player1';
-            } else if (battle.player2.username === username) {
-                playerKey = 'player2';
-            } else {
-                console.error(`User ${username} not found in battle ${battleId}.`);
-                return;
-            }
-
-
-            // Assign Pokémon data to the correct player
-            battle[playerKey].pokemon = pokemon;
-            console.log(battle[playerKey].pokemon)
-            //battle[playerKey].activeIndex = 0; // Set active Pokémon index to 0 by default
-            battle[playerKey].currentPokemon = battle[playerKey].pokemon.map(p => {
-                const att = (parseInt(p.baseStats.atk + p.baseStats.spa)) * 2 + 5;
-                const def = (parseInt(p.baseStats.def + p.baseStats.spd)) * 2 + 5;
-                const hp = ((parseInt(p.baseStats.hp)) * 2 + 10 + 100) * 2;
-                return new Pokemon(p.name, p.id, att, def, hp, p.baseStats.spe, p.types, 0);
-            });
-
-
-            // Ensure the socket ID is updated in the battle structure
-            battle[playerKey].socketId = socket.id;
-            battle[playerKey].ready = true;
-            if (battle.player1.ready && battle.player2.ready) {
-                updateBattle(battleId); // Call updateBattle when both players are ready
-            }
-        });
-
-        function updateBattle(battleId) {
-            const battle = battles[battleId]
-            const p1mon = battle.player1.currentPokemon[battle.player1.activeIndex]
-            const p2mon = battle.player2.currentPokemon[battle.player2.activeIndex]
-
-            io.to(battle.player1.socketId).emit('loadPokemon', [p1mon.hp, p2mon.hp, p1mon.name, p2mon.name])
-            io.to(battle.player2.socketId).emit('loadPokemon', [p2mon.hp, p1mon.hp, p2mon.name, p1mon.name])
-        }
 
         socket.on('sendMove', (battleId, move, swap) => {
             const battle = battles[battleId]
@@ -405,19 +394,7 @@ async function main() {
             console.log('Turn processed successfully');
         }
 
-        class Pokemon {
-            constructor(name, id, att, def, hp, spe, type, dead) {
-                this.name = name;
-                this.id = id;
-                this.att = att;
-                this.def = def;
-                this.hp = hp;
-                this.spe = spe;
-                this.type = type;
-                this.dead = dead;
-            }
-        }
-
+        // Recieved from main menu
         socket.on('findBattle', async ({ username, friendName }) => {
             // Server recieves a battle event of a player seeking a friend
             const friend = waitingPlayers.find(p => p.username === friendName && p.friendName === username);
@@ -429,33 +406,80 @@ async function main() {
                     player2: { username: username, socketId: socket.id, move: null, activeIndex: 0, ready: false },
                 };
 
-                io.to(friend.socketId).emit('battleStart', { battleId, opponent: username });
-                socket.emit('battleStart', { battleId, opponent: friendName });
+                // Create battle instance
+                // Players will be updated/replaced upon joining a battle, so we make a struct to make
+                // life easier
+                let friendTeam = friend.team
+                let friendID = friend.socketId;
+                createBattle(
+                    battleId,
+                    { id: socket.id, username: username, team: session.user.team },
+                    { id: friendID, username: friendName, team: friendTeam }
+                );
+
+                // Sent to main menu, redirects user to battle window
+                io.to(friend.socketId).emit('battleStart', { battleId });
+                socket.emit('battleStart', { battleId });
 
                 waitingPlayers = waitingPlayers.filter(p => p !== friend);
             } else {
                 // Else onto the queue
-                waitingPlayers.push({ socketId: socket.id, username, friendName });
+                waitingPlayers.push({ socketId: socket.id, username, friendName, team: session.user.team });
                 socket.emit('waitingForBattle');
             }
         });
+
+        // Recieved from battle
+        // Updates the battle object created in onFindBattle to contain the users'
+        // new objects, with the correct sessionIDs
+        socket.on('initializeBattle', (battleID) => {
+            // First we update the user
+            const curBattle = getCurrentBattle(battleID);
+            if (curBattle.playerA.username == session.username) {
+                curBattle.playerA = session.user;
+            }
+            else if (curBattle.playerB.username == session.username) {
+                curBattle.playerB = session.user;
+            }
+            else {
+                console.log(`ERROR!!! User ${session.username} isnt in the battle!`);
+            }
+
+            // Then we join the right room for chat
+            socket.join(battleID);
+
+            // Create game start messages
+            let botComments = [];
+
+            const myActiveIndex = curBattle.getPlayerActive(socket.id);
+            const myPokemon = curBattle.getPlayer(socket.id).team[myActiveIndex];
+
+            const oppsActiveIndex = curBattle.getOpponentActive(socket.id);
+            const oppsPokemon = curBattle.getOpponent(socket.id).team[oppsActiveIndex];
+
+            botComments.push(`Turn ${curBattle.turn}`);
+            botComments.push(`Battle started between ${curBattle.playerA.username} and ${curBattle.playerA.username}!`)
+            botComments.push(`Go! ${myPokemon.name}!`);
+            botComments.push(`${curBattle.getOpponent(socket.id).username} sent out ${oppsPokemon.name}!`);
+
+            curBattle.botComments = botComments;
+
+            // For debugging purposes
+            console.log(curBattle);
+
+            // Tells the battle.js client to start the game
+            socket.emit('newTurn', curBattle);
+        })
 
         socket.on('chatMessage', ({ battleId, message }) => {
             if (!battles[battleId]) {
                 socket.emit('error', { message: 'Battle not found' });
                 return;
             }
-            console.log("testing123")
             const sender = socket.handshake.session.username || 'Anonymous';
             io.to(battleId).emit('chatMessage', { sender, message });
         });
 
-
-        socket.on('joinBattle', ({ battleId }) => {
-            if (battles[battleId]) {
-                socket.join(battleId);
-            }
-        });
     });
 
     server.listen(port, () => {

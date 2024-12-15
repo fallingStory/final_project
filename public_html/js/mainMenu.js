@@ -21,7 +21,7 @@ const place = 'menu';
 socket.emit('login', (place));
 
 // Listen for a battle start
-socket.on("battleStart", ({ battleId, opponent }) => {
+socket.on("battleStart", ({ battleId }) => {
     window.location.href = `/battle?battleId=${battleId}&user=${username}`;
 });
 
