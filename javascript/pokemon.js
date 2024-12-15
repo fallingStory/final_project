@@ -122,7 +122,7 @@ function getDefaultTeam(models) {
         new Move('Thunder Shock', "No additional effect", "Electric", "Special", 40, 100, 30, "Paralyze chance", 0),
         new Move('Quick Attack', "No additional effect", "Normal", "Physical", 40, 100, 30, "Priority move", 1),
         new Move('Electro Ball', "No additional effect", "Electric", "Special", 60, 100, 10, null, 0),
-        new Move('Iron Tail', "No additional effect", "Steel", "Physical", 100, 75, 15, "Lowers Defense chance", 0)
+        new Move('Surf', "No additional effect", "Water", "Physical", 90, 75, 15, "Lowers Defense chance", 0)
     ], 0);
     let charizard = new Pokemon(models[PKMNTOID['CHARIZARD']], [
         new Move('Flamethrower', "No additional effect", "Fire", "Special", 90, 100, 15, "Burn chance", 0),
@@ -140,11 +140,11 @@ function getDefaultTeam(models) {
         new Move('Water Gun', "No additional effect", "Water", "Special", 40, 100, 25, null, 0),
         new Move('Hydro Pump', "No additional effect", "Water", "Special", 110, 80, 5, null, 1),
         new Move('Ice Beam', "No additional effect", "Ice", "Special", 90, 100, 10, "Freeze chance", 0),
-        new Move('Bite', "No additional effect", "Dark", "Physical", 60, 100, 25, "Flinch chance", 0)
+        new Move('Strength', "No additional effect", "Normal", "Physical", 80, 100, 25, "Flinch chance", 0)
     ], 3);
     let snorlax = new Pokemon(models[PKMNTOID['SNORLAX']], [
         new Move('Body Slam', "No additional effect", "Normal", "Physical", 85, 100, 15, "Paralyze chance", 0),
-        new Move('Crunch', "No additional effect", "Dark", "Physical", 80, 100, 15, "Lowers Defense chance", 1),
+        new Move('Fire Punch', "No additional effect", "Fire", "Physical", 75, 100, 15, "Lowers Defense chance", 1),
         new Move('Earthquake', "No additional effect", "Ground", "Physical", 100, 100, 10, null, 0),
         new Move('Strength', "No additional effect", "Normal", "Physical", 150, 90, 5, null, 0)
     ], 4);

@@ -309,6 +309,9 @@ async function main() {
 
             // If the defending pokemon fainted, they don't get to move 
             if (fainted) {
+                // Clear moves
+                newBattleState.AMove = null;
+                newBattleState.BMove = null;
                 io.to(battle.id).emit('newTurn', newBattleState);
                 return;
             }
