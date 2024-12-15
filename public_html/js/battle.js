@@ -227,7 +227,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             oldButton.parentNode.replaceChild(newButton, oldButton);
 
             // Don't let the player switch in their own pokemon
-            if (i == curActive) {
+            if (i == curActive || pokemon.stats[0] === 0) {
                 newButton.disabled = true;
             }
             else {
