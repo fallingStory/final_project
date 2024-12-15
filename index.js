@@ -16,7 +16,7 @@ const io = new Server(server);
 const sharedSession = require('express-socket.io-session');
 
 // Our modules
-const { BattleState, createBattle, getCurrentBattle, closeBattle, getFaster, conductMove, checkIfPokemonFainted } = require('./javascript/battleUtils');
+const { BattleState, createBattle, updateBattle, getCurrentBattle, closeBattle, getFaster, conductMove, checkIfPokemonFainted } = require('./javascript/battleUtils');
 const { Move } = require('./javascript/pokemon');
 const { PKMNTOID, IDTOPKMN, Pokemon, getPokemonModels, getDefaultTeam } = require('./javascript/pokemon');
 const { userJoin, getCurrentUser, userLeave } = require('./javascript/user');
@@ -263,20 +263,10 @@ async function main() {
 
         // Recieved from battle.js, should only be accessed during a battle
         socket.on('move', move => {
+            // Declare variables
             const battle = getCurrentBattle(session.battleID);
             let newBattleState = battle;
             let player = 0;
-            let turnInfo = {
-                aMove: battle.AMove,
-                bMove: battle.BMove,
-                aMon: battle.playerA.team[battle.AActivePokemon],
-                bMon: battle.playerB.team[battle.BActivePokemon]
-            };
-
-            // Set new turn
-            newBattleState.botComments = ['----------------------------'];
-            newBattleState.turn++;
-            newBattleState.botComments.push(`Turn ${newBattleState.turn}`);
 
             // Figure out which player did the move
             if (socket.id === battle.playerA.id) {
@@ -291,6 +281,18 @@ async function main() {
 
             // Exit function if both players haven't made their move
             if (!battle.AMove || !battle.BMove) return;
+
+            let turnInfo = {
+                aMove: battle.AMove,
+                bMove: battle.BMove,
+                aMon: battle.playerA.team[battle.AActivePokemon],
+                bMon: battle.playerB.team[battle.BActivePokemon]
+            };
+
+            // Set new turn
+            newBattleState.botComments = ['----------------------------'];
+            newBattleState.turn++;
+            newBattleState.botComments.push(`Turn ${newBattleState.turn}`);
 
             // Determine the results of the move
             const fasterPokemonSide = getFaster(turnInfo);
@@ -315,84 +317,18 @@ async function main() {
             newBattleState = conductMove(newBattleState, slowerPokemonSide);
 
             // Check if the taking pokemon fainted
-            newBattleState = checkIfPokemonFainted(newBattleState, slowerPokemonSide);
+            results = checkIfPokemonFainted(newBattleState, slowerPokemonSide);
+            fainted = results.fainted;
+            newBattleState = results.newBattleState;
+
+            // Clear moves
+            newBattleState.AMove = null;
+            newBattleState.BMobe = null;
+
+            updateBattle(session.battleID, newBattleState);
 
             io.to(battle.id).emit('newTurn', newBattleState);
         });
-
-        socket.on('changeActivePokemon', (battleId, index) => {
-            battles[battleId].activeIndex = index;
-        })
-
-        socket.on('sendMove', (battleId, move, swap) => {
-            const battle = battles[battleId]
-            if (!battle) {
-                socket.emit('error', { message: 'Battle not found' });
-                return;
-            }
-            if (socket.id === battle.player1.socketId) {
-                sender = 'player1';
-                if (swap === -1) {
-                    battle.player1.move = move
-                } else {
-                    battle.player1.activeIndex = swap
-                    battle.player1.move = move
-                }
-
-            }
-
-            if (socket.id === battle.player2.socketId) {
-                sender = 'player2';
-                if (swap === -1) {
-                    battle.player2.move = move
-                } else {
-                    battle.player2.activeIndex = swap
-                    battle.player2.move = move
-                }
-            }
-
-            // Record the move for the sender
-            battle[sender].move = move;
-            // Check if both players have made a move
-            if (battle.player1.move != null && battle.player2.move != null) {
-                processTurn(battleId);
-            }
-        })
-
-        function processTurn(battleId) {
-            const battle = battles[battleId];
-            if (!battle) {
-                console.error(`Battle ID ${battleId} not found`);
-                return;
-            }
-            // Extract player moves
-            const p1mon = battle.player1.currentPokemon[battle.player1.activeIndex]
-            const p2mon = battle.player2.currentPokemon[battle.player2.activeIndex]
-
-            const move1 = Math.round((42 * parseInt(battle.player1.move) * (p1mon.att / p2mon.def)) / 50)
-            const move2 = Math.round((42 * parseInt(battle.player2.move) * (p2mon.att / p1mon.def)) / 50)
-
-            // Process the moves (simplified example)
-            p1mon.hp -= move2
-            p2mon.hp -= move1
-
-            // Clear moves for the next turn
-            battle.player1.move = null;
-            battle.player2.move = null;
-
-            // Notify players of the result
-            io.to(battle.player1.socketId).emit('turnResult', [p1mon.hp, p2mon.hp, p1mon.name, p2mon.name])
-            io.to(battle.player2.socketId).emit('turnResult', [p2mon.hp, p1mon.hp, p2mon.name, p1mon.name])
-
-            // io.to(battle.player2.socketId).emit('turnResult', {
-            //     yourMove: move2,
-            //     opponentMove: move1,
-            //     yourPokemon: battle.player2.currentPokemon,
-            //     opponentPokemon: battle.player1.currentPokemon
-            // });
-
-            console.log('Turn processed successfully');
-        }
 
         // Recieved from main menu
         socket.on('findBattle', async ({ username, friendName }) => {

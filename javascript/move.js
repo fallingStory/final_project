@@ -20,6 +20,7 @@ class Move {
  *  var defender: Pokemon = The defending pokemon
  */
 function getDamage(move, attacker, defender) {
+    console.log(move);
     // Get all the modifiers
     let crit = (Math.random() * 100) < 6.25 ? 2 : 1; // 6.25% of landing critical hit
     let attack = attacker.stats[1];

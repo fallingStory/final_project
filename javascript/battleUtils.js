@@ -55,6 +55,23 @@ function createBattle(id_v, player_a_v, player_b_v) {
     battles.push(new BattleState(id_v, player_a_v, player_b_v))
 }
 
+function updateBattle(id, newBattle) {
+    for (let i = 0; i < battles.length; i++) {
+        if (battles[i].id == id) {
+            battles[i].id = newBattle.id;
+            battles[i].playerA = newBattle.playerA;
+            battles[i].playerB = newBattle.playerB;
+            battles[i].turn = newBattle.turn;
+            battles[i].AActivePokemon = newBattle.AActivePokemon;
+            battles[i].BActivePokemon = newBattle.BActivePokemon;
+            battles[i].AMove = newBattle.AMove;
+            battles[i].BMove = newBattle.BMove;
+            battles[i].endState = newBattle.endState;
+            battles[i].botComments = newBattle.botComments;
+        }
+    }
+}
+
 // Get current user
 function getCurrentBattle(id) {
     for (let i = 0; i < battles.length; i++) {
@@ -129,7 +146,7 @@ function conductMove(battleState, faster) {
     else if (move.type == 'attack') {
         // Calculate damage
         const hp = defender.stats[0];
-        let damage = getDamage(move.model, attacker, defender);
+        let damage = Math.floor(getDamage(move.model, attacker, defender));
         damage = (damage > hp) ? hp : damage;
         defender.stats[0] = hp - damage;
 
@@ -201,6 +218,7 @@ function checkIfPokemonFainted(newBattleState, attacker) {
 module.exports = {
     BattleState,
     createBattle,
+    updateBattle,
     getCurrentBattle,
     closeBattle,
     getFaster,

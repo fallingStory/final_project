@@ -119,23 +119,41 @@ async function getPokemonModels(client) {
 // Generate the default team
 function getDefaultTeam(models) {
     let pikachu = new Pokemon(models[PKMNTOID['PIKACHU']], [
-        new Move('Scratch', "No additional effect", "Normal", "Physical", 40, 100, 56, null, 0, 0)
-    ]);
+        new Move('Thunder Shock', "No additional effect", "Electric", "Special", 40, 100, 30, "Paralyze chance", 0),
+        new Move('Quick Attack', "No additional effect", "Normal", "Physical", 40, 100, 30, "Priority move", 1),
+        new Move('Electro Ball', "No additional effect", "Electric", "Special", 60, 100, 10, null, 0),
+        new Move('Iron Tail', "No additional effect", "Steel", "Physical", 100, 75, 15, "Lowers Defense chance", 0)
+    ], 0);
     let charizard = new Pokemon(models[PKMNTOID['CHARIZARD']], [
-        new Move('Scratch', "No additional effect", "Normal", "Physical", 40, 100, 56, null, 0, 1)
-    ]);
+        new Move('Flamethrower', "No additional effect", "Fire", "Special", 90, 100, 15, "Burn chance", 0),
+        new Move('Air Slash', "No additional effect", "Flying", "Special", 75, 95, 20, "Flinch chance", 1),
+        new Move('Dragon Claw', "No additional effect", "Dragon", "Physical", 80, 100, 15, null, 0),
+        new Move('Fire Blast', "No additional effect", "Fire", "Special", 110, 85, 5, "Burn chance", 0)
+    ], 1);
     let venusaur = new Pokemon(models[PKMNTOID['VENUSAUR']], [
-        new Move('Scratch', "No additional effect", "Normal", "Physical", 40, 100, 56, null, 0, 2)
-    ]);
+        new Move('Vine Whip', "No additional effect", "Grass", "Physical", 45, 100, 25, null, 0),
+        new Move('Razor Leaf', "No additional effect", "Grass", "Physical", 55, 95, 25, "High crit chance", 1),
+        new Move('Sludge Bomb', "No additional effect", "Poison", "Special", 90, 100, 10, "Poison chance", 0),
+        new Move('Strength', "No additional effect", "Normal", "Physcial", 120, 100, 10, null, 0)
+    ], 2);
     let blastoise = new Pokemon(models[PKMNTOID['BLASTOISE']], [
-        new Move('Scratch', "No additional effect", "Normal", "Physical", 40, 100, 56, null, 0, 3)
-    ]);
+        new Move('Water Gun', "No additional effect", "Water", "Special", 40, 100, 25, null, 0),
+        new Move('Hydro Pump', "No additional effect", "Water", "Special", 110, 80, 5, null, 1),
+        new Move('Ice Beam', "No additional effect", "Ice", "Special", 90, 100, 10, "Freeze chance", 0),
+        new Move('Bite', "No additional effect", "Dark", "Physical", 60, 100, 25, "Flinch chance", 0)
+    ], 3);
     let snorlax = new Pokemon(models[PKMNTOID['SNORLAX']], [
-        new Move('Scratch', "No additional effect", "Normal", "Physical", 40, 100, 56, null, 0, 4)
-    ]);
+        new Move('Body Slam', "No additional effect", "Normal", "Physical", 85, 100, 15, "Paralyze chance", 0),
+        new Move('Crunch', "No additional effect", "Dark", "Physical", 80, 100, 15, "Lowers Defense chance", 1),
+        new Move('Earthquake', "No additional effect", "Ground", "Physical", 100, 100, 10, null, 0),
+        new Move('Strength', "No additional effect", "Normal", "Physical", 150, 90, 5, null, 0)
+    ], 4);
     let lapras = new Pokemon(models[PKMNTOID['LAPRAS']], [
-        new Move('Scratch', "No additional effect", "Normal", "Physical", 40, 100, 56, null, 0, 5)
-    ]);
+        new Move('Surf', "No additional effect", "Water", "Special", 90, 100, 15, null, 0),
+        new Move('Ice Beam', "No additional effect", "Ice", "Special", 90, 100, 10, "Freeze chance", 1),
+        new Move('Strength', "No additional effect", "Normal", "Physical", 80, 0, 5, null, 0),
+        new Move('Blizzard', "No additional effect", "Ice", "Special", 110, 70, 5, "Freeze chance", 0)
+    ], 5);
     return [pikachu, charizard, venusaur, blastoise, snorlax, lapras];
 }
 

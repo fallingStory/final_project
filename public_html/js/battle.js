@@ -42,9 +42,9 @@ class BattleState {
 
     getOpponentPokemon(playerID) {
         if (this.playerA.id === playerID) {
-            return this.playerB.team[this.getPlayerActive(playerID)];
+            return this.playerB.team[this.getOpponentActive(playerID)];
         }
-        return this.playerA.team[this.getPlayerActive(playerID)];
+        return this.playerA.team[this.getOpponentActive(playerID)];
     }
 }
 
@@ -122,13 +122,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         loadPokemonButtons(myTeam, battleState.getPlayerActive(), battleState.turn);
     });
 
-    //does nothing
-    socket.on("waitingForOpponent", () => {
-        const logEntry = document.createElement("div");
-        logEntry.textContent = "Waiting for opponent...";
-        chatMessages.appendChild(logEntry);
-    });
-
     // Listen for chat messages
     socket.on("chatMessage", ({ sender, message }) => {
         loadMessage(sender, message);
@@ -148,114 +141,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     socket.on("disconnect", () => {
         alert("You have been disconnected from the server.");
         window.location.href = "/";
-    });
-
-    // Debugging: Receive battle details from the server if needed
-    socket.on("battleDetails", ({ battleId }) => {
-        console.log("Battle ID received from server:", battleId);
-    });
-
-    socket.on("turnResult", async ([yourHP, theirHP, yourMon, theirMon]) => {
-        // Update the opponent's Pokémon details
-        // Update the player's Pokémon details
-
-        // Disable the Pokémon if HP is below or equal to 0
-        if (yourHP <= 0) {
-            // Disable player's Pokémon actions
-            disablePokemon('your');
-            player1FaintedCount++;
-        }
-
-        if (theirHP <= 0) {
-            // Disable opponent's Pokémon actions
-            disablePokemon('their');
-            player2FaintedCount++; // Increment the fainted count for player2
-        }
-
-        if (player1FaintedCount === 6) {
-            // End the game for player 1
-            console.log('Player 1 has no Pokémon left. Game Over!');
-            socket.emit('gameOver', { winner: 'Player 2', message: 'Player 1 has no Pokémon left!' });
-            return; // Stop further game processing
-        }
-
-        if (player2FaintedCount === 6) {
-            // End the game for player 2
-            console.log('Player 2 has no Pokémon left. Game Over!');
-            socket.emit('gameOver', { winner: 'Player 1', message: 'Player 2 has no Pokémon left!' });
-            return; // Stop further game processing
-        }
-
-        // Fetch new moves for the player
-        const response = await fetch("/getRandomMoves");
-        const moves = await response.json();
-
-        if (moves.length < moveButtons.length) {
-            throw new Error("Not enough moves fetched to populate buttons.");
-        }
-
-        console.log("Fetched new moves:", moves);
-        sessionStorage.setItem("moves", JSON.stringify(moves));
-
-        // Loop through buttons and enable only the ones for the active Pokémon
-        moveButtons.forEach((button, index) => {
-            const move = moves[index];
-            button.textContent = `${move.name} (${move.type}) - Power: ${move.basePower}`;
-            button.dataset.moveId = move._id; // Store the move ID for reference
-
-            // Disable buttons for fainted Pokémon
-            if (yourHP <= 0) {
-                if (button.dataset.pokemon === "your") {
-                    button.disabled = true;
-                }
-            }
-
-            if (theirHP <= 0) {
-                if (button.dataset.pokemon === "their") {
-                    button.disabled = true;
-                }
-            }
-
-            // Only allow moves if both Pokémon are still alive
-            button.addEventListener("click", () => {
-                if (yourHP > 0 && theirHP > 0) {
-                    socket.emit('sendMove', battleId, move.basePower, -1);
-                }
-            });
-        });
-    });
-
-    function disablePokemon(type) {
-        // Determine the elements to update based on the Pokémon type ('your' or 'their')
-        const pokemonLabel = type === 'your' ? yourPokemon : theirPokemon;
-        const pokemonImage = type === 'your' ? yourPokemonIMG : theirPokemonIMG;
-        const hpLabel = type === 'your' ? hp : theirHp;
-
-
-        pokemonLabel.innerText += " - Fainted";
-
-        pokemonImage.src = "https://www.skullsunlimited.com/cdn/shop/products/European_Male_S-BC-107_768x768.jpg?v=1603481777";
-
-        hpLabel.innerText = "HP: 0/100";
-
-        moveButtons.forEach(button => {
-            if (hpLa.contains(" - Fainted")) {
-                button.disabled = true; // Disable the button
-                button.textContent = "Fainted"; // Update button text
-            }
-        });
-    }
-
-    socket.on("loadPokemon", async ([yourHP, theirHP, yourMon, theirMon]) => {
-        console.log(yourMon, theirMon, yourHP, theirHP)
-        console.log("turn happened");
-        theirPokemonLabel.innerText = theirMon;
-        theirHp.innerText = "HP: " + theirHP;
-        yourPokemon.innerText = yourMon;
-        hp.innerText = "HP: " + yourHP;
-        yourPokemonIMG.src = `https://play.pokemonshowdown.com/sprites/gen1/${yourMon.toLowerCase()}.png`;
-        theirPokemonIMG.src = `https://play.pokemonshowdown.com/sprites/gen1/${theirMon.toLowerCase()}.png`;
-
     });
 
     // ----------------------------------------------------
@@ -279,22 +164,31 @@ document.addEventListener("DOMContentLoaded", async () => {
         for (let i = 0; i < moves.length; i++) {
             // Get the variables
             let move = moves[i];
-            let button = document.querySelector(`#move${i + 1}`);
+            let oldButton = document.getElementById(`move${i + 1}`);
 
-            // Update the button
+            // Make the new text
             let text = `${move.name} (${move.type}) - Power: ${move.pow}`;
-            button.textContent = text;
+
+            // Create a new button
+            // Needed to erase the old event listener
+            let newButton = document.createElement('button');
+            newButton.id = `move${i + 1}`;
+            newButton.className = 'moveButtons';
+            newButton.textContent = text;
 
             // Add event listener
-            if (turn === 1) button.addEventListener("click", () => {
-                const move = {
+            newButton.addEventListener("click", () => {
+                const moveInfo = {
                     type: 'attack',
                     target: 'enemy',
                     model: move
                 };
-                socket.emit('move', move);
+                socket.emit('move', moveInfo);
                 disableButtons()
             });
+
+            // Replace it
+            oldButton.parentNode.replaceChild(newButton, oldButton);
         }
 
         // In case we don't have 4 moves
@@ -311,11 +205,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     function loadPokemonButtons(myTeam, curActive, turn) {
         for (let i = 0; i < myTeam.length; i++) {
             let pokemon = myTeam[i];
-            let button = pokemonButtons[i];
+            let oldButton = document.getElementById(`pokemon${i + 1}`);
 
-            button.textContent = `${pokemon.name}`;
-            button.dataset.pokemonId = `${pokemon._id}`;
-            if (turn === 1) button.addEventListener("click", () => {
+            // Create a new button
+            // Needed to erase the old event listener
+            let newButton = document.createElement('button');
+            newButton.textContent = `${pokemon.name}`;
+            newButton.className = 'pokemonButtons';
+            newButton.id = `pokemon${i + 1}`;
+            newButton.dataset.pokemonId = `${pokemon._id}`;
+            newButton.addEventListener("click", () => {
                 const move = {
                     type: 'switch',
                     target: i,
@@ -324,12 +223,15 @@ document.addEventListener("DOMContentLoaded", async () => {
                 disableButtons();
             });
 
+            // Replace it
+            oldButton.parentNode.replaceChild(newButton, oldButton);
+
             // Don't let the player switch in their own pokemon
             if (i == curActive) {
-                button.disabled = true;
+                newButton.disabled = true;
             }
             else {
-                button.disabled = false;
+                newButton.disabled = false;
             }
         }
     }
@@ -358,23 +260,31 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     function disableButtons() {
-        pokemonButtons.forEach((button, index) => {
+        let pokemonButtons = document.getElementsByClassName('pokemonButtons');
+        for (let i = 0; i < pokemonButtons.length; i++) {
+            let button = pokemonButtons[i];
             button.disabled = true;
-        });
+        }
 
-        moveButtons.forEach((button, index) => {
+        let moveButtons = document.getElementsByClassName('moveButtons');
+        for (let i = 0; i < moveButtons.length; i++) {
+            let button = moveButtons[i];
             button.disabled = true;
-        });
+        }
     }
 
     function enableButtons() {
-        pokemonButtons.forEach((button, index) => {
+        let pokemonButtons = document.getElementsByClassName('pokemonButtons');
+        for (let i = 0; i < pokemonButtons.length; i++) {
+            let button = pokemonButtons[i];
             button.disabled = false;
-        });
+        }
 
-        moveButtons.forEach((button, index) => {
+        let moveButtons = document.getElementsByClassName('moveButtons');
+        for (let i = 0; i < moveButtons.length; i++) {
+            let button = moveButtons[i];
             button.disabled = false;
-        });
+        }
     }
 
 });
